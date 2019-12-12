@@ -3,6 +3,7 @@ import logo from './logo.svg'
 import './App.css'
 import Login from './Login'
 import Navbar from './Navbar'
+import Sidebar from './Sidebar'
 
 function App () {
   return (
@@ -11,6 +12,7 @@ function App () {
         <Navbar />
       </div>
       <div className='App-body'>
+        <Sidebar />
         <Login />
       </div>
     </div>

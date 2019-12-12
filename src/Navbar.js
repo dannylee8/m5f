@@ -1,9 +1,9 @@
 import React from 'react'
 
-const NavBar = props => (
-  <div className='navbar'>
-    DevTeam
-  </div>
-)
-
-export default NavBar
+export default function NavBar () {
+  return (
+    <div className='navbar'>
+      <h1>DevTeam</h1>
+    </div>
+  )
+}
