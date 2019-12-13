@@ -69,7 +69,7 @@ class App extends Component {
   }
 
   render () {
-    console.log("App: render: ", this.state)
+    console.log("App: render: ", this.state.users[0])
     return (
       <Router>
         <div className='App'>

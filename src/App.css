@@ -147,3 +147,37 @@
 #cUser{
   color: #a64d79;
 }
+
+.user-table {
+  margin-left: 250px;
+  margin-top: 50px;
+  border-spacing: .2em;
+  margin: 1rem auto;
+  border-collapse: separate;
+  width: 40vw;
+}
+
+.user-table td {
+  padding: 0rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.roles-table {
+  margin-left: 250px;
+  margin-top: 50px;
+  width: 40vw;
+}
+
+.roles-table td {
+  padding: 0rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.roles-table th {
+  padding: 0rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+  background-color: #D8D8D8;
+}

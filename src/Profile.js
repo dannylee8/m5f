@@ -3,10 +3,19 @@ import React, { Component } from 'react'
 class Profile extends Component {
 
   render () {
-    // console.log('Profile: ', this.props.state)
     return (
       <div>
-        <h4>Name: {(this.props.state.current_user) ? `${this.props.state.current_user.name}` : '!'}</h4>
+        <table className='user-table'>
+          <tr>
+            <td>Name:</td>
+            <td>{(this.props.state.current_user) ? `${this.props.state.current_user.name}` : '!'}</td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td>{(this.props.state.current_user) ? `${this.props.state.current_user.email_address}` : '!'}</td>
+          </tr>
+        </table>
+
       </div>
     )
   }
