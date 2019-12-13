@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Profile = props => (
-  <div>
-    <h1>Hello{(props.current_user) ? `, ${props.current_user.name}` : '!'}</h1>
-  </div>
-)
+class Profile extends Component {
+
+  render () {
+    // console.log('Profile: ', this.props.state)
+    return (
+      <div>
+        <h4>Name: {(this.props.state.current_user) ? `${this.props.state.current_user.name}` : '!'}</h4>
+      </div>
+    )
+  }
+}
 
 export default Profile

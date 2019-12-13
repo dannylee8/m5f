@@ -56,15 +56,20 @@ class App extends Component {
     this.setState({
       current_user: cUser
     })
+    localStorage.setItem('cUser', JSON.stringify(cUser))
+    console.log("App <ln 60> Local user: ", localStorage.getItem('cUser'))
   }
 
   handleLogout = () => {
+    // console.log("click")
     this.setState({
       current_user: undefined
     })
+    localStorage.clear();
   }
 
   render () {
+    console.log("App: render: ", this.state)
     return (
       <Router>
         <div className='App'>
@@ -73,14 +78,14 @@ class App extends Component {
           </div>
           <div className='App-body'>
             <Sidebar cUser={this.state.current_user} handleLogout={this.handleLogout} />
-            {(this.state.current_user) ? 'logged in' : 'logged out'}
+            {/* {(this.state.current_user) ? 'logged in' : 'logged out'} */}
             {(this.state.current_user) ? <Redirect to='/profile' /> : <Redirect to='/login' />}
             <Switch>
               <Route path='/login'>
                 <Login logThemIn={this.logThemIn} />
               </Route>
               <Route path='/profile'>
-                <Profile state={this.state}/>
+                {(this.state.current_user) ? <Profile state={this.state} /> : <Redirect to='/login' />}
               </Route>
               <Route path='/teams'>
                 <Teams />
