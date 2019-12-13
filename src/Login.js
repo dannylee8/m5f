@@ -9,6 +9,7 @@ const validationMethods =  {
         }
     },
     isEmail: (field,value) => {
+        // eslint-disable-next-line
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         if (reg.test(value) === false) {
             return  `Invalid Email Address.`
@@ -77,7 +78,11 @@ export default class Login extends Component {
         const email = this.state.email;
         const password = this.state.password;
         const errors =  this.state.errors;
-        console.log(email, password, errors);
+        if (this.state.errors.length < 1) {
+            this.props.logThemIn(email);
+        } else {
+            console.log(email, password, errors);
+        }
     }
  
     handleChange = (event) => {
@@ -129,8 +134,8 @@ export default class Login extends Component {
                         />
                       </div>
                     </FormGroup>
-                    <Button color="secondary">Login</Button>
-                    <div class="divider"/>
+                    <Button logThemIn={this.props.logThemIn} color="secondary">Login</Button>
+                    <div className="divider"/>
                     <Button color="secondary">New User</Button>
                 </Form>
             </Container>
