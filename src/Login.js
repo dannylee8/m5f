@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Container, Form, FormGroup, Label, Input, Fade  } from 'reactstrap';
+import {
+    Redirect
+  } from 'react-router-dom'
 import _ from 'lodash';
  
 const validationMethods =  {
@@ -56,11 +59,22 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            errors: []
+            errors: [],
+            redirect: false
         }
     }
  
- 
+
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    }
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/new_user' />
+        }
+    }
  
     login = (event) => {
  
@@ -78,7 +92,7 @@ export default class Login extends Component {
         const email = this.state.email;
         const password = this.state.password;
         const errors =  this.state.errors;
-        if (this.state.errors.length < 1) {
+        if (!this.state.errors.email && !this.state.errors.password) {
             this.props.logthemin(email);
         } else {
             console.log(email, password, errors);
@@ -105,6 +119,7 @@ export default class Login extends Component {
         // console.log(this.props)
         return (
           <>
+            {this.renderRedirect()}
             <Container className="login-container">
                 <Form id="loginForm" method="post" onSubmit={this.login}>
                     <FormGroup>
@@ -137,7 +152,7 @@ export default class Login extends Component {
                     </FormGroup>
                     <Button onClick={this.login} color="secondary">Login</Button>
                     <div className="divider"/>
-                    <Button color="secondary">New User</Button>
+                    <Button onClick={this.setRedirect} color="secondary">New User</Button>
                 </Form>
             </Container>
             <FromValidationError field={this.state.errors.email} />

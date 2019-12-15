@@ -13,6 +13,7 @@ import Sidebar from './Sidebar'
 import Profile from './Profile'
 import Search from './Search'
 import Teams from './Teams'
+import NewUser from './NewUser'
 
 class App extends Component {
   constructor (props) {
@@ -110,6 +111,9 @@ class App extends Component {
               </Route>
               <Route path='/search'>
                 <Search />
+              </Route>
+              <Route path='/new_user'>
+                <NewUser />
               </Route>
               <Route exact path='/'>
                 <Home />
