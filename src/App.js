@@ -92,11 +92,22 @@ class App extends Component {
 
   handleDelete = () => {
     // console.log("delete click in app")
+    this.removeUserFromState()
+    this.destroyUser(this.state.current_user.id)
     this.setState({
       current_user: undefined
     })
     localStorage.clear();
-    this.destroyUser(this.state.current_user.id)
+  }
+
+  removeUserFromState = () => {
+    let array = [...this.state.users]
+    let index = array.indexOf(this.state.current_user)
+    if (index !== -1) {
+      array.splice(index, 1)
+      this.setState({ users: array });
+    }
+    return array
   }
 
   destroyUser = (id) => {
