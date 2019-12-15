@@ -1,12 +1,13 @@
 import React from 'react'
 
 const UserRole = props => (
-  <div>
-			<tr>
-				<td>Test role 1</td>
-				<td>Test role 2</td>
-			</tr>
-  </div>
+  <>
+		{/* {console.log("userRole.js: ", props.singleRole)} */}
+    <tr>
+      <td>{props.singleRole.name}</td>
+      <td>{props.singleRole.years_exp}</td>
+    </tr>
+  </>
 )
 
 export default UserRole

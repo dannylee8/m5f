@@ -79,7 +79,7 @@ export default class Login extends Component {
         const password = this.state.password;
         const errors =  this.state.errors;
         if (this.state.errors.length < 1) {
-            this.props.logThemIn(email);
+            this.props.logthemin(email);
         } else {
             console.log(email, password, errors);
         }
@@ -102,6 +102,7 @@ export default class Login extends Component {
     }
  
     render() {
+        // console.log(this.props)
         return (
           <>
             <Container className="login-container">
@@ -134,7 +135,7 @@ export default class Login extends Component {
                         />
                       </div>
                     </FormGroup>
-                    <Button logThemIn={this.props.logThemIn} color="secondary">Login</Button>
+                    <Button onClick={this.login} color="secondary">Login</Button>
                     <div className="divider"/>
                     <Button color="secondary">New User</Button>
                 </Form>

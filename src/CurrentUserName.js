@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CurrentUserName = props => (
-  <div id='cUser'>
+  <div className='cUser'>
     {(props.cUser) ? `${props.cUser.name} 😀` : '😀'}
   </div>
 )

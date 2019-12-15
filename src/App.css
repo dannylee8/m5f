@@ -144,8 +144,13 @@
   bottom: 100px;
 }
 
-#cUser{
+.cUser {
   color: #a64d79;
+}
+
+.profile-img {
+  padding-top: 25px;
+  width: 75px;
 }
 
 .user-table {
@@ -166,7 +171,9 @@
 .roles-table {
   margin-left: 250px;
   margin-top: 50px;
-  width: 40vw;
+  width: 39.5vw;
+  border-spacing: .2em;
+  margin: 1rem auto;
 }
 
 .roles-table td {
