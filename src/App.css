@@ -141,7 +141,17 @@
 
 #logout {
   position: absolute;
-  bottom: 100px;
+  bottom: 125px;
+}
+
+#delete {
+  position: absolute;
+  bottom: 88px;
+  left: 50%;
+  height: 20px;
+  width: 110px;
+  margin-left: -55px;
+  padding: 0;
 }
 
 .cUser {
