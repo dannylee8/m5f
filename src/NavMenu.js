@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const NavMenu = props => {
-	return(
-		(props.cUser) 
+	return (
+    (props.cUser) 
 		? 
 		(<>
 			<nav>
