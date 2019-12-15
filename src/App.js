@@ -57,6 +57,11 @@ class App extends Component {
           positions: json
         })
       })
+    if (localStorage.getItem('cUser')) {
+      this.setState({
+        current_user: JSON.parse(localStorage.getItem('cUser'))
+      })
+    }
   }
 
   findUserRoles = (user_id) => {
