@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Container, Form, FormGroup, Label, Input, Fade  } from 'reactstrap';
-import {
-    Redirect
-  } from 'react-router-dom'
+import {  Redirect } from 'react-router-dom'
 import _ from 'lodash';
  
 const validationMethods =  {
@@ -22,7 +20,7 @@ const validationMethods =  {
  
 const validateForm = (form) => {
     const loginForm = document.getElementById(form)
-     return loginForm.querySelectorAll('[validations]');
+        return loginForm.querySelectorAll('[validations]');
 }
  
 const runValidationRules  = (element, errors) => {
@@ -50,7 +48,6 @@ const runValidationRules  = (element, errors) => {
  
     return errors;
 }
- 
  
 export default class Login extends Component {
  
