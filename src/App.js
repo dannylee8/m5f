@@ -90,10 +90,29 @@ class App extends Component {
     localStorage.clear();
   }
 
+  handleDelete = () => {
+    // console.log("delete click in app")
+    this.setState({
+      current_user: undefined
+    })
+    localStorage.clear();
+    this.destroyUser(this.state.current_user.id)
+  }
+
+  destroyUser = (id) => {
+    return fetch(`http://localhost:3000/api/v1/users/${id}`, {method: 'DELETE'})
+      .then(res => res.json())
+      .then(res => {
+        console.log('Deleted:', res.message)
+        return res
+      })
+      .catch(err => console.error(err))
+  }
+
   render () {
     console.log("App: render: ", this.state)
-    console.log("has roles:", "roosevelt@hotmail.com")
-    console.log("has no roles:", "cordell@yahoo.com")
+    console.log("has roles:", "michale.herman@hotmail.com")
+    console.log("has no roles:", "rhea_kub@hotmail.com")
     return (
       <Router>
         <div className='App'>
@@ -101,7 +120,7 @@ class App extends Component {
             <TopBar />
           </div>
           <div className='App-body'>
-            <Sidebar cUser={this.state.current_user} handleLogout={this.handleLogout} />
+            <Sidebar cUser={this.state.current_user} handleLogout={this.handleLogout} handleDelete={this.handleDelete} />
             {/* {(this.state.current_user) ? 'logged in' : 'logged out'} */}
             {(this.state.current_user) ? <Redirect to='/profile' /> : <Redirect to='/login' />}
             <Switch>

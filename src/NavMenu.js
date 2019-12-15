@@ -19,7 +19,7 @@ const NavMenu = props => {
 					</li>
 				</ul>
 			</nav>
-			<button id='delete' onClick={()=>console.log("click")} className='btn btn-warning btn-sm'>
+			<button id='delete' onClick={props.handleDelete} className='btn btn-warning btn-sm'>
         delete user
       </button>
 			<button id='logout' onClick={props.handleLogout} className='btn btn-primary btn-lg btn-block'>
