@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
 import Checkbox from "./Checkbox";
 
 const OPTIONS = [
@@ -61,26 +63,52 @@ class NewUser extends Component {
   };
 
   createCheckbox = option => (
-    <Checkbox
-      label={option}
-      isSelected={this.state.checkboxes[option]}
-      onCheckboxChange={this.handleCheckboxChange}
-      key={option}
-    />
+    <tr>
+      <td>
+        <Checkbox
+          label={option}
+          isSelected={this.state.checkboxes[option]}
+          onCheckboxChange={this.handleCheckboxChange}
+          key={option}
+        />
+      </td>
+    </tr>
   );
 
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
   render() {
-    console.log("NewUser State: ", this.state)
+    console.log("NewUser State: ", this.state.checkboxes)
     return (
       <div className="container">
         <div className="row mt-5">
           <div className="col-sm-12">
             <form onSubmit={this.handleFormSubmit}>
-              {this.createCheckboxes()}
-
+              <InputGroup size="sm" className="mb-3 new-user-input">
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl
+                  placeholder="Username"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1"
+                />
+              </InputGroup>
+              <InputGroup size="sm" className="mb-3 new-user-input">
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="basic-addon1">📧</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl
+                  placeholder="Email address"
+                  aria-label="Email address"
+                  aria-describedby="basic-addon1"
+                />
+              </InputGroup>
+              <table className="new-user-table">
+                {this.createCheckboxes()}
+              </table>
               <div className="form-group mt-2">
+
                 <button
                   type="button"
                   className="btn btn-outline-primary mr-2"

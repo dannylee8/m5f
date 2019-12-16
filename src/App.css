@@ -198,3 +198,23 @@
   border: 1px solid black;
   background-color: #D8D8D8;
 }
+
+.new-user-input {
+  margin: auto;
+  width: 20vw;
+}
+
+.new-user-table {
+  margin-left: 250px;
+  margin-top: 50px;
+  width: 39.5vw;
+  border-spacing: .2em;
+  margin: 1rem auto;
+}
+
+.new-user-table td {
+  padding: 0rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+  text-align: left;
+}
