@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Container, Form, FormGroup, Label, Input, Fade  } from 'reactstrap';
-import {  Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import _ from 'lodash';
  
 const validationMethods =  {

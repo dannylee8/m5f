@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
+import { Redirect } from 'react-router-dom'
 import Checkbox from "./Checkbox";
 
 const OPTIONS = [
@@ -16,6 +17,7 @@ const OPTIONS = [
 
 class NewUser extends Component {
   state = {
+    redirect: false,
     checkboxes: OPTIONS.reduce(
       (options, option) => ({
         ...options,
@@ -24,6 +26,18 @@ class NewUser extends Component {
       {}
     )
   };
+
+
+  setRedirect = () => {
+    this.setState({
+        redirect: true
+    })
+  }
+  renderRedirect = () => {
+      if (this.state.redirect) {
+          return <Redirect to='/login' />
+      }
+  }
 
   selectAllCheckboxes = isSelected => {
     Object.keys(this.state.checkboxes).forEach(checkbox => {
@@ -78,9 +92,10 @@ class NewUser extends Component {
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
   render() {
-    console.log("NewUser State: ", this.state.checkboxes)
+    // console.log("NewUser State: ", this.state.checkboxes)
     return (
       <div className="container">
+        {this.renderRedirect()}
         <div className="row mt-5">
           <div className="col-sm-12">
             <form onSubmit={this.handleFormSubmit}>
@@ -129,6 +144,9 @@ class NewUser extends Component {
                   Save
                 </button>
               </div>
+                <button onClick={this.setRedirect} className="btn btn-primary">
+                  back to Login
+                </button>
             </form>
           </div>
         </div>
