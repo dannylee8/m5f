@@ -207,7 +207,7 @@
 .new-user-table {
   margin-left: 250px;
   margin-top: 50px;
-  width: 39.5vw;
+  width: 22vw;
   border-spacing: .2em;
   margin: 1rem auto;
 }
@@ -215,6 +215,5 @@
 .new-user-table td {
   padding: 0rem 1.2rem;
   border-radius: 3px;
-  border: 1px solid black;
   text-align: left;
 }

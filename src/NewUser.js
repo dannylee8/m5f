@@ -63,7 +63,7 @@ class NewUser extends Component {
   };
 
   createCheckbox = option => (
-    <tr>
+    <tr key={option}>
       <td>
         <Checkbox
           label={option}
@@ -84,7 +84,7 @@ class NewUser extends Component {
         <div className="row mt-5">
           <div className="col-sm-12">
             <form onSubmit={this.handleFormSubmit}>
-              <InputGroup size="sm" className="mb-3 new-user-input">
+              <InputGroup size="sm" key="username" className="mb-3 new-user-input">
                 <InputGroup.Prepend>
                   <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
                 </InputGroup.Prepend>
@@ -94,9 +94,9 @@ class NewUser extends Component {
                   aria-describedby="basic-addon1"
                 />
               </InputGroup>
-              <InputGroup size="sm" className="mb-3 new-user-input">
+              <InputGroup size="sm" key="email_address" className="mb-3 new-user-input">
                 <InputGroup.Prepend>
-                  <InputGroup.Text id="basic-addon1">📧</InputGroup.Text>
+                  <InputGroup.Text id="basic-addon1"><span role="img" aria-label="email">📧</span></InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
                   placeholder="Email address"
@@ -105,7 +105,9 @@ class NewUser extends Component {
                 />
               </InputGroup>
               <table className="new-user-table">
-                {this.createCheckboxes()}
+                <tbody>
+                 {this.createCheckboxes()}
+                </tbody>
               </table>
               <div className="form-group mt-2">
 
