@@ -121,9 +121,11 @@ class App extends Component {
   }
 
   render () {
-    console.log("App: render: ", this.state)
-    console.log("has roles:", "michale.herman@hotmail.com")
-    console.log("has no roles:", "rhea_kub@hotmail.com")
+    if (this.state.positions.length > 0) {
+      console.log("App: render: ", this.state)
+      console.log("has roles:", "michale.herman@hotmail.com")
+      console.log("has no roles:", "rhea_kub@hotmail.com")
+    }
     return (
       <Router>
         <div className='App'>

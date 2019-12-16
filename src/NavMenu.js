@@ -22,7 +22,7 @@ const NavMenu = props => {
 			<button id='delete' onClick={props.handleDelete} className='btn btn-warning btn-sm'>
         delete user
       </button>
-			<button id='logout' onClick={props.handleLogout} className='btn btn-primary btn-lg btn-block'>
+			<button id='logout' onClick={props.handleLogout} className='btn btn-primary btn-sm btn-block'>
         logout
       </button>
 		</>) 

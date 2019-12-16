@@ -99,7 +99,7 @@
   width: 200px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
-  top: 72px; /* Stay at the top */
+  top: 10vh; /* Stay at the top */
   left: 0;
   background-color: #D8D8D8; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
@@ -141,12 +141,12 @@
 
 #logout {
   position: absolute;
-  bottom: 125px;
+  bottom: 50vh;
 }
 
 #delete {
   position: absolute;
-  bottom: 88px;
+  bottom: 20vh;
   left: 50%;
   height: 20px;
   width: 110px;
