@@ -120,11 +120,12 @@ class App extends Component {
       .catch(err => console.error(err))
   }
 
+
   render () {
     if (this.state.positions.length > 0) {
       console.log("App: render: ", this.state)
-      console.log("has roles:", "michale.herman@hotmail.com")
-      console.log("has no roles:", "rhea_kub@hotmail.com")
+      console.log("has roles:", "Milo@gmail.com")
+      console.log("has no roles:", "Jude@gmail.com")
     }
     return (
       <Router>
