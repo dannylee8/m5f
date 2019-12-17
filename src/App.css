@@ -207,7 +207,7 @@
 .new-user-table {
   margin-left: 250px;
   margin-top: 50px;
-  width: 32vw;
+  width: 25vw;
   border-spacing: .2em;
   margin: 1rem auto;
 }
@@ -216,4 +216,9 @@
   padding: 0rem 1.2rem;
   border-radius: 3px;
   text-align: left;
+  vertical-align: baseline; 
+}
+
+#years-exp {
+  line-height: 1em;
 }

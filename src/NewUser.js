@@ -90,8 +90,6 @@ class NewUser extends Component {
 
               <UserInputs />
 
-              <h4>Roles available:</h4>
-
               <CheckboxGroup  isSelected={this.isOptionSelected} 
                               roleOptions={OPTIONS}
                               onCheckboxChange={this.handleCheckboxChange}
