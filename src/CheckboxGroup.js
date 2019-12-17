@@ -1,56 +1,33 @@
 import React from 'react'
-import Checkbox from "./Checkbox";
+import Checkbox from './Checkbox'
+
+const createCheckbox = (props, roleOption) => {
+  return (
+    <tr key={roleOption}>
+			{/* {console.log(props)} */}
+      <td>
+        <Checkbox
+          label={roleOption}
+          isSelected={props.isSelected(roleOption)}
+          onCheckboxChange={props.onCheckboxChange}
+          key={roleOption}
+        />
+      </td>
+    </tr>
+  )
+}
 
 const CheckboxGroup = (props) => {
-	props.roleOptions.map(roleOption => {
-			<>
-				<table className='new-user-table'>
-					<tbody>
-						{createCheckboxes()}
-					</tbody>
-				</table>
-			</>
-	});
+  console.log(props)
+  return (
+    <div>
+      <table className='new-user-table'>
+        <tbody>
+          {props.roleOptions.map((roleOption) => createCheckbox(props, roleOption))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
 
-
-	let createCheckbox = option => (
-		<tr key={option}>
-			<td>
-				<Checkbox
-					label={option}
-					isSelected={props.state.checkboxes[option]}
-					onCheckboxChange={props.handleCheckboxChange}
-					key={option}
-				/>
-			</td>
-		</tr>
-	)
-	
-	
-	
-	
-	let createSelectedCheckbox = option => (
-		<tr key={option}>
-			<td>
-				<Checkbox
-					label={option}
-					isSelected={this.state.checkboxes[option]}
-					onCheckboxChange={this.handleCheckboxChange}
-					key={option}
-				/>
-			</td>
-			<td>
-				<Checkbox
-					label={option}
-					isSelected={this.state.checkboxes[option]}
-					onCheckboxChange={this.handleCheckboxChange}
-					key={option}
-				/>
-			</td>
-		</tr>    
-	)
-
-} 
 export default CheckboxGroup
-
-

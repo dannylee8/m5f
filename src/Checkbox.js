@@ -2,6 +2,7 @@ import React from 'react'
 
 const Checkbox = ({ label, isSelected, onCheckboxChange }) => (
   <div className='form-check'>
+  {/* {console.log(onCheckboxChange)} */}
     <label>
       <input
         type='checkbox'
