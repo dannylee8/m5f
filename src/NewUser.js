@@ -95,7 +95,6 @@ class NewUser extends Component {
                               onCheckboxChange={this.handleCheckboxChange}
               />
 
-
               <div className="form-group mt-2">
                 <button
                   type="button"
