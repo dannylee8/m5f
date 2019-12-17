@@ -73,6 +73,13 @@ class NewUser extends Component {
         [option]: false
       }),
       {}
+    ),
+    yrsExp: OPTIONS.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: null
+      }),
+      {}
     )
   };
 
@@ -105,7 +112,7 @@ class NewUser extends Component {
 
   handleCheckboxChange = changeEvent => {
     const { name } = changeEvent.target;
-
+    console.log(changeEvent.target.value)
     this.setState(prevState => ({
       checkboxes: {
         ...prevState.checkboxes,
@@ -134,6 +141,19 @@ class NewUser extends Component {
     });
   }
 
+  handleYrsExpChange = (changeEvent) => {
+    changeEvent.persist()
+    console.log(changeEvent)
+    const { name, value } = changeEvent.target;
+    console.log(name, value)
+    this.setState(prevState => ({
+      yrsExp: {
+        ...prevState.yrsExp,
+        [name]: value
+      }
+    }));
+  }
+
   handleUserInputChange = (event) => {
     const target = event.target;
     const field =  target.name;
@@ -141,8 +161,8 @@ class NewUser extends Component {
 
     const errors = runValidationRules(target, this.state.errors);
 
-    console.log("errors: ", errors)
-    console.log("errors: ", value)
+    // console.log("errors: ", errors)
+    // console.log("errors: ", value)
 
     this.setState({
       errors: errors
@@ -168,12 +188,8 @@ class NewUser extends Component {
     const email = this.state.email;
     const password = this.state.password;
     const errors =  this.state.errors;
-    console.log(email);
-    console.log(password);
-    console.log(errors)
-    console.log(this.state.errors)
     if (!this.state.errors.email && !this.state.errors.password) {
-        console.log("Ready to do FETCH!");
+        console.log(this.state);
     } else {
         console.log(email, password, errors);
     }
@@ -219,6 +235,7 @@ class NewUser extends Component {
                                 roleOptions={OPTIONS}
                                 onCheckboxChange={this.handleCheckboxChange}
                                 onInputChange={this.handleInputChange}
+                                onYrsExpChange={this.handleYrsExpChange}
                                 state={this.state}
                 />
                 <div className="form-group mt-2">
