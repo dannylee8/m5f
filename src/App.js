@@ -65,21 +65,26 @@ class App extends Component {
   }
 
   findUserRoles = (user_id) => {
-    return this.state.user_roles.filter(ur => ur.user_id === user_id)
+    return this.state.user_roles.filter(ur => ur.user_id === user_id) 
   }
 
   logThemIn = (email) => {
     const cUser = this.state.users.find(user =>  {
       return user.email_address === email
     })
-    let cUserRoles = this.findUserRoles(cUser.id)
-    console.log("App <ln 70> cUserRoles: ", cUserRoles)   
-    this.setState({
-      current_user: cUser,
-      current_user_roles: cUserRoles
-    })
-    localStorage.setItem('cUser', JSON.stringify(cUser))
-    console.log("App <ln 75> Local user: ", localStorage.getItem('cUser'))
+    if (cUser) {
+      let cUserRoles = this.findUserRoles(cUser.id)
+      console.log("App <ln 70> cUserRoles: ", cUserRoles)   
+      this.setState({
+        current_user: cUser,
+        current_user_roles: cUserRoles
+      })
+      localStorage.setItem('cUser', JSON.stringify(cUser))
+      console.log("App <ln 75> Local user: ", localStorage.getItem('cUser'))
+    }
+    else {
+      console.log("error!  no cUser")
+    }
   }
 
   handleLogout = () => {
@@ -98,6 +103,15 @@ class App extends Component {
       current_user: undefined
     })
     localStorage.clear();
+  }
+
+  addUserToState = (user) => {
+    this.setState({ users: [...this.state.users, user] });
+    return this.state.users
+  }
+
+  addNote(newNote) {
+    this.setState({ toDoNotes: [...this.state.toDoNotes, newNote]})
   }
 
   removeUserFromState = () => {
@@ -119,7 +133,6 @@ class App extends Component {
       })
       .catch(err => console.error(err))
   }
-
 
   render () {
     if (this.state.positions.length > 0) {
@@ -151,7 +164,7 @@ class App extends Component {
                 <Search />
               </Route>
               <Route path='/new_user'>
-                <NewUser />
+                <NewUser logThemIn={this.logThemIn} addUserToState={this.addUserToState}/>
               </Route>
               <Route exact path='/'>
                 <Home />

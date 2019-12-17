@@ -63,6 +63,7 @@ const runValidationRules  = (element, errors) => {
 
 class NewUser extends Component {
   state = {
+    name: '',
     email: '',
     password: '',
     errors: [],
@@ -185,11 +186,33 @@ class NewUser extends Component {
       });
     })
 
+    const name = this.state.name;
     const email = this.state.email;
     const password = this.state.password;
     const errors =  this.state.errors;
     if (!this.state.errors.email && !this.state.errors.password) {
-        console.log(this.state);
+        console.log(name,email);
+        // Create a new user
+        fetch('http://localhost:3000/api/v1/users', {
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          method: 'POST',
+          body: JSON.stringify({
+            name: name,
+            email_address: email,
+          })
+        })
+        .then(resp => resp.json())
+        .then(user => {
+          console.log(user)
+          if (user.email_address) {
+            this.props.addUserToState(user)
+            console.log(this.state)
+            this.props.logThemIn(user.email_address)
+            console.log("success?")
+          }
+          else console.log("error with then...");
+        })
+
     } else {
         console.log(email, password, errors);
     }
@@ -203,6 +226,19 @@ class NewUser extends Component {
           <h4>Create a new user</h4>
           {this.renderRedirect()}
               <Form id='createForm' method="post" onSubmit={this.handleCreateUserFormSubmit}>
+              <div className="login-row">
+                  <Label>Name</Label>
+                  <Input 
+                      className="input"
+                      type="text"
+                      validations={['required']}
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.handleInputChange}
+                      id="name"
+                      placeholder="Please enter your name."
+                    />
+                </div>
                 <div className="login-row">
                   <Label>Email</Label>
                   <Input 
