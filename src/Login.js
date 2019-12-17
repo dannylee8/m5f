@@ -79,7 +79,7 @@ export default class Login extends Component {
         const formElements = validateForm("loginForm");
  
         formElements.forEach(element=> {
-           const errors = runValidationRules(element, this.state.errors);
+            const errors = runValidationRules(element, this.state.errors);
             this.setState({
                 errors: errors
             });
@@ -161,6 +161,6 @@ export default class Login extends Component {
  
 const FromValidationError = props => (
     <Fade in={Boolean(props.field)}  tag="p" className="error">
-       { props.field ?  Object.values(props.field).shift() : '' } 
+      { props.field ?  Object.values(props.field).shift() : '' } 
   </Fade>
 );

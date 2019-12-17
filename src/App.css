@@ -213,18 +213,24 @@
 }
 
 .new-user-table td {
-  padding: 0rem 1.2rem;
+  padding: 0rem .5rem;
   border-radius: 3px;
   text-align: left;
-  vertical-align: baseline; 
+  vertical-align: middle; 
+  line-height: 2em;
+  padding-top: 4px;
+}
+
+.new-user-table th {
+  width:40px;
 }
 
 .years-exp {
-  line-height: 1em;
+  height: 1.5em;
+  padding: 3px;
 }
 
 .create-container {
-  background-color: #a64d79;
   text-align: left;
   padding: 1em;
   margin: 1em;
@@ -234,7 +240,14 @@
   margin-left: auto;
   margin-right: auto;
   width: 450px;
-  margin-top: 100px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
 }
+
+.create-user-input {
+  padding: .5rem;
+}
+
+
+/* * {
+border:1px solid lightpink !important;
+} */

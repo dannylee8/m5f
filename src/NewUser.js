@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
-// import UserInputs from "./UserInputs";
 import CheckboxGroup from "./CheckboxGroup";
-import { Button, Container, Form, Fade, Label, Input  } from 'reactstrap';
+import { Button, Container, Form, Fade, Label, Input } from 'reactstrap';
 
 import _ from 'lodash';
 
@@ -153,17 +152,17 @@ class NewUser extends Component {
         [field]:  value
     });
   }
-   
+
   handleCreateUserFormSubmit = (event) => {
     event.preventDefault();
 
     const formElements = validateForm("createForm");
 
     formElements.forEach(element=> {
-       const errors = runValidationRules(element, this.state.errors);
-        this.setState({
-            errors: errors
-        });
+      const errors = runValidationRules(element, this.state.errors);
+      this.setState({
+          errors: errors
+      });
     })
 
     const email = this.state.email;
@@ -198,7 +197,7 @@ class NewUser extends Component {
                       value={this.state.email}
                       onChange={this.handleInputChange}
                       id="email"
-                      placeholder=""
+                      placeholder="Please enter your email address."
                     />
                 </div>
                 <div className="login-row">
@@ -222,7 +221,6 @@ class NewUser extends Component {
                                 onInputChange={this.handleInputChange}
                                 state={this.state}
                 />
-
                 <div className="form-group mt-2">
                   <Button
                     type="button"
@@ -254,7 +252,7 @@ class NewUser extends Component {
 
 const FromValidationError = props => (
   <Fade in={Boolean(props.field)}  tag="p" className="error">
-     { props.field ?  Object.values(props.field).shift() : '' } 
+    { props.field ? Object.values(props.field).shift() : '' } 
   </Fade>
 );
 

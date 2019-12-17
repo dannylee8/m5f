@@ -4,7 +4,7 @@ import { Input } from 'reactstrap';
 
 const createCheckbox = (props, roleOption) => {
   return (
-    <tr key={roleOption}>
+    <tr key={roleOption} className="">
       {/* {console.log(props.state)} */}
       <td>
         <Checkbox
