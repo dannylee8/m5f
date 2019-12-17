@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
 import { Redirect } from 'react-router-dom'
-import Checkbox from "./Checkbox";
+import UserInputs from "./UserInputs";
+import CheckboxGroup from "./CheckboxGroup";
 
 const OPTIONS = [
   "Developer",
@@ -76,56 +75,30 @@ class NewUser extends Component {
       });
   };
 
-  createCheckbox = option => (
-    <tr key={option}>
-      <td>
-        <Checkbox
-          label={option}
-          isSelected={this.state.checkboxes[option]}
-          onCheckboxChange={this.handleCheckboxChange}
-          key={option}
-        />
-      </td>
-    </tr>
-  );
-
-  createCheckboxes = () => OPTIONS.map(this.createCheckbox);
+  isOptionSelected = option => {
+    return this.state.checkboxes[option]
+  }
 
   render() {
-    // console.log("NewUser State: ", this.state.checkboxes)
+    console.log("NewUser State: ", this.state.checkboxes.Developer)
     return (
       <div className="container">
         {this.renderRedirect()}
         <div className="row mt-5">
           <div className="col-sm-12">
             <form onSubmit={this.handleFormSubmit}>
-              <InputGroup size="sm" key="username" className="mb-3 new-user-input">
-                <InputGroup.Prepend>
-                  <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl
-                  placeholder="Username"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                />
-              </InputGroup>
-              <InputGroup size="sm" key="email_address" className="mb-3 new-user-input">
-                <InputGroup.Prepend>
-                  <InputGroup.Text id="basic-addon1"><span role="img" aria-label="email">📧</span></InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl
-                  placeholder="Email address"
-                  aria-label="Email address"
-                  aria-describedby="basic-addon1"
-                />
-              </InputGroup>
-              <table className="new-user-table">
-                <tbody>
-                 {this.createCheckboxes()}
-                </tbody>
-              </table>
-              <div className="form-group mt-2">
 
+              <UserInputs />
+
+              <h4>Roles available:</h4>
+
+              <CheckboxGroup  isSelected={this.isOptionSelected} 
+                              roleOptions={OPTIONS}
+                              onCheckboxChange={this.handleCheckboxChange}
+              />
+
+
+              <div className="form-group mt-2">
                 <button
                   type="button"
                   className="btn btn-outline-primary mr-2"
@@ -144,9 +117,9 @@ class NewUser extends Component {
                   Save
                 </button>
               </div>
-                <button onClick={this.setRedirect} className="btn btn-primary">
-                  back to Login
-                </button>
+              <button onClick={this.setRedirect} className="btn btn-primary">
+                back to Login
+              </button>
             </form>
           </div>
         </div>

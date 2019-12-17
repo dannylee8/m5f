@@ -201,13 +201,13 @@
 
 .new-user-input {
   margin: auto;
-  width: 20vw;
+  width:37vw;
 }
 
 .new-user-table {
   margin-left: 250px;
   margin-top: 50px;
-  width: 22vw;
+  width: 32vw;
   border-spacing: .2em;
   margin: 1rem auto;
 }
