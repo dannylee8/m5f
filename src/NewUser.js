@@ -79,6 +79,12 @@ class NewUser extends Component {
     return this.state.checkboxes[option]
   }
 
+  handleInputChange = (e) => {
+    this.setState({
+        [e.target.name]: e.target.value
+    });
+  }
+
   render() {
     console.log("NewUser State: ", this.state.checkboxes.Developer)
     return (
@@ -93,6 +99,8 @@ class NewUser extends Component {
               <CheckboxGroup  isSelected={this.isOptionSelected} 
                               roleOptions={OPTIONS}
                               onCheckboxChange={this.handleCheckboxChange}
+                              onInputChange={this.handleInputChange}
+                              state={this.state}
               />
 
               <div className="form-group mt-2">

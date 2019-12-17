@@ -4,7 +4,7 @@ import Checkbox from './Checkbox'
 const createCheckbox = (props, roleOption) => {
   return (
     <tr key={roleOption}>
-      {console.log(props.isSelected(roleOption))}
+      {console.log(props.state)}
       <td>
         <Checkbox
           label={roleOption}
@@ -15,7 +15,7 @@ const createCheckbox = (props, roleOption) => {
       </td>
       <td>
         {props.isSelected(roleOption) ? (
-          <input type='number' className='years-exp' name={roleOption} step="1" min="0" max="50" required pattern="\d*" length='2' size='2' />
+          <input type='number' value={props.state.roleOption} onChange={props.onInputChange} className='years-exp' name={roleOption+"_yrs_exp"} step="1" min="0" max="50" required pattern="\d*" length='2' size='2' />
         ) : (
           null
         )}
