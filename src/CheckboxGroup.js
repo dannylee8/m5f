@@ -1,10 +1,11 @@
 import React from 'react'
 import Checkbox from './Checkbox'
+import { Input } from 'reactstrap';
 
 const createCheckbox = (props, roleOption) => {
   return (
     <tr key={roleOption}>
-      {console.log(props.state)}
+      {/* {console.log(props.state)} */}
       <td>
         <Checkbox
           label={roleOption}
@@ -15,7 +16,7 @@ const createCheckbox = (props, roleOption) => {
       </td>
       <td>
         {props.isSelected(roleOption) ? (
-          <input type='number' value={props.state.roleOption} onChange={props.onInputChange} className='years-exp' name={roleOption+"_yrs_exp"} step="1" min="0" max="50" required pattern="\d*" length='2' size='2' />
+          <Input type='number' value={props.state.roleOption} onChange={props.onInputChange} className='years-exp' name={roleOption+"_yrs_exp"} step="1" min="0" max="50" required pattern="\d*" length='2' size='2' />
         ) : (
           null
         )}
@@ -25,7 +26,7 @@ const createCheckbox = (props, roleOption) => {
 }
 
 const CheckboxGroup = (props) => {
-  console.log(props)
+  // console.log(props)
   return (
     <div>
       <table className='new-user-table'>

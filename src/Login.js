@@ -45,7 +45,6 @@ const runValidationRules  = (element, errors) => {
             }
         }
     }
- 
     return errors;
 }
  

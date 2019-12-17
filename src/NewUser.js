@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
-import UserInputs from "./UserInputs";
+// import UserInputs from "./UserInputs";
 import CheckboxGroup from "./CheckboxGroup";
+import { Button, Container, Form, Fade, Label, Input  } from 'reactstrap';
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+
+import _ from 'lodash';
 
 const OPTIONS = [
   "Developer",
@@ -14,8 +19,56 @@ const OPTIONS = [
   "QA"
 ];
 
+const validationMethods =  {
+  required : (field, value) => {
+      if (!value.toString().trim().length) {
+          return  `This ${field} field is required.`
+      }
+  },
+  isEmail: (field,value) => {
+      // eslint-disable-next-line
+      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      if (reg.test(value) === false) {
+          return  `Invalid Email Address.`
+      }        
+  }
+} 
+
+const validateForm = (form) => {
+  const loginForm = document.getElementById(form)
+      return loginForm.querySelectorAll('[validations]');
+}
+
+const runValidationRules  = (element, errors) => {
+  const target = element;
+  const field =  target.name;
+  const value = target.value
+  let validations =  element.getAttribute('validations');
+  validations =  validations.split(',')
+
+  for (let validation of validations) {
+      validation = validation.split(':');
+      const rule = validation[0];
+      const error = validationMethods[rule](field, value);
+      errors[field] = errors[field] || {};
+      if(error) {
+          errors[field][rule] = error;
+      } else {
+          if(_.isEmpty(errors[field])) {
+              delete errors[field];
+          } else {
+              delete errors[field][rule];
+          }
+      }
+  }
+  return errors;
+}
+
 class NewUser extends Component {
   state = {
+    email: '',
+    password: '',
+    errors: [],
     redirect: false,
     checkboxes: OPTIONS.reduce(
       (options, option) => ({
@@ -25,7 +78,6 @@ class NewUser extends Component {
       {}
     )
   };
-
 
   setRedirect = () => {
     this.setState({
@@ -65,15 +117,15 @@ class NewUser extends Component {
     }));
   };
 
-  handleFormSubmit = formSubmitEvent => {
-    formSubmitEvent.preventDefault();
+  // handleFormSubmit = formSubmitEvent => {
+  //   formSubmitEvent.preventDefault();
 
-    Object.keys(this.state.checkboxes)
-      .filter(checkbox => this.state.checkboxes[checkbox])
-      .forEach(checkbox => {
-        console.log(checkbox, "is selected.");
-      });
-  };
+  //   Object.keys(this.state.checkboxes)
+  //     .filter(checkbox => this.state.checkboxes[checkbox])
+  //     .forEach(checkbox => {
+  //       console.log(checkbox, "is selected.");
+  //     });
+  // };
 
   isOptionSelected = option => {
     return this.state.checkboxes[option]
@@ -85,52 +137,127 @@ class NewUser extends Component {
     });
   }
 
+  handleUserInputChange = (event) => {
+    const target = event.target;
+    const field =  target.name;
+    const value = target.value
+
+    const errors = runValidationRules(target, this.state.errors);
+
+    console.log("errors: ", errors)
+    console.log("errors: ", value)
+
+    this.setState({
+      errors: errors
+    });
+    
+    this.setState({
+        [field]:  value
+    });
+  }
+   
+  handleCreateUserFormSubmit = (event) => {
+    event.preventDefault();
+
+    const formElements = validateForm("createForm");
+
+    formElements.forEach(element=> {
+       const errors = runValidationRules(element, this.state.errors);
+        this.setState({
+            errors: errors
+        });
+    })
+
+    const email = this.state.email;
+    const password = this.state.password;
+    const errors =  this.state.errors;
+    console.log(email);
+    console.log(password);
+    console.log(errors)
+    console.log(this.state.errors)
+    if (!this.state.errors.email && !this.state.errors.password) {
+        console.log("Ready to do FETCH!");
+    } else {
+        console.log(email, password, errors);
+    }
+  }
+
   render() {
-    console.log("NewUser State: ", this.state.checkboxes.Developer)
+    // console.log("NewUser State: ", this.state.checkboxes.Developer)
     return (
-      <div className="container">
-        {this.renderRedirect()}
-        <div className="row mt-5">
-          <div className="col-sm-12">
-            <form onSubmit={this.handleFormSubmit}>
+      <>
+        <Container className="create-container">
+          <h4>Create a new user</h4>
+          {this.renderRedirect()}
+              <Form id='createForm' method="post" onSubmit={this.handleCreateUserFormSubmit}>
+                <div className="login-row">
+                  <Label>Email</Label>
+                  <Input 
+                      className="input"
+                      type="text"
+                      validations={['required','isEmail']}
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.handleInputChange}
+                      id="email"
+                      placeholder=""
+                    />
+                </div>
+                <div className="login-row">
+                  <Label>Password</Label>
+                  <Input
+                      className="input"
+                      type="password"
+                      validations={['required']}
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleInputChange}
+                      id="password"
+                      placeholder="Please enter your password."
+                  />
+                </div>
+                <FromValidationError field={this.state.errors.email} />
+                <FromValidationError field={this.state.errors.password} />
+                <CheckboxGroup  isSelected={this.isOptionSelected} 
+                                roleOptions={OPTIONS}
+                                onCheckboxChange={this.handleCheckboxChange}
+                                onInputChange={this.handleInputChange}
+                                state={this.state}
+                />
 
-              <UserInputs />
-
-              <CheckboxGroup  isSelected={this.isOptionSelected} 
-                              roleOptions={OPTIONS}
-                              onCheckboxChange={this.handleCheckboxChange}
-                              onInputChange={this.handleInputChange}
-                              state={this.state}
-              />
-
-              <div className="form-group mt-2">
-                <button
-                  type="button"
-                  className="btn btn-outline-primary mr-2"
-                  onClick={this.selectAll}
-                >
-                  Select All
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-primary mr-2"
-                  onClick={this.deselectAll}
-                >
-                  Deselect All
-                </button>
-                <button type="submit" className="btn btn-primary">
-                  Save
-                </button>
-              </div>
-              <button onClick={this.setRedirect} className="btn btn-primary">
-                back to Login
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+                <div className="form-group mt-2">
+                  <Button
+                    type="button"
+                    className="btn btn-outline-primary mr-2"
+                    onClick={this.selectAll}
+                  >
+                    Select All
+                  </Button>
+                  <Button
+                    type="button"
+                    className="btn btn-outline-primary mr-2"
+                    onClick={this.deselectAll}
+                  >
+                    Deselect All
+                  </Button>
+                  <Button type="submit" className="btn btn-primary">
+                    Save
+                  </Button>
+                </div>
+                <Button onClick={this.setRedirect} className="btn btn-primary">
+                  back to Login
+                </Button>
+              </Form>
+        </Container>
+      </>
     );
   }
 }
+
+const FromValidationError = props => (
+  <Fade in={Boolean(props.field)}  tag="p" className="error">
+     { props.field ?  Object.values(props.field).shift() : '' } 
+  </Fade>
+);
 
 export default NewUser;
