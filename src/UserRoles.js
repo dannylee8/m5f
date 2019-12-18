@@ -1,7 +1,7 @@
 import React from 'react'
 import UserRole from './UserRole'
 
-const hasRoles = (props) => {
+const hasRoles = (currentUserRoles) => {
   return (
     <div>
       <table className='roles-table'>
@@ -9,8 +9,9 @@ const hasRoles = (props) => {
           <tr>
             <th>Role</th>
             <th>Yrs. Exp.</th>
+            <th>Edit</th>
           </tr>
-          {props.currentUserRoles.map(role => {
+          {currentUserRoles.map(role => {
             return <UserRole key={role.id} singleRole={role} />
           })}
         </tbody>
@@ -41,7 +42,7 @@ const hasNoRoles = () => {
 const UserRoles = props => (
   <div>
     {/* {console.log("state, ln 5, userRoles.js: ", props.currentUserRoles.length > 0 ? "true" : "false")} */}
-    {props.currentUserRoles.length > 0 ? hasRoles(props) : hasNoRoles()}
+    {props.currentUserRoles.length > 0 ? hasRoles(props.currentUserRoles) : hasNoRoles()}
   </div>
 )
 

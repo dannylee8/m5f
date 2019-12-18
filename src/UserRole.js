@@ -6,6 +6,10 @@ const UserRole = props => (
     <tr>
       <td>{props.singleRole.name}</td>
       <td>{props.singleRole.years_exp}</td>
+      <td>
+        <i className="material-icons">edit</i>
+        <i className="material-icons">delete</i>
+      </td>
     </tr>
   </>
 )
