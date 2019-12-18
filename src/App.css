@@ -222,7 +222,7 @@
 }
 
 .new-user-table th {
-  width:40px;
+  width:80px;
 }
 
 .years-exp {
@@ -246,7 +246,6 @@
 .create-user-input {
   padding: .5rem;
 }
-
 
 /* * {
 border:1px solid lightpink !important;

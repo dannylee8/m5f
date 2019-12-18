@@ -6,14 +6,14 @@ import { Button, Container, Form, Fade, Label, Input } from 'reactstrap';
 import _ from 'lodash';
 
 const OPTIONS = [
-  "Developer",
-  "Product Owner",
-  "Project Manager",
-  "Scrum Master",
-  "Architect",
-  "UX/UI",
-  "DevOps",
-  "QA"
+  "developer",
+  "product owner",
+  "project manager",
+  "scrum master",
+  "architect",
+  "ux/ui",
+  "devops",
+  "qa"
 ];
 
 const validationMethods =  {
@@ -144,9 +144,9 @@ class NewUser extends Component {
 
   handleYrsExpChange = (changeEvent) => {
     changeEvent.persist()
-    console.log(changeEvent)
+    // console.log(changeEvent)
     const { name, value } = changeEvent.target;
-    console.log(name, value)
+    // console.log(name, value)
     this.setState(prevState => ({
       yrsExp: {
         ...prevState.yrsExp,
@@ -191,7 +191,7 @@ class NewUser extends Component {
     const password = this.state.password;
     const errors =  this.state.errors;
     if (!this.state.errors.email && !this.state.errors.password) {
-        console.log(name,email);
+        // console.log(name,email);
         // Create a new user
         fetch('http://localhost:3000/api/v1/users', {
           headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -203,16 +203,17 @@ class NewUser extends Component {
         })
         .then(resp => resp.json())
         .then(user => {
-          console.log(user)
+          // console.log(user)
           if (user.email_address) {
             this.props.addUserToState(user)
-            console.log(this.state)
+            // console.log(this.state)
             this.props.logThemIn(user.email_address)
-            console.log("success?")
+            console.log("success?", this.state.yrsExp)
           }
           else console.log("error with then...");
         })
-
+        const entries = Object.entries(this.state.yrsExp)
+        console.log(entries)
     } else {
         console.log(email, password, errors);
     }

@@ -125,7 +125,9 @@ class App extends Component {
   }
 
   destroyUser = (id) => {
-    return fetch(`http://localhost:3000/api/v1/users/${id}`, {method: 'DELETE'})
+    return fetch(`http://localhost:3000/api/v1/users/${id}`, {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'DELETE'})
       .then(res => res.json())
       .then(res => {
         console.log('Deleted:', res.message)
@@ -137,8 +139,8 @@ class App extends Component {
   render () {
     if (this.state.positions.length > 0) {
       console.log("App: render: ", this.state)
-      console.log("has roles:", "Milo@gmail.com")
-      console.log("has no roles:", "Jude@gmail.com")
+      console.log("has roles:", "jerrell@gmail.com")
+      console.log("has no roles:", "clora@gmail.com")
     }
     return (
       <Router>
