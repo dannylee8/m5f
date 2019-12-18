@@ -110,8 +110,8 @@ class App extends Component {
     return this.state.users
   }
 
-  addNote(newNote) {
-    this.setState({ toDoNotes: [...this.state.toDoNotes, newNote]})
+  addUserRoleToState = (userRole) => {
+    this.setState({ current_user_roles: [...this.state.current_user_roles, userRole]})
   }
 
   removeUserFromState = () => {
@@ -128,12 +128,15 @@ class App extends Component {
     return fetch(`http://localhost:3000/api/v1/users/${id}`, {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: 'DELETE'})
-      .then(res => res.json())
       .then(res => {
-        console.log('Deleted:', res.message)
-        return res
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject({ status: res.status, statusText: res.statusText });
+        }
       })
-      .catch(err => console.error(err))
+      .then(res => console.log(res))
+      .catch(err => console.log('Error, with message:', err.statusText))
   }
 
   render () {
@@ -166,7 +169,7 @@ class App extends Component {
                 <Search />
               </Route>
               <Route path='/new_user'>
-                <NewUser logThemIn={this.logThemIn} addUserToState={this.addUserToState}/>
+                <NewUser logThemIn={this.logThemIn} addUserToState={this.addUserToState} addUserRoleToState={this.addUserRoleToState}/>
               </Route>
               <Route exact path='/'>
                 <Home />

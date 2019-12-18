@@ -203,17 +203,39 @@ class NewUser extends Component {
         })
         .then(resp => resp.json())
         .then(user => {
-          // console.log(user)
+          console.log(user)
           if (user.email_address) {
             this.props.addUserToState(user)
-            // console.log(this.state)
             this.props.logThemIn(user.email_address)
             console.log("success?", this.state.yrsExp)
+            const entries = Object.entries(this.state.yrsExp)
+            const entriesMap = entries.filter(e => {
+              if (e[1] > 0) {
+                return e;
+              }
+              return null;
+            })
+            console.log(entriesMap)
+            entriesMap.forEach(e => {
+              fetch('http://localhost:3000/api/v1/user_roles', {
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                method: 'POST',
+                body: JSON.stringify({
+                  user_id: user.id,
+                  role_id: OPTIONS.indexOf(e[0])+1,
+                  name: e[0],
+                  years_exp: e[1]
+                })
+              })
+              .then(resp => resp.json())
+              .then(role => {
+                this.props.addUserRoleToState(role)
+                console.log("entriesMap: ", role)
+              })
+            })
           }
           else console.log("error with then...");
         })
-        const entries = Object.entries(this.state.yrsExp)
-        console.log(entries)
     } else {
         console.log(email, password, errors);
     }
