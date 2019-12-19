@@ -139,6 +139,42 @@ class App extends Component {
       .catch(err => console.log('Error, with message:', err.statusText))
   }
 
+  handleDeleteUserRole = (ur) => {
+    this.removeUserRoleFromState(ur)
+    this.destroyUserRole(ur)
+  }
+
+  removeUserRoleFromState = (ur) => {
+    let user_roles_array = [...this.state.user_roles]
+    let current_user_roles_array = [...this.state.current_user_roles]
+    let index = user_roles_array.indexOf(ur)
+    let index2 = current_user_roles_array.indexOf(ur)
+    if (index !== -1) {
+      user_roles_array.splice(index, 1)
+      this.setState({ user_roles: user_roles_array });
+    }
+    if (index2 !== -1) {
+      current_user_roles_array.splice(index2, 1)
+      this.setState({ users: current_user_roles_array });
+    }
+    return user_roles_array
+  }
+
+  destroyUserRole = (ur) => {
+    return fetch(`http://localhost:3000/api/v1/user_roles/${ur.id}`, {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'DELETE'})
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject({ status: res.status, statusText: res.statusText });
+        }
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log('Error, with message:', err.statusText))
+  }
+
   render () {
     if (this.state.positions.length > 0) {
       console.log("App: render: ", this.state)
@@ -160,7 +196,7 @@ class App extends Component {
                 <Login logthemin={this.logThemIn} />
               </Route>
               <Route path='/profile'>
-                {(this.state.current_user) ? <Profile state={this.state} findUserRoles={this.findUserRoles}/> : <Redirect to='/login' />}
+                {(this.state.current_user) ? <Profile state={this.state} handleDeleteUserRole={this.handleDeleteUserRole} findUserRoles={this.findUserRoles}/> : <Redirect to='/login' />}
               </Route>
               <Route path='/teams'>
                 <Teams />

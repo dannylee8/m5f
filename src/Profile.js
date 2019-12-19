@@ -20,7 +20,7 @@ class Profile extends Component {
             </tr>
           </tbody>
         </table>
-        <UserRoles currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
+        <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
       </div>
     )
   }

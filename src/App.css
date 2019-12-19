@@ -247,6 +247,10 @@
   padding: .5rem;
 }
 
+.material-icons {
+  cursor: context-menu;
+}
+
 /* * {
 border:1px solid lightpink !important;
 } */
