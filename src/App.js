@@ -176,10 +176,10 @@ class App extends Component {
   }
 
   render () {
-    if (this.state.positions.length > 0) {
+    if (this.state.users.length > 0) {
       console.log("App: render: ", this.state)
-      console.log("has roles:", "jerrell@gmail.com")
-      console.log("has no roles:", "clora@gmail.com")
+      console.log("has roles:", "palmer@gmail.com")
+      console.log("has no roles:", "hank@gmail.com")
     }
     return (
       <Router>

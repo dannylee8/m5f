@@ -254,3 +254,8 @@
 /* * {
 border:1px solid lightpink !important;
 } */
+
+.years-input {
+  margin: auto;
+  width:5vw;
+}

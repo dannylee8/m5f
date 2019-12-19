@@ -4,7 +4,7 @@ import ProfileIcon from './icons/001-bear.png'
 
 class Profile extends Component {
   render () {
-    console.log(this.props.state.current_user_roles)
+    // console.log(this.props.state.current_user_roles)
     return (
       <div>
         <img className='profile-img' alt='profile placeholder' src={ProfileIcon} />
