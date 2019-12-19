@@ -191,7 +191,8 @@ class App extends Component {
             <Sidebar cUser={this.state.current_user} handleLogout={this.handleLogout} handleDelete={this.handleDelete} />
             {/* {(this.state.current_user) ? 'logged in' : 'logged out'} */}
             {(this.state.current_user) ? <Redirect to='/profile' /> : <Redirect to='/login' />}
-            <Switch>
+              <div className="page-container">
+              <Switch>
               <Route path='/login'>
                 <Login logthemin={this.logThemIn} />
               </Route>
@@ -211,6 +212,7 @@ class App extends Component {
                 <Home />
               </Route>
             </Switch>
+              </div>
           </div>
         </div>
       </Router>
