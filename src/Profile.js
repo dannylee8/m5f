@@ -3,12 +3,17 @@ import UserRoles from './UserRoles'
 import ProfileIcon from './icons/001-bear.png'
 
 class Profile extends Component {
+
+  state = {
+    icon: ProfileIcon
+  }
+
   render () {
     // console.log(this.props.state.current_user_roles)
     return (
       <div className='profile-container'>
         <div>
-          <img className='profile-img' alt='profile placeholder' src={ProfileIcon} />
+          <img className='profile-img' alt='profile placeholder' src={this.state.icon} />
         </div>
         <div className='profile-content'>
           <div className='left-column'>
