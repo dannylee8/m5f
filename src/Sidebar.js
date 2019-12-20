@@ -7,7 +7,7 @@ export default function Sidebar (props) {
   return (
     <div className='sidenav'>
       <CurrentUserName cUser={props.cUser} />
-      <NavMenu cUser={props.cUser} handleLogout={props.handleLogout} handleDelete={props.handleDelete} />
+      <NavMenu cUser={props.cUser} onHandleLogout={props.handleLogout} onHandleDelete={props.handleDelete} />
     </div>
   )
 }

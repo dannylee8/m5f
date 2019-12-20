@@ -16,8 +16,14 @@ class UserRole extends Component {
 
   keyPressed = (event) => {
     console.log(this.state.singleRole.id)
+    event.persist()
     if (event.key === "Enter") {
-      this.state.singleRole.years_exp = event.target.value
+      this.setState(prevState => ({
+        singleRole: {                   
+            ...prevState.singleRole,    
+            years_exp: parseInt(event.target.value, 10)
+        }
+    }))
       fetch(`http://localhost:3000/api/v1/user_roles/${this.state.singleRole.id}`, {
         headers: { "Content-Type": "application/json; charset=utf-8" },
         method: "PATCH",
@@ -54,6 +60,7 @@ class UserRole extends Component {
     })
   }
 
+
   render () {
     return (
       <>
@@ -62,7 +69,7 @@ class UserRole extends Component {
           <td>{this.state.editYrs ? this.inputYrs() : this.state.singleRole.years_exp}</td>
           <td>
             <i onClick={this.onClickHandler} className='material-icons'>edit</i>
-            <i onClick={()=>this.props.handleDeleteUserRole(this.props.singleRole)} className='material-icons'>delete</i>
+            <i onClick={()=>this.props.onHandleDeleteUserRole(this.props.singleRole)} className='material-icons'>delete</i>
           </td>
         </tr>
       </>

@@ -30,24 +30,24 @@ class Profile extends Component {
             <table className='roles-table'>
               <tbody>
                 <tr>
-                  <th></th>
+                  <th />
                   <th>Roles:</th>
                   <th>Years Exp:</th>
                 </tr>
                 <tr>
                   <td>
-                    <div class='custom-control custom-checkbox'>
-                      <input type='checkbox' class='custom-control-input' id='defaultUnchecked' />
-                      <label class='custom-control-label' for='defaultUnchecked' />
+                    <div className='custom-control custom-checkbox'>
+                      <input type='checkbox' className='custom-control-input' id='defaultUnchecked'  />
+                      <label className='custom-control-label' htmlFor='defaultUnchecked'>Default unchecked</label>
                     </div>
                   </td>
                   <td />
                 </tr>
                 <tr>
                   <td>
-                    <div class='custom-control custom-checkbox'>
-                      <input type='checkbox' class='custom-control-input' id='defaultUnchecked2' />
-                      <label class='custom-control-label' for='defaultUnchecked2' />
+                    <div className='custom-control custom-checkbox'>
+                      <input type='checkbox' className='custom-control-input' id='defaultUnchecked2' />
+                      <label className='custom-control-label' htmlFor='defaultUnchecked2' />
                     </div>
                   </td>
                   <td />
