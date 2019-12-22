@@ -19,6 +19,10 @@ class UserRole extends Component {
     console.log(this.state.singleRole.id)
     event.persist()
     if (event.key === "Enter") {
+      if ((this.state.value < 1) || parseInt(event.target.value, 10) > 50) {
+        alert ("Please enter an integer between 0 and 50.");
+        return;
+      }
       this.setState(prevState => ({
         singleRole: {                   
             ...prevState.singleRole,    
@@ -36,7 +40,7 @@ class UserRole extends Component {
       .then(json => console.log(json))
       this.setState({
         editYrs: !this.state.editYrs,
-        value: ''
+        // value: ''
       })
     }
   }
@@ -44,7 +48,7 @@ class UserRole extends Component {
   inputYrs = () => {
     return (
       <input  type='number' 
-                  value={this.state.input} 
+                  value={this.state.value} 
                   onChange={this.handleChange} 
                   onKeyPress={this.keyPressed}
                   className='years-input' 
@@ -56,25 +60,35 @@ class UserRole extends Component {
   }
 
   onClickHandler = () => {
-    this.setState(prevState => ({
-      singleRole: {                   
-          ...prevState.singleRole,    
-          years_exp: parseInt(this.state.value, 10)
-      }
-    }))
-    fetch(`http://localhost:3000/api/v1/user_roles/${this.state.singleRole.id}`, {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      method: "PATCH",
-      body: JSON.stringify({
-        years_exp: this.state.value
-      })
-    })
-    .then(response => response.json())
-    .then(json => console.log(json))
     this.setState({
-      editYrs: !this.state.editYrs,
-      value: ''
+      editYrs: !this.state.editYrs
     })
+    if (this.state.editYrs) {
+      if ((this.state.value < 1) || (parseInt(this.state.value, 10) > 50)) {
+        alert ("Please enter an integer between 0 and 50.");
+        return;
+      } else { 
+        this.setState(prevState => ({
+          singleRole: {                   
+              ...prevState.singleRole,    
+              years_exp: parseInt(this.state.value, 10)
+          }
+        }))
+        fetch(`http://localhost:3000/api/v1/user_roles/${this.state.singleRole.id}`, {
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          method: "PATCH",
+          body: JSON.stringify({
+            years_exp: this.state.value
+          })
+        })
+        .then(response => response.json())
+        .then(json => console.log(json))
+        this.setState({
+          editYrs: !this.state.editYrs,
+          // value: ''
+        })
+      }
+    }
   }
 
 
