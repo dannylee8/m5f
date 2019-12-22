@@ -76,7 +76,7 @@ class App extends Component {
   findUserRoles = (user_id) => {
     let arr = this.state.user_roles.filter(ur => ur.user_id === user_id) 
     arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
-    console.log("FindUserRoles: ", arr )
+    // console.log("FindUserRoles: ", arr )
     return arr
   }
 
@@ -86,16 +86,17 @@ class App extends Component {
     })
     if (cUser) {
       let cUserRoles = this.findUserRoles(cUser.id)
-      console.log("App <ln 70> cUserRoles: ", cUserRoles)   
+      // console.log("App <ln 70> cUserRoles: ", cUserRoles)   
       this.setState({
         current_user: cUser,
         current_user_roles: cUserRoles
       })
       localStorage.setItem('cUser', JSON.stringify(cUser))
-      console.log("App <ln 75> Local user: ", localStorage.getItem('cUser'))
+      // console.log("App <ln 75> Local user: ", localStorage.getItem('cUser'))
+      return true
     }
     else {
-      console.log("error!  no cUser")
+      return false
     }
   }
 
@@ -134,11 +135,23 @@ class App extends Component {
       let newState = Object.assign({}, this.state);
       newState.current_user.name = string;
       this.setState(newState);
+      localStorage.setItem('cUser', JSON.stringify(this.state.current_user))
     } else {
       return;
     }
+  }
 
-
+  changeEmailAddress = (string) => {
+    if (this.state.current_user) {
+      let newState = Object.assign({}, this.state);
+      newState.current_user.email_address = string;
+      this.setState(newState);
+      localStorage.setItem('cUser', JSON.stringify(this.state.current_user))
+      // console.log(this.state)
+      // console.log(localStorage)
+    } else {
+      return;
+    }
   }
 
   removeUserFromState = () => {
@@ -228,7 +241,8 @@ class App extends Component {
                                                       handleDeleteUserRole={this.handleDeleteUserRole} 
                                                       findUserRoles={this.findUserRoles}
                                                       addUserRoleToState={this.addUserRoleToState}
-                                                      changeUserName={this.changeUserName} /> : <Redirect to='/login' />}
+                                                      changeUserName={this.changeUserName} 
+                                                      changeEmailAddress={this.changeEmailAddress} /> : <Redirect to='/login' />}
               </Route>
               <Route path='/teams'>
                 <Teams />

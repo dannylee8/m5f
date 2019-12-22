@@ -172,8 +172,8 @@ handleClickAddRoles = () => {
 
   handleUserNameChange = () => {
     var newName = prompt("Please enter your name:", this.props.state.current_user.name);
-console.log(this.props.state.current_user.id)
-    if (newName == null || newName == "") {
+// console.log(this.props.state.current_user.id)
+    if (newName === null || newName === "") {
       return;
     } else if (newName.toLowerCase() === this.props.state.current_user.name.toLowerCase()) {
       return;
@@ -190,10 +190,46 @@ console.log(this.props.state.current_user.id)
       .then(resp => resp.json())
       .then(role => {
         this.props.changeUserName(newName)
-        console.log("this.props: ", this.props)
       })
     }
+  }
 
+  validateEmail(value) {
+    // eslint-disable-next-line
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (reg.test(value) === false) {
+        return false       
+    } else {
+      return true
+    }
+  }
+
+  handleUserEmailChange = () => {
+    var newEmail = prompt("Please enter your email:", this.props.state.current_user.email_address);
+// console.log(this.props.state.current_user.id)
+    if (newEmail === null || newEmail === "") {
+      return;
+    } else if (newEmail.toLowerCase() === this.props.state.current_user.email_address.toLowerCase()) {
+      return;
+    } else if (!this.validateEmail(newEmail)) {
+      return;
+    } else { 
+      let isCorrect = window.confirm(`Do you want to change your email to ${newEmail}?`);
+      if (isCorrect) {
+        fetch(`http://localhost:3000/api/v1/users/${this.props.state.current_user.id}`, {
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          method: 'PATCH',
+          body: JSON.stringify({
+            email_address: newEmail,
+          })
+        })
+        .then(resp => resp.json())
+        .then(role => {
+          this.props.changeEmailAddress(newEmail)
+        })
+      } else
+      return;
+    }
   }
 
   render () {
@@ -208,11 +244,22 @@ console.log(this.props.state.current_user.id)
               <tbody>
                 <tr>
                   <td className='cUser'>Name:</td>
-                  <td onClick={this.handleUserNameChange} className='cUser'>{(this.props.state.current_user) ? `${this.props.state.current_user.name}` : '!'}</td>
+                  <td onClick={this.handleUserNameChange} 
+                      className='cUser'>{(this.props.state.current_user) 
+                      ? 
+                      `${this.props.state.current_user.name}` 
+                      : 
+                      '!'}
+                  </td>
                 </tr>
                 <tr>
                   <td>Email:</td>
-                  <td>{(this.props.state.current_user) ? `${this.props.state.current_user.email_address}` : '!'}</td>
+                  <td onClick={this.handleUserEmailChange} >{(this.props.state.current_user) 
+                    ? 
+                    `${this.props.state.current_user.email_address}` 
+                    : 
+                    '!'}
+                  </td>
                 </tr>
               </tbody>
             </table>

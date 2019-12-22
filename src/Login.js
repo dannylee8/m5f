@@ -89,7 +89,16 @@ export default class Login extends Component {
         const password = this.state.password;
         const errors =  this.state.errors;
         if (!this.state.errors.email && !this.state.errors.password) {
-            this.props.logthemin(email);
+
+            if (this.props.logthemin(email)) {
+                return true
+            } else {
+                alert("No such user!")
+                this.setState({
+                    email: '',
+                    password: ''
+                })
+            }
         } else {
             console.log(email, password, errors);
         }
