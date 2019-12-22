@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Tooltip from '@material-ui/core/Tooltip';
 
 class UserRole extends Component {
   constructor (props) {
@@ -68,8 +69,12 @@ class UserRole extends Component {
           <td>{this.props.singleRole.name}</td>
           <td>{this.state.editYrs ? this.inputYrs() : this.state.singleRole.years_exp}</td>
           <td>
-            <i onClick={this.onClickHandler} className='material-icons'>edit</i>
-            <i onClick={()=>this.props.onHandleDeleteUserRole(this.props.singleRole)} className='material-icons'>delete</i>
+            <Tooltip title="Edit">
+              <i onClick={this.onClickHandler} className='material-icons'>edit</i>
+            </Tooltip>
+            <Tooltip title="Delete">
+              <i onClick={()=>this.props.onHandleDeleteUserRole(this.props.singleRole)} className='material-icons'>delete</i>
+            </Tooltip>
           </td>
         </tr>
       </>

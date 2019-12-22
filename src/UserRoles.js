@@ -9,7 +9,7 @@ const hasRoles = (props) => {
           <tr>
             <th>Role</th>
             <th>Yrs. Exp.</th>
-            <th>Edit</th>
+            <th></th>
           </tr>
           {props.currentUserRoles.map(role => {
             return <UserRole key={role.id} onHandleDeleteUserRole={props.handleDeleteUserRole} singleRole={role} />
