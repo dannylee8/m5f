@@ -19,6 +19,8 @@ class Profile extends Component {
 
   state = {
     icon: ProfileIcon,
+    showAddRoles: false,
+    role_options: [],
     checkboxes: OPTIONS.reduce(
       (options, option) => ({
         ...options,
@@ -92,7 +94,8 @@ class Profile extends Component {
     var allRoles = OPTIONS
     var userRolesObjects = this.props.findUserRoles(this.props.state.current_user.id)
     var userRoles = []
-
+    var arr = []
+    
     for (let i=0; i<userRolesObjects.length; i++) {
       for (let [key, value] of Object.entries(userRolesObjects[i])) {
         // console.log("hello", key, value)
@@ -102,10 +105,10 @@ class Profile extends Component {
       }
     }
 
+    arr = this.removeFromArray(allRoles, userRoles)
     // console.log(userRoles)
     // console.log(this.removeFromArray(allRoles, userRoles))
-    
-    return this.removeFromArray(allRoles, userRoles)
+    return arr
   }
 
   hasAvailableRoles = () => {
@@ -114,39 +117,46 @@ class Profile extends Component {
   }
 
   handleClickAddRoles = () => {
-
-    console.log(this.props)
-
-    const entries = Object.entries(this.state.yrsExp)
-    const entriesMap = entries.filter(e => {
-      if (e[1] > 0) {
-        return e;
-      }
-      return null;
+    this.setState({
+      showAddRoles: !this.state.showAddRoles,
+      role_options: this.filterRoleOptions()
     })
-    console.log("Entries Map: ", entriesMap)
-    entriesMap.forEach(e => {
-      fetch('http://localhost:3000/api/v1/user_roles', {
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        method: 'POST',
-        body: JSON.stringify({
-          user_id: this.props.state.current_user.id,
-          role_id: OPTIONS.indexOf(e[0])+1,
-          name: e[0],
-          years_exp: e[1]
-        })
-      })
-      .then(resp => resp.json())
-      .then(role => {
-        this.props.addUserRoleToState(role)
-        console.log("entriesMap: ", role)
-      })
-  })
+
 }
 
 
+// handleClickAddRoles = () => {
+
+//   console.log(this.props)
+
+//   const entries = Object.entries(this.state.yrsExp)
+//   const entriesMap = entries.filter(e => {
+//     if (e[1] > 0) {
+//       return e;
+//     }
+//     return null;
+//   })
+//   console.log("Entries Map: ", entriesMap)
+//   entriesMap.forEach(e => {
+//     fetch('http://localhost:3000/api/v1/user_roles', {
+//       headers: { "Content-Type": "application/json; charset=utf-8" },
+//       method: 'POST',
+//       body: JSON.stringify({
+//         user_id: this.props.state.current_user.id,
+//         role_id: OPTIONS.indexOf(e[0])+1,
+//         name: e[0],
+//         years_exp: e[1]
+//       })
+//     })
+//     .then(resp => resp.json())
+//     .then(role => {
+//       this.props.addUserRoleToState(role)
+//       console.log("entriesMap: ", role)
+//     })
+// })
+// }
+
   render () {
-    // console.log(this.props.state.current_user_roles)
     return (
       <div className='profile-container'>
         <div>
@@ -167,21 +177,25 @@ class Profile extends Component {
               </tbody>
             </table>
             <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
+            <Button onClick={this.handleClickAddRoles} className="btn btn-primary">
+              { (!this.state.showAddRoles) ? 
+                    "add roles >>"
+                    :
+                    "<< exit"
+                    }
+            </Button>
           </div>
           <div className='right-column'>
 
-          { (this.hasAvailableRoles()) ?
+          { (this.state.showAddRoles) ?
             <>
               <CheckboxGroupProfile isSelected={this.isOptionSelected} 
-                                    roleOptions={this.filterRoleOptions()}
+                                    roleOptions={this.state.role_options}
                                     onCheckboxChange={this.handleCheckboxChange}
                                     onInputChange={this.handleInputChange}
                                     onYrsExpChange={this.handleYrsExpChange}
                                     state={this.props.state} 
               />
-              <Button onClick={this.handleClickAddRoles} className="btn btn-primary">
-                    add roles
-              </Button>
             </>
             :
             null

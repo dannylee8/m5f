@@ -33,7 +33,6 @@ const createCheckbox = (props, roleOption) => {
 }
 
 const CheckboxGroupProfile = (props) => {
-  console.log(props)
   return (
     <>
       <table className='new-user-table'>
