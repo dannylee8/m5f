@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileAddRolesTableCheckbox from './ProfileAddRolesTableCheckbox'
+import ShowAllRoles from './ShowAllRoles'
 
 const ProfileAddRolesTable = props => (
   <>
@@ -10,9 +10,11 @@ const ProfileAddRolesTable = props => (
           <th>Roles:</th>
           <th>Years Exp:</th>
         </tr>
+        <tr>
 
-        <ProfileAddRolesTableCheckbox />
-
+          <ShowAllRoles />
+					
+        </tr>
       </tbody>
     </table>
   </>

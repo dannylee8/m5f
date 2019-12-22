@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import UserRoles from './UserRoles'
 import ProfileIcon from './icons/001-bear.png'
+import ProfileAddRolesTable from './ProfileAddRolesTable'
 
 class Profile extends Component {
 
@@ -32,7 +33,9 @@ class Profile extends Component {
             <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
           </div>
           <div className='right-column'>
-            <ProfileAddRolesTable />
+
+            <ProfileAddRolesTable allRoles={this.state.roles} />
+
           </div>
         </div>
       </div>

@@ -22,6 +22,7 @@ class App extends Component {
       current_user: undefined,
       users: [],
       teams: [],
+      roles: [],
       positions: [],
       user_roles: [],
       current_user_roles: []
@@ -29,6 +30,13 @@ class App extends Component {
   }
 
   componentDidMount () {
+    window.fetch('http://localhost:3000/api/v1/roles')
+    .then(resp => resp.json())
+    .then(json => {
+      this.setState({
+        roles: json
+      })
+    })  
     window.fetch('http://localhost:3000/api/v1/user_roles')
     .then(resp => resp.json())
     .then(json => {
