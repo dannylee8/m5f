@@ -120,7 +120,8 @@
   text-decoration: none;
   font-size: 25px;
   color: #818181;
-  /* display: block; */
+  display: inline-block;
+  width: 100%;
 }
 
 /* When you mouse over the navigation links, change their color */
