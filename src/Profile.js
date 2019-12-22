@@ -170,6 +170,32 @@ handleClickAddRoles = () => {
   })
 }
 
+  handleUserNameChange = () => {
+    var newName = prompt("Please enter your name:", this.props.state.current_user.name);
+console.log(this.props.state.current_user.id)
+    if (newName == null || newName == "") {
+      return;
+    } else if (newName.toLowerCase() === this.props.state.current_user.name.toLowerCase()) {
+      return;
+    } else if (newName.length < 2) {
+      return;
+    } else { 
+      fetch(`http://localhost:3000/api/v1/users/${this.props.state.current_user.id}`, {
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        method: 'PATCH',
+        body: JSON.stringify({
+          name: newName,
+        })
+      })
+      .then(resp => resp.json())
+      .then(role => {
+        this.props.changeUserName(newName)
+        console.log("this.props: ", this.props)
+      })
+    }
+
+  }
+
   render () {
     return (
       <div className='profile-container'>
@@ -182,7 +208,7 @@ handleClickAddRoles = () => {
               <tbody>
                 <tr>
                   <td className='cUser'>Name:</td>
-                  <td className='cUser'>{(this.props.state.current_user) ? `${this.props.state.current_user.name}` : '!'}</td>
+                  <td onClick={this.handleUserNameChange} className='cUser'>{(this.props.state.current_user) ? `${this.props.state.current_user.name}` : '!'}</td>
                 </tr>
                 <tr>
                   <td>Email:</td>

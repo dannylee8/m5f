@@ -129,6 +129,18 @@ class App extends Component {
     })
   }
 
+  changeUserName = (string) => {
+    if (this.state.current_user) {
+      let newState = Object.assign({}, this.state);
+      newState.current_user.name = string;
+      this.setState(newState);
+    } else {
+      return;
+    }
+
+
+  }
+
   removeUserFromState = () => {
     let array = [...this.state.users]
     let index = array.indexOf(this.state.current_user)
@@ -215,7 +227,8 @@ class App extends Component {
                 {(this.state.current_user) ? <Profile state={this.state}
                                                       handleDeleteUserRole={this.handleDeleteUserRole} 
                                                       findUserRoles={this.findUserRoles}
-                                                      addUserRoleToState={this.addUserRoleToState} /> : <Redirect to='/login' />}
+                                                      addUserRoleToState={this.addUserRoleToState}
+                                                      changeUserName={this.changeUserName} /> : <Redirect to='/login' />}
               </Route>
               <Route path='/teams'>
                 <Teams />
