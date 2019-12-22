@@ -73,9 +73,8 @@ class Profile extends Component {
 
   handleYrsExpChange = (changeEvent) => {
     changeEvent.persist()
-    // console.log(changeEvent)
     const { name, value } = changeEvent.target;
-    // console.log(name, value)
+    console.log(name, value)
     this.setState(prevState => ({
       yrsExp: {
         ...prevState.yrsExp,
@@ -96,14 +95,14 @@ class Profile extends Component {
     for (let i=0; i<userRolesObjects.length; i++) {
       for (let [key, value] of Object.entries(userRolesObjects[i])) {
         // console.log("hello", key, value)
-        if (key == "name") {
+        if (key === "name") {
           userRoles.push(value)
         }
       }
     }
 
-    console.log(userRoles)
-    console.log(this.removeFromArray(allRoles, userRoles))
+    // console.log(userRoles)
+    // console.log(this.removeFromArray(allRoles, userRoles))
     
     return this.removeFromArray(allRoles, userRoles)
   }

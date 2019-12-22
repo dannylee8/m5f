@@ -17,7 +17,7 @@ const createCheckbox = (props, roleOption) => {
       <td>
         {props.isSelected(roleOption) ? (
           <Input  type='number' 
-                  value=''
+                  value={props.state.yrsExp}
                   onChange={props.onYrsExpChange} 
                   className='years-exp' 
                   name={roleOption} 
