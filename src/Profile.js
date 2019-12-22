@@ -153,6 +153,9 @@ handleClickAddRoles = () => {
       console.log("this.props: ", this.props)
     })
   })
+  this.setState({
+    showAddRoles: !this.state.showAddRoles
+  })
 }
 
   render () {

@@ -1,0 +1,8 @@
+
+12/22
+10:08 AM 	- Update view of profile so it updates when new roles are added.
+11:15 AM 	- Solution: add role to "state.user_roles" in App.js.  Previously 
+						was only added to "state.current_user_roles" while reading the 
+Took   			list of user roles for view from a function that was filter'ing 
+1:07				through state.user_roles. 
+###########################################################################
