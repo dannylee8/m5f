@@ -6,3 +6,7 @@
 Took   			list of user roles for view from a function that was filter'ing 
 1:07				through state.user_roles. 
 ###########################################################################
+Quick			- Remove the AddRolesTable view so button can't be clicked more
+						than once.
+###########################################################################
+

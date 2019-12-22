@@ -55,13 +55,14 @@ class Profile extends Component {
   
   handleCheckboxChange = changeEvent => {
     const { name } = changeEvent.target;
-    console.log(changeEvent.target.value)
+    // console.log(changeEvent.target.value)
     this.setState(prevState => ({
       checkboxes: {
         ...prevState.checkboxes,
         [name]: !prevState.checkboxes[name]
       }
     }));
+    this.didUserEnterRoles()
   };
   
   isOptionSelected = option => {
@@ -77,7 +78,7 @@ class Profile extends Component {
   handleYrsExpChange = (changeEvent) => {
     changeEvent.persist()
     const { name, value } = changeEvent.target;
-    console.log(name, value)
+    // console.log(name, value)
     this.setState(prevState => ({
       yrsExp: {
         ...prevState.yrsExp,
@@ -122,11 +123,20 @@ class Profile extends Component {
       role_options: this.filterRoleOptions()
     })
 
-}
+  }
 
+  didUserEnterRoles = () => {
+    let entries = Object.entries(this.state.yrsExp).filter(e => {
+      if (e[1] > 0) {
+        return e;
+      }
+      return null;
+    })  
+    return entries.length > 0 ? true : false
+
+  }
 
 handleClickAddRoles = () => {
-
   const entries = Object.entries(this.state.yrsExp)
   const entriesMap = entries.filter(e => {
     if (e[1] > 0) {
@@ -154,7 +164,9 @@ handleClickAddRoles = () => {
     })
   })
   this.setState({
-    showAddRoles: !this.state.showAddRoles
+    showAddRoles: !this.state.showAddRoles,
+    yrsExp: [],
+    checkboxes: []
   })
 }
 
@@ -179,13 +191,13 @@ handleClickAddRoles = () => {
               </tbody>
             </table>
             <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
-            <Button onClick={this.handleClickShowAddRoleTable} className="btn btn-primary">
-              { (!this.state.showAddRoles) ? 
-                    "add roles >>"
-                    :
-                    "<< exit"
-                    }
-            </Button>
+            { (!this.state.showAddRoles) ? 
+              <Button onClick={this.handleClickShowAddRoleTable} className="btn btn-primary">
+                    add roles >>
+              </Button>
+              : 
+              null
+            }
           </div>
           <div className='right-column'>
 
