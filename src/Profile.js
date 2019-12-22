@@ -32,34 +32,7 @@ class Profile extends Component {
             <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
           </div>
           <div className='right-column'>
-            <table className='roles-table'>
-              <tbody>
-                <tr>
-                  <th />
-                  <th>Roles:</th>
-                  <th>Years Exp:</th>
-                </tr>
-                <tr>
-                  <td>
-                    <div className='custom-control custom-checkbox'>
-                      <input type='checkbox' className='custom-control-input' id='defaultUnchecked'  />
-                      <label className='custom-control-label' htmlFor='defaultUnchecked'>Default unchecked</label>
-                    </div>
-                  </td>
-                  <td />
-                </tr>
-                <tr>
-                  <td>
-                    <div className='custom-control custom-checkbox'>
-                      <input type='checkbox' className='custom-control-input' id='defaultUnchecked2' />
-                      <label className='custom-control-label' htmlFor='defaultUnchecked2' />
-                    </div>
-                  </td>
-                  <td />
-                  <td />
-                </tr>
-              </tbody>
-            </table>
+            <ProfileAddRolesTable />
           </div>
         </div>
       </div>
