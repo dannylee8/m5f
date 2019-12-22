@@ -24,7 +24,7 @@ class UserRole extends Component {
             ...prevState.singleRole,    
             years_exp: parseInt(event.target.value, 10)
         }
-    }))
+      }))
       fetch(`http://localhost:3000/api/v1/user_roles/${this.state.singleRole.id}`, {
         headers: { "Content-Type": "application/json; charset=utf-8" },
         method: "PATCH",
@@ -56,8 +56,24 @@ class UserRole extends Component {
   }
 
   onClickHandler = () => {
+    this.setState(prevState => ({
+      singleRole: {                   
+          ...prevState.singleRole,    
+          years_exp: parseInt(this.state.value, 10)
+      }
+    }))
+    fetch(`http://localhost:3000/api/v1/user_roles/${this.state.singleRole.id}`, {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: "PATCH",
+      body: JSON.stringify({
+        years_exp: this.state.value
+      })
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
     this.setState({
-      editYrs: !this.state.editYrs
+      editYrs: !this.state.editYrs,
+      value: ''
     })
   }
 
@@ -70,10 +86,10 @@ class UserRole extends Component {
           <td>{this.state.editYrs ? this.inputYrs() : this.state.singleRole.years_exp}</td>
           <td>
             <Tooltip title="Edit">
-              <i onClick={this.onClickHandler} className='material-icons'>edit</i>
+              <i onClick={this.onClickHandler} className='material-icons-outlined'>edit</i>
             </Tooltip>
             <Tooltip title="Delete">
-              <i onClick={()=>this.props.onHandleDeleteUserRole(this.props.singleRole)} className='material-icons'>delete</i>
+              <i onClick={()=>this.props.onHandleDeleteUserRole(this.props.singleRole)} className='material-icons-outlined'>delete</i>
             </Tooltip>
           </td>
         </tr>

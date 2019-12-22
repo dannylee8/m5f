@@ -74,7 +74,10 @@ class App extends Component {
   }
 
   findUserRoles = (user_id) => {
-    return this.state.user_roles.filter(ur => ur.user_id === user_id) 
+    let arr = this.state.user_roles.filter(ur => ur.user_id === user_id) 
+    arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    console.log("FindUserRoles: ", arr )
+    return arr
   }
 
   logThemIn = (email) => {

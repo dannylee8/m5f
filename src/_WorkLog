@@ -10,7 +10,15 @@ Quick			- Remove the AddRolesTable view so button can't be clicked more
 						than once.
 ###########################################################################
 11:53 AM	- Fix error with duplicate submissions of User Roles after submit,
-12:01 AM		due to not clearing state of checkboxes[] and yrsExp[].
+12:01 PM		due to not clearing state of checkboxes[] and yrsExp[].
 Took 0:08		Placed setState after fetch to database.
 ###########################################################################
+12:10 PM 	- Add tooltips for material icons, fix CSS formatting on sidebar
+12:42 PM 		Took 0:32.
+###########################################################################
+12:55 PM 	- Fix edit/pencil so clicking will save changes to database and
+ 1:03 PM 		update state.  Took 0:08.
+###########################################################################
+
+
 

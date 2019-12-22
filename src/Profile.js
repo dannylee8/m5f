@@ -191,36 +191,33 @@ handleClickAddRoles = () => {
               </tbody>
             </table>
             <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
-            { (!this.state.showAddRoles) ? 
-              <Button onClick={this.handleClickShowAddRoleTable} className="btn btn-primary">
-                    add roles >>
-              </Button>
-              : 
-              null
-            }
           </div>
           <div className='right-column'>
-
           { (this.state.showAddRoles) ?
-            <>
-              <CheckboxGroupProfile isSelected={this.isOptionSelected} 
-                                    roleOptions={this.state.role_options}
-                                    onCheckboxChange={this.handleCheckboxChange}
-                                    onInputChange={this.handleInputChange}
-                                    onYrsExpChange={this.handleYrsExpChange}
-                                    state={this.props.state} 
-              />
-            </>
+            <table className='user-table'>
+              <tbody>
+                <CheckboxGroupProfile isSelected={this.isOptionSelected} 
+                                      roleOptions={this.state.role_options}
+                                      onCheckboxChange={this.handleCheckboxChange}
+                                      onInputChange={this.handleInputChange}
+                                      onYrsExpChange={this.handleYrsExpChange}
+                                      state={this.props.state} 
+                />
+                <Button onClick={this.handleClickAddRoles} className="btn btn-primary">
+                        save
+                </Button>
+              </tbody>
+            </table>
             :
-            null
-            }
-            { (this.state.showAddRoles) ? 
-              <Button onClick={this.handleClickAddRoles} className="btn btn-primary">
-                      save
+            <table className='user-table'>
+              <tbody>
+              <Button onClick={this.handleClickShowAddRoleTable} className="btn btn-primary">
+                <i className='material-icons-outlined'>add_box</i>add roles  
               </Button>
-              :
-              null
+              </tbody>
+            </table>
             }
+
           </div>
       </div>
     </div>
