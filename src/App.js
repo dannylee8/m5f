@@ -205,7 +205,9 @@ class App extends Component {
                 <Login logthemin={this.logThemIn} />
               </Route>
               <Route path='/profile'>
-                {(this.state.current_user) ? <Profile state={this.state} handleDeleteUserRole={this.handleDeleteUserRole} findUserRoles={this.findUserRoles}/> : <Redirect to='/login' />}
+                {(this.state.current_user) ? <Profile state={this.state}
+                                                      handleDeleteUserRole={this.handleDeleteUserRole} 
+                                                      findUserRoles={this.findUserRoles} /> : <Redirect to='/login' />}
               </Route>
               <Route path='/teams'>
                 <Teams />
