@@ -193,31 +193,33 @@ handleClickAddRoles = () => {
             <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
           </div>
           <div className='right-column'>
-          { (this.state.showAddRoles) ?
-            <table className='user-table'>
-              <tbody>
-                <CheckboxGroupProfile isSelected={this.isOptionSelected} 
-                                      roleOptions={this.state.role_options}
-                                      onCheckboxChange={this.handleCheckboxChange}
-                                      onInputChange={this.handleInputChange}
-                                      onYrsExpChange={this.handleYrsExpChange}
-                                      state={this.props.state} 
-                />
+            <div className='right-content'>
+            { (this.state.showAddRoles) ?
+              <>
+                <table className='add-roles-table'>
+                  <tbody>
+                    <CheckboxGroupProfile isSelected={this.isOptionSelected} 
+                                          roleOptions={this.state.role_options}
+                                          onCheckboxChange={this.handleCheckboxChange}
+                                          onInputChange={this.handleInputChange}
+                                          onYrsExpChange={this.handleYrsExpChange}
+                                          state={this.props.state} 
+                    />
+                  </tbody>
+                </table>
+                <p />
                 <Button onClick={this.handleClickAddRoles} className="btn btn-primary">
-                        save
+                                save
                 </Button>
-              </tbody>
-            </table>
-            :
-            <table className='user-table'>
-              <tbody>
-              <Button onClick={this.handleClickShowAddRoleTable} className="btn btn-primary">
-                <i className='material-icons-outlined'>add_box</i>add roles  
-              </Button>
-              </tbody>
-            </table>
-            }
-
+              </>
+              :
+              <div className="text-center">
+                <Button onClick={this.handleClickShowAddRoleTable} type="button" className="btn-add-roles">
+                  <i className='material-icons-outlined'>add_box</i>add roles  
+                </Button>
+              </div>
+              }
+            </div>
           </div>
       </div>
     </div>

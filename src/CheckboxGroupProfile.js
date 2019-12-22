@@ -35,15 +35,11 @@ const createCheckbox = (props, roleOption) => {
 const CheckboxGroupProfile = (props) => {
   return (
     <>
-      <table className='new-user-table'>
-        <tbody>
-          <tr>
-            <th>Role</th>
-            <th>Yrs. Exp</th>
-          </tr>
-          {props.roleOptions.map((roleOption) => createCheckbox(props, roleOption))}
-        </tbody>
-      </table>
+      <tr>
+        <th>Role</th>
+        <th>Yrs. Exp</th>
+      </tr>
+      {props.roleOptions.map((roleOption) => createCheckbox(props, roleOption))}
     </>
   )
 }

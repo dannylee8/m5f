@@ -14,7 +14,7 @@
 
 .profile-content {
   display: flex;
-    flex-direction: row;
+  flex-direction: row;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -56,7 +56,7 @@
 .divider{
   width:10px;
   height:auto;
-  display:inline-block;
+  /* display:inline-block; */
 }
 
 .login-form {
@@ -120,7 +120,7 @@
   text-decoration: none;
   font-size: 25px;
   color: #818181;
-  display: block;
+  /* display: block; */
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -189,7 +189,7 @@ li:hover {
   border-spacing: .2em;
   margin: 1rem auto;
   border-collapse: separate;
-  width: 40vw;
+  width: 30vw;
 }
 
 .user-table td {
@@ -294,4 +294,19 @@ border:1px solid lightpink !important;
 .profile-content {
   padding-top: 5vh;
   padding-left: 5vh;
+}
+
+.add-roles-table {
+  width: 20vw;
+  text-align: left;
+}
+
+.add-roles-table td {
+  padding: 0rem;
+  border-radius: 0px;
+  border: 1px solid black;
+}
+.right-content {
+  padding-left: 100px;
+  padding-top: 80px;
 }
