@@ -25,7 +25,8 @@ class App extends Component {
       roles: [],
       positions: [],
       user_roles: [],
-      current_user_roles: []
+      current_user_roles: [],
+      rerender: false
     }
   }
 
@@ -119,7 +120,10 @@ class App extends Component {
   }
 
   addUserRoleToState = (userRole) => {
-    this.setState({ current_user_roles: [...this.state.current_user_roles, userRole]})
+    this.setState({ 
+      user_roles: [...this.state.user_roles, userRole],
+      current_user_roles: [...this.state.current_user_roles, userRole]
+    })
   }
 
   removeUserFromState = () => {

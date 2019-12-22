@@ -116,7 +116,7 @@ class Profile extends Component {
     return (this.filterRoleOptions().length > 0) ? true : false
   }
 
-  handleClickAddRoles = () => {
+  handleClickShowAddRoleTable = () => {
     this.setState({
       showAddRoles: !this.state.showAddRoles,
       role_options: this.filterRoleOptions()
@@ -125,36 +125,35 @@ class Profile extends Component {
 }
 
 
-// handleClickAddRoles = () => {
+handleClickAddRoles = () => {
 
-//   console.log(this.props)
-
-//   const entries = Object.entries(this.state.yrsExp)
-//   const entriesMap = entries.filter(e => {
-//     if (e[1] > 0) {
-//       return e;
-//     }
-//     return null;
-//   })
-//   console.log("Entries Map: ", entriesMap)
-//   entriesMap.forEach(e => {
-//     fetch('http://localhost:3000/api/v1/user_roles', {
-//       headers: { "Content-Type": "application/json; charset=utf-8" },
-//       method: 'POST',
-//       body: JSON.stringify({
-//         user_id: this.props.state.current_user.id,
-//         role_id: OPTIONS.indexOf(e[0])+1,
-//         name: e[0],
-//         years_exp: e[1]
-//       })
-//     })
-//     .then(resp => resp.json())
-//     .then(role => {
-//       this.props.addUserRoleToState(role)
-//       console.log("entriesMap: ", role)
-//     })
-// })
-// }
+  const entries = Object.entries(this.state.yrsExp)
+  const entriesMap = entries.filter(e => {
+    if (e[1] > 0) {
+      return e;
+    }
+    return null;
+  })
+  // console.log("Entries Map: ", entriesMap)
+  entriesMap.forEach(e => {
+    fetch('http://localhost:3000/api/v1/user_roles', {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'POST',
+      body: JSON.stringify({
+        user_id: this.props.state.current_user.id,
+        role_id: OPTIONS.indexOf(e[0])+1,
+        name: e[0],
+        years_exp: e[1]
+      })
+    })
+    .then(resp => resp.json())
+    .then(role => {
+      this.props.addUserRoleToState(role)
+      console.log("entriesMap: ", role)
+      console.log("this.props: ", this.props)
+    })
+  })
+}
 
   render () {
     return (
@@ -177,7 +176,7 @@ class Profile extends Component {
               </tbody>
             </table>
             <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
-            <Button onClick={this.handleClickAddRoles} className="btn btn-primary">
+            <Button onClick={this.handleClickShowAddRoleTable} className="btn btn-primary">
               { (!this.state.showAddRoles) ? 
                     "add roles >>"
                     :
@@ -199,6 +198,13 @@ class Profile extends Component {
             </>
             :
             null
+            }
+            { (this.state.showAddRoles) ? 
+              <Button onClick={this.handleClickAddRoles} className="btn btn-primary">
+                      save
+              </Button>
+              :
+              null
             }
           </div>
       </div>
