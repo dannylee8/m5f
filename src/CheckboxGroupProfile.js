@@ -17,7 +17,7 @@ const createCheckbox = (props, roleOption) => {
       <td>
         {props.isSelected(roleOption) ? (
           <Input  type='number' 
-                  value={props.state.yrsExp.roleOption} 
+                  value=''
                   onChange={props.onYrsExpChange} 
                   className='years-exp' 
                   name={roleOption} 
@@ -33,7 +33,7 @@ const createCheckbox = (props, roleOption) => {
 }
 
 const CheckboxGroupProfile = (props) => {
-  // console.log(props)
+  console.log(props)
   return (
     <>
       <table className='new-user-table'>
@@ -42,7 +42,7 @@ const CheckboxGroupProfile = (props) => {
             <th>Role</th>
             <th>Yrs. Exp</th>
           </tr>
-          {/* {props.roleOptions.map((roleOption) => createCheckbox(props, roleOption))} */}
+          {props.roleOptions.map((roleOption) => createCheckbox(props, roleOption))}
         </tbody>
       </table>
     </>
