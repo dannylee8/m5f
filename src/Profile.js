@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import UserRoles from './UserRoles'
 import ProfileIcon from './icons/001-bear.png'
 import CheckboxGroupProfile from './CheckboxGroupProfile'
+import { Button } from 'reactstrap';
 
 const OPTIONS = [
   "developer",
@@ -107,6 +108,43 @@ class Profile extends Component {
     return this.removeFromArray(allRoles, userRoles)
   }
 
+  hasAvailableRoles = () => {
+    console.log("hasAvailableRoles: ", this.filterRoleOptions().length)
+    return (this.filterRoleOptions().length > 0) ? true : false
+  }
+
+  handleClickAddRoles = () => {
+
+    console.log(this.props)
+
+    const entries = Object.entries(this.state.yrsExp)
+    const entriesMap = entries.filter(e => {
+      if (e[1] > 0) {
+        return e;
+      }
+      return null;
+    })
+    console.log("Entries Map: ", entriesMap)
+    entriesMap.forEach(e => {
+      fetch('http://localhost:3000/api/v1/user_roles', {
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        method: 'POST',
+        body: JSON.stringify({
+          user_id: this.props.state.current_user.id,
+          role_id: OPTIONS.indexOf(e[0])+1,
+          name: e[0],
+          years_exp: e[1]
+        })
+      })
+      .then(resp => resp.json())
+      .then(role => {
+        this.props.addUserRoleToState(role)
+        console.log("entriesMap: ", role)
+      })
+  })
+}
+
+
   render () {
     // console.log(this.props.state.current_user_roles)
     return (
@@ -131,16 +169,26 @@ class Profile extends Component {
             <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
           </div>
           <div className='right-column'>
-            <CheckboxGroupProfile isSelected={this.isOptionSelected} 
-                                  roleOptions={this.filterRoleOptions()}
-                                  onCheckboxChange={this.handleCheckboxChange}
-                                  onInputChange={this.handleInputChange}
-                                  onYrsExpChange={this.handleYrsExpChange}
-                                  state={this.props.state} 
-            />
+
+          { (this.hasAvailableRoles()) ?
+            <>
+              <CheckboxGroupProfile isSelected={this.isOptionSelected} 
+                                    roleOptions={this.filterRoleOptions()}
+                                    onCheckboxChange={this.handleCheckboxChange}
+                                    onInputChange={this.handleInputChange}
+                                    onYrsExpChange={this.handleYrsExpChange}
+                                    state={this.props.state} 
+              />
+              <Button onClick={this.handleClickAddRoles} className="btn btn-primary">
+                    add roles
+              </Button>
+            </>
+            :
+            null
+            }
           </div>
-        </div>
       </div>
+    </div>
     )
   }
 }

@@ -207,7 +207,9 @@ class NewUser extends Component {
           if (user.email_address) {
             this.props.addUserToState(user)
             this.props.logThemIn(user.email_address)
+            
             console.log("success?", this.state.yrsExp)
+
             const entries = Object.entries(this.state.yrsExp)
             const entriesMap = entries.filter(e => {
               if (e[1] > 0) {
