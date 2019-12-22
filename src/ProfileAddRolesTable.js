@@ -6,7 +6,6 @@ const ProfileAddRolesTable = props => (
     <table className='roles-table'>
       <tbody>
         <tr>
-					{console.log(props.queryCurrentUserRoles())}
           <CheckboxGroupProfile
             isSelected={props.isSelected}
             roleOptions={props.roleOptions}
@@ -14,6 +13,8 @@ const ProfileAddRolesTable = props => (
             onInputChange={props.onInputChange}
             onYrsExpChange={props.onYrsExpChange}
             state={props.state}
+            queryCurrentUser={props.queryCurrentUser}
+            queryCurrentUserRoles={props.queryCurrentUserRoles}
           />
         </tr>
       </tbody>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import UserRoles from './UserRoles'
 import ProfileIcon from './icons/001-bear.png'
-import ProfileAddRolesTable from './ProfileAddRolesTable'
+import CheckboxGroupProfile from './CheckboxGroupProfile'
 
 const OPTIONS = [
   "developer",
@@ -70,14 +70,6 @@ class Profile extends Component {
         [e.target.name]: e.target.value
     });
   }
-  
-  queryCurrentUser = () => {
-    return this.props.state.current_user
-  }
-  
-  queryCurrentUserRoles = () => {
-    return this.props.state.current_user_roles
-  }
 
   handleYrsExpChange = (changeEvent) => {
     changeEvent.persist()
@@ -90,6 +82,30 @@ class Profile extends Component {
         [name]: value
       }
     }));
+  }
+
+  removeFromArray(original, remove) {
+    return original.filter(value => !remove.includes(value))
+  }
+
+  filterRoleOptions = () => {
+    var allRoles = OPTIONS
+    var userRolesObjects = this.props.findUserRoles(this.props.state.current_user.id)
+    var userRoles = []
+
+    for (let i=0; i<userRolesObjects.length; i++) {
+      for (let [key, value] of Object.entries(userRolesObjects[i])) {
+        // console.log("hello", key, value)
+        if (key == "name") {
+          userRoles.push(value)
+        }
+      }
+    }
+
+    console.log(userRoles)
+    console.log(this.removeFromArray(allRoles, userRoles))
+    
+    return this.removeFromArray(allRoles, userRoles)
   }
 
   render () {
@@ -116,14 +132,12 @@ class Profile extends Component {
             <UserRoles handleDeleteUserRole={this.props.handleDeleteUserRole} currentUserRoles={this.props.findUserRoles(this.props.state.current_user.id)} />
           </div>
           <div className='right-column'>
-            <ProfileAddRolesTable isSelected={this.isOptionSelected} 
-                                  roleOptions={OPTIONS}
+            <CheckboxGroupProfile isSelected={this.isOptionSelected} 
+                                  roleOptions={this.filterRoleOptions()}
                                   onCheckboxChange={this.handleCheckboxChange}
                                   onInputChange={this.handleInputChange}
                                   onYrsExpChange={this.handleYrsExpChange}
-                                  state={this.state} 
-                                  queryCurrentUser={this.queryCurrentUser}
-                                  queryCurrentUserRoles={this.queryCurrentUserRoles}                   
+                                  state={this.props.state} 
             />
           </div>
         </div>
