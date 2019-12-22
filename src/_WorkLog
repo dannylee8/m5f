@@ -9,4 +9,8 @@ Took   			list of user roles for view from a function that was filter'ing
 Quick			- Remove the AddRolesTable view so button can't be clicked more
 						than once.
 ###########################################################################
+11:53 AM	- Fix error with duplicate submissions of User Roles after submit,
+12:01 AM		due to not clearing state of checkboxes[] and yrsExp[].
+Took 0:08		Placed setState after fetch to database.
+###########################################################################
 

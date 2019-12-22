@@ -173,9 +173,9 @@ handleClickAddRoles = () => {
   render () {
     return (
       <div className='profile-container'>
-        <div>
+        {/* <div>
           <img className='profile-img' alt='profile placeholder' src={this.state.icon} />
-        </div>
+        </div> */}
         <div className='profile-content'>
           <div className='left-column'>
             <table className='user-table'>

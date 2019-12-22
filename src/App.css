@@ -111,7 +111,7 @@
   left: 0;
   background-color: #D8D8D8; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+  padding-top: 5vh;
 }
 
 /* The navigation menu links */
@@ -132,7 +132,14 @@
   list-style-type: none;
   padding-inline-start: 0px;
   text-align: left;
+}
+
+.sidenav li {
   padding-left: 30px;
+}
+
+li:hover {
+  background-color: #a64d79;
 }
 
 /* Style page content */
@@ -163,11 +170,12 @@
   margin-left: -55px;
   padding: 0;
   position: absolute;
-  bottom: 30vh;
+  bottom: 50px;
 }
 
 .cUser {
   color: #a64d79;
+  padding-bottom: 5vh;
 }
 
 .profile-img {
@@ -270,4 +278,9 @@ border:1px solid lightpink !important;
 .years-input {
   margin: auto;
   width:5vw;
+}
+
+.profile-content {
+  padding-top: 5vh;
+  padding-left: 5vh;
 }
