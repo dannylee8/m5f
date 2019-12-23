@@ -27,7 +27,8 @@ class App extends Component {
       roles: [],
       positions: [],
       user_roles: [],
-      rerender: false
+      rerender: false,
+      loggedIn: false
     }
   }
 
@@ -69,7 +70,8 @@ class App extends Component {
       })
     if (localStorage.getItem('cUser')) {
       this.setState({
-        current_user: JSON.parse(localStorage.getItem('cUser'))
+        current_user: JSON.parse(localStorage.getItem('cUser')),
+        loggedIn: true
       })
     }
   }
@@ -112,7 +114,8 @@ class App extends Component {
       this.setState({
         current_user: cUser,
         current_user_roles: cUserRoles,
-        current_user_teams: cUserTeams
+        current_user_teams: cUserTeams,
+        loggedIn: true
       })
       localStorage.setItem('cUser', JSON.stringify(cUser))
       // console.log("App <ln 75> Local user: ", localStorage.getItem('cUser'))
@@ -128,7 +131,8 @@ class App extends Component {
     this.setState({
       current_user: undefined,
       current_user_roles: [],
-      current_user_teams: []
+      current_user_teams: [],
+      loggedIn: false
     })
     localStorage.clear();
   }
@@ -140,7 +144,8 @@ class App extends Component {
     this.setState({
       current_user: undefined,
       current_user_roles: [],
-      current_user_teams: []
+      current_user_teams: [],
+      loggedIn: false
     })
     localStorage.clear();
   }
@@ -280,7 +285,10 @@ class App extends Component {
                                                       changeEmailAddress={this.changeEmailAddress} /> : <Redirect to='/login' />}
               </Route>
               <Route path='/teams'>
-                <Teams state={this.state}/>
+                <Teams  state={this.state}
+                        findUserTeams={this.findUserTeams}
+                        findUserPositions={this.findUserPositions}
+                />
               </Route>
               <Route path='/search'>
                 <Search />
