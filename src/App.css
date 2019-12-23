@@ -163,6 +163,7 @@
   padding: 0;
   position: absolute;
   bottom: 20px;
+  background-color: #fa3e3e;
 }
 
 #logout {
@@ -349,16 +350,17 @@ border:1px solid lightpink !important;
   color: #f1f1f1;
 }
 
-.team-content nav ul {
+.team-content ul {
   list-style-type: none;
-  padding-inline-start: 0px;
+  padding-inline-start: 10px;
   text-align: left;
 }
 
 .team-content li {
-  padding-left: 30px;
+  /* padding-left: 10px; */
+  /* list-style-type: none; */
 }
 
 .team-content li:hover {
-  background-color: #c494ac;
+  background-color: #fad83e;
 }

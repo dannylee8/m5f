@@ -69,11 +69,13 @@ class App extends Component {
         })
       })
     if (localStorage.getItem('cUser')) {
-      this.setState({
+      this.setState((prevState) => ({
         current_user: JSON.parse(localStorage.getItem('cUser')),
+        current_user_roles: JSON.parse(localStorage.getItem('cUserRoles')),
+        current_user_teams: JSON.parse(localStorage.getItem('cUserTeams')),
         loggedIn: true
-      })
-    }
+      }));
+    }   
   }
 
   findUserPositions = (user_id) => {
@@ -88,6 +90,7 @@ class App extends Component {
     console.log("positions: ", positions)
     let teams = positions.map(position => this.getTeamById(position.team_id))
     teams.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    console.log("findUserTeams: ", this.state.current_user_teams)
     return teams
   }
 
@@ -118,6 +121,8 @@ class App extends Component {
         loggedIn: true
       })
       localStorage.setItem('cUser', JSON.stringify(cUser))
+      localStorage.setItem('cUserRoles', JSON.stringify(cUserRoles))
+      localStorage.setItem('cUserTeams', JSON.stringify(cUserTeams))
       // console.log("App <ln 75> Local user: ", localStorage.getItem('cUser'))
       return true
     }
@@ -259,7 +264,6 @@ class App extends Component {
       console.log("App: render: ", this.state)
       console.log("has no roles or teams:", "margarito@gmail.com")
       console.log("has roles and teams:", "dario@gmail.com")
-      console.log("userTeams: ", this.findUserTeams(this.state.current_user.id))
     }
     return (
       <Router>

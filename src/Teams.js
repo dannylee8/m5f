@@ -6,7 +6,7 @@ class Teams extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      redirect: false
+      teamSelected: null
     }
   }
 
@@ -19,7 +19,8 @@ class Teams extends Component {
           <div className='team-content'>
             <TeamList
               state={this.props.state}
-              findUserTeams={this.props.findUserTeams} />
+              teamSelected={this.state.teamSelected}
+            />
           </div>
         </div>
       )
