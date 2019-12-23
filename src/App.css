@@ -311,3 +311,19 @@ border:1px solid lightpink !important;
   padding-left: 100px;
   padding-top: 80px;
 }
+
+.team-table {
+  margin-left: 250px;
+  margin-top: 50px;
+  border-spacing: .2em;
+  margin: 1rem auto;
+  line-height: 2em;
+  width: 40vw;
+  text-align: left;
+}
+
+.team-table td {
+  padding: 0rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}

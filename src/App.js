@@ -20,12 +20,13 @@ class App extends Component {
     super(props)
     this.state = {
       current_user: undefined,
+      current_user_roles: [],
+      current_user_teams: [],
       users: [],
       teams: [],
       roles: [],
       positions: [],
       user_roles: [],
-      current_user_roles: [],
       rerender: false
     }
   }
@@ -73,6 +74,25 @@ class App extends Component {
     }
   }
 
+  findUserPositions = (user_id) => {
+    let arr = this.state.positions.filter(ur => ur.user_id === user_id) 
+    arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    // console.log("FindUserTeams: ", arr )
+    return arr
+  }
+
+  findUserTeams = (user_id) => {
+    let positions = this.findUserPositions(user_id)
+    console.log("positions: ", positions)
+    let teams = positions.map(position => this.getTeamById(position.team_id))
+    teams.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    return teams
+  }
+
+ getTeamById = (team_id) => {
+    return this.state.teams.find( team => team.id === team_id)
+  }
+
   findUserRoles = (user_id) => {
     let arr = this.state.user_roles.filter(ur => ur.user_id === user_id) 
     arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
@@ -84,12 +104,15 @@ class App extends Component {
     const cUser = this.state.users.find(user =>  {
       return user.email_address === email
     })
+
     if (cUser) {
       let cUserRoles = this.findUserRoles(cUser.id)
+      let cUserTeams = this.findUserTeams(cUser.id)
       // console.log("App <ln 70> cUserRoles: ", cUserRoles)   
       this.setState({
         current_user: cUser,
-        current_user_roles: cUserRoles
+        current_user_roles: cUserRoles,
+        current_user_teams: cUserTeams
       })
       localStorage.setItem('cUser', JSON.stringify(cUser))
       // console.log("App <ln 75> Local user: ", localStorage.getItem('cUser'))
@@ -103,7 +126,9 @@ class App extends Component {
   handleLogout = () => {
     // console.log("click")
     this.setState({
-      current_user: undefined
+      current_user: undefined,
+      current_user_roles: [],
+      current_user_teams: []
     })
     localStorage.clear();
   }
@@ -113,7 +138,9 @@ class App extends Component {
     this.removeUserFromState()
     this.destroyUser(this.state.current_user.id)
     this.setState({
-      current_user: undefined
+      current_user: undefined,
+      current_user_roles: [],
+      current_user_teams: []
     })
     localStorage.clear();
   }
@@ -127,6 +154,13 @@ class App extends Component {
     this.setState({ 
       user_roles: [...this.state.user_roles, userRole],
       current_user_roles: [...this.state.current_user_roles, userRole]
+    })
+  }
+
+  addUserTeamToState = (userTeam) => {
+    this.setState({ 
+      user_roles: [...this.state.teams, userTeam],
+      current_user_teams: [...this.state.current_user_teams, userTeam]
     })
   }
 
@@ -218,8 +252,9 @@ class App extends Component {
   render () {
     if (this.state.users.length > 0) {
       console.log("App: render: ", this.state)
-      console.log("has roles:", "palmer@gmail.com")
-      console.log("has no roles:", "hank@gmail.com")
+      console.log("has no roles or teams:", "margarito@gmail.com")
+      console.log("has roles and teams:", "dario@gmail.com")
+      console.log("userTeams: ", this.findUserTeams(this.state.current_user.id))
     }
     return (
       <Router>
@@ -245,7 +280,7 @@ class App extends Component {
                                                       changeEmailAddress={this.changeEmailAddress} /> : <Redirect to='/login' />}
               </Route>
               <Route path='/teams'>
-                <Teams />
+                <Teams state={this.state}/>
               </Route>
               <Route path='/search'>
                 <Search />
