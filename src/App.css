@@ -139,7 +139,7 @@
   padding-left: 30px;
 }
 
-li:hover {
+.sidenav li:hover {
   background-color: #a64d79;
 }
 
@@ -326,4 +326,39 @@ border:1px solid lightpink !important;
   padding: 0rem 1.2rem;
   border-radius: 3px;
   border: 1px solid black;
+}
+
+.team-content {
+  padding-top: 25px;
+  padding-left: 25px;
+  text-align: left;
+  width: 300px;
+}
+
+.team-content a {
+  padding: 6px 8px 6px 0px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: inline-block;
+  width: 100%;
+}
+
+/* When you mouse over the navigation links, change their color */
+.team-content a:hover {
+  color: #f1f1f1;
+}
+
+.team-content nav ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
+  text-align: left;
+}
+
+.team-content li {
+  padding-left: 30px;
+}
+
+.team-content li:hover {
+  background-color: #c494ac;
 }
