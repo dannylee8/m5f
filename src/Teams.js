@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import TeamList from './TeamList'
+import PositionRow from './PositionRow'
 import { Redirect } from 'react-router-dom'
+
+const uuidv4 = require('uuid/v4')
 
 class Teams extends Component {
   constructor (props) {
@@ -42,14 +45,16 @@ class Teams extends Component {
               selectTeam={this.selectTeam}
               teamSelected={this.state.teamSelected}
             />
+
+            {this.state.teamSelected ? 
+              <table className='positions-table'>
+                <tbody>
+                  {this.props.findPositionsOnTeam(this.state.teamObject.id).map( (p, idx) => <PositionRow key={uuidv4()} singlePosition={p} idx={idx} />)}
+                </tbody>
+              </table>
+            :
+            null}
           </div>
-          {this.state.teamSelected ? 
-          <div>
-            {console.log("Current User teams: ", this.props.state.current_user_teams)}
-            {console.log("Current User roles: ", this.props.state.current_user_roles)}
-          </div>
-          :
-          null}
         </div>
       )
     }

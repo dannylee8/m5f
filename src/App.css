@@ -364,3 +364,19 @@ border:1px solid lightpink !important;
 .team-content li:hover {
   background-color: #fad83e;
 }
+
+.positions-table {
+  margin-left: 250px;
+  margin-top: 50px;
+  border-spacing: .2em;
+  margin: 1rem auto;
+  line-height: 2em;
+  width: 60vw;
+  text-align: left;
+}
+
+.positions-table td {
+  padding: 0rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}

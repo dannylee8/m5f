@@ -13,16 +13,22 @@ class TeamList extends Component {
   render () {
     return (
       <>
-        <h3>Teams:</h3>
-        <ul>
-          {this.props.state.current_user_teams.map(team => {
-            if (team.name.trim().toLowerCase() === this.props.teamSelected.trim().toLowerCase() || this.props.teamSelected === '') {
-              return <li key={team.id} onClick={e => this.onClickHandler(e, team)}> { team.name } </li>
-            } else {
-              return null
-            }
-          })}
-        </ul>
+        {this.props.teamSelected ? 
+          <h3>{this.props.teamSelected}</h3>
+          :
+        <>
+          <h3>Teams:</h3>
+          <ul>
+            {this.props.state.current_user_teams.map(team => {
+              if (team.name.trim().toLowerCase() === this.props.teamSelected.trim().toLowerCase() || this.props.teamSelected === '') {
+                return <li key={team.id} onClick={e => this.onClickHandler(e, team)}> { team.name } </li>
+              } else {
+                return null
+              }
+            })}
+          </ul>
+        </>
+        }
       </>
     )
   }

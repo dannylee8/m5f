@@ -96,9 +96,9 @@ class App extends Component {
   
   findTeamByID = (team_id) => this.state.teams.find( t => t.id === team_id)
 
-  findPositionOnTeam = (team_id) => this.state.positions.filter( p => p.team_id === team_id)
+  findPositionsOnTeam = (team_id) => this.state.positions.filter( p => p.team_id === team_id)
   
-  findMembersOfTeam = (team_id) => this.findPositionOnTeam(team_id).filter( p => this.findUserByID(p.id))
+  findMembersOfTeam = (team_id) => this.findPositionsOnTeam(team_id).filter( p => this.findUserByID(p.id))
 
   findUserPositions = (user_id) => this.state.positions.filter( ur => ur.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
@@ -308,6 +308,7 @@ class App extends Component {
                         findUserTeams={this.findUserTeams}
                         findUserPositions={this.findUserPositions}
                         findTeamByID={this.findTeamByID}
+                        findPositionsOnTeam={this.findPositionsOnTeam}
                 />
               </Route>
               <Route path='/search'>
