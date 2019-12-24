@@ -78,6 +78,15 @@ class App extends Component {
     }   
   }
 
+  findUserByID = (user_id) => { return this.state.users.find( u => u.id === user_id) }
+
+  findTeamByID = (team_id) => { return this.state.teams.filter( t => t.id === team_id) }
+
+  findMembersOfTeam = (team_id) => { 
+    let pos = this.state.positions.filter( p => p.team_id === team_id)
+    return pos.map(p => this.findUserByID(p.id))
+  }
+
   findUserPositions = (user_id) => {
     let arr = this.state.positions.filter(ur => ur.user_id === user_id) 
     arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
@@ -261,7 +270,8 @@ class App extends Component {
 
   render () {
     if (this.state.users.length > 0) {
-      console.log("App: render: ", this.state)
+      console.log(this.state.users)
+      console.log(this.findMembersOfTeam(2).map(i => i.email_address))
       console.log("has no roles or teams:", "margarito@gmail.com")
       console.log("has roles and teams:", "dario@gmail.com")
     }
