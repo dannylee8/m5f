@@ -78,25 +78,15 @@ class App extends Component {
     }   
   }
 
-  findUserByID = (user_id) => { return this.state.users.find( u => u.id === user_id) }
+  findUserByID = (user_id) => this.state.users.find( u => u.id === user_id)
 
-  findTeamByID = (team_id) => { return this.state.teams.find( t => t.id === team_id) }
+  findTeamByID = (team_id) => this.state.teams.find( t => t.id === team_id)
 
-  findPositionOnTeam = (team_id) => { 
-    return this.state.positions.filter( p => p.team_id === team_id)
-  }
+  findPositionOnTeam = (team_id) => this.state.positions.filter( p => p.team_id === team_id)
   
-  findMembersOfTeam = (team_id) => { 
-    let pos = this.findPositionOnTeam(team_id)
-    return pos.filter(p => this.findUserByID(p.id) )
-  }
+  findMembersOfTeam = (team_id) => this.findPositionOnTeam(team_id).filter( p => this.findUserByID(p.id))
 
-  findUserPositions = (user_id) => {
-    let arr = this.state.positions.filter(ur => ur.user_id === user_id) 
-    arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
-    // console.log("FindUserTeams: ", arr )
-    return arr
-  }
+  findUserPositions = (user_id) => this.state.positions.filter( ur => ur.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
   findUserTeams = (user_id) => {
     let positions = this.findUserPositions(user_id)
@@ -107,14 +97,11 @@ class App extends Component {
     return teams
   }
 
- getTeamById = (team_id) => {
-    return this.state.teams.find( team => team.id === team_id)
-  }
+  getTeamById = (team_id) => this.state.teams.find( team => team.id === team_id)
 
   findUserRoles = (user_id) => {
     let arr = this.state.user_roles.filter(ur => ur.user_id === user_id) 
     arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
-    // console.log("FindUserRoles: ", arr )
     return arr
   }
 
@@ -276,6 +263,8 @@ class App extends Component {
     if (this.state.users.length > 0) {
       console.log(this.state.users)
       console.log(this.findMembersOfTeam(2))
+      console.log("Has roles: marvella@gmail.com (4)")
+      console.log("Has teams: consuela@gmail.com (4)")
     }
     return (
       <Router>
