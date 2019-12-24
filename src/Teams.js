@@ -6,7 +6,24 @@ class Teams extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      teamSelected: null
+      teamSelected: '',
+      showTeam: false
+    }
+  }
+
+  selectTeam = (e) => {
+    if ((e.target.innerHTML === this.state.teamSelected) && this.state.showTeam) {
+      this.setState({ 
+        showTeam: false,
+        teamSelected: ""
+      }) 
+    } else if (this.state.showTeam && e.target.innerHTML !== this.state.teamSelected) {
+      return;
+    } else {
+      this.setState({ 
+        showTeam: !this.state.showTeam,
+        teamSelected: e.target.innerHTML
+      }) 
     }
   }
 
@@ -19,9 +36,15 @@ class Teams extends Component {
           <div className='team-content'>
             <TeamList
               state={this.props.state}
-              teamSelected={this.state.teamSelected}
+              selectTeam={this.selectTeam}
             />
           </div>
+          {this.state.teamSelected ? 
+          <div>
+            Team Selected
+          </div>
+          :
+          null}
         </div>
       )
     }
