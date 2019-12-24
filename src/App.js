@@ -68,18 +68,32 @@ class App extends Component {
           positions: json
         })
       })
+    // console.log(JSON.parse(localStorage.getItem('cUser')))
     if (localStorage.getItem('cUser')) {
-      this.setState((prevState) => ({
-        current_user: JSON.parse(localStorage.getItem('cUser')),
-        current_user_roles: JSON.parse(localStorage.getItem('cUserRoles')),
-        current_user_teams: JSON.parse(localStorage.getItem('cUserTeams')),
-        loggedIn: true
-      }));
-    }   
+
+      let userID = JSON.parse(localStorage.getItem('cUser')).id
+
+      window.fetch(`http://localhost:3000/api/v1/users/${userID}`)
+      .then(resp => resp.json())
+      .then(json => {
+        if (json.id === userID) {
+          this.setState((prevState) => ({
+            current_user: JSON.parse(localStorage.getItem('cUser')),
+            current_user_roles: JSON.parse(localStorage.getItem('cUserRoles')),
+            current_user_teams: JSON.parse(localStorage.getItem('cUserTeams')),
+            loggedIn: true
+          }));
+        } else {
+          this.handleLogout()
+          // console.log("fake logout")
+        }
+      })
+    }
+    // console.log(JSON.parse(localStorage.getItem('cUser')))
   }
 
   findUserByID = (user_id) => this.state.users.find( u => u.id === user_id)
-
+  
   findTeamByID = (team_id) => this.state.teams.find( t => t.id === team_id)
 
   findPositionOnTeam = (team_id) => this.state.positions.filter( p => p.team_id === team_id)
