@@ -307,6 +307,7 @@ class App extends Component {
                 <Teams  state={this.state}
                         findUserTeams={this.findUserTeams}
                         findUserPositions={this.findUserPositions}
+                        findTeamByID={this.findTeamByID}
                 />
               </Route>
               <Route path='/search'>

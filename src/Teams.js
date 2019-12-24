@@ -6,23 +6,26 @@ class Teams extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      teamObject: null,
       teamSelected: '',
       showTeam: false
     }
   }
 
-  selectTeam = (e) => {
+  selectTeam = (e, team) => {
     if ((e.target.innerHTML === this.state.teamSelected) && this.state.showTeam) {
       this.setState({ 
-        showTeam: false,
-        teamSelected: ""
+        teamObject: null,
+        teamSelected: "",
+        showTeam: false
       }) 
     } else if (this.state.showTeam && e.target.innerHTML !== this.state.teamSelected) {
       return;
     } else {
       this.setState({ 
-        showTeam: !this.state.showTeam,
-        teamSelected: e.target.innerHTML
+        teamObject: team,
+        teamSelected: e.target.innerHTML,
+        showTeam: !this.state.showTeam
       }) 
     }
   }
@@ -42,7 +45,8 @@ class Teams extends Component {
           </div>
           {this.state.teamSelected ? 
           <div>
-            Team Selected
+            {console.log("Current User teams: ", this.props.state.current_user_teams)}
+            {console.log("Current User roles: ", this.props.state.current_user_roles)}
           </div>
           :
           null}
