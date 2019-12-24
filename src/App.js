@@ -275,8 +275,8 @@ class App extends Component {
 
   render () {
     if (this.state.users.length > 0) {
-      console.log(this.state.users)
-      console.log(this.findMembersOfTeam(2))
+      // console.log(this.state.users)
+      // console.log(this.findMembersOfTeam(2))
       console.log("Has roles: marvella@gmail.com (4)")
       console.log("Has teams: consuela@gmail.com (4)")
     }

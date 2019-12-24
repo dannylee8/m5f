@@ -37,6 +37,7 @@ class Teams extends Component {
             <TeamList
               state={this.props.state}
               selectTeam={this.selectTeam}
+              teamSelected={this.state.teamSelected}
             />
           </div>
           {this.state.teamSelected ? 
