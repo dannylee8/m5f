@@ -309,6 +309,7 @@ class App extends Component {
                         findUserPositions={this.findUserPositions}
                         findTeamByID={this.findTeamByID}
                         findPositionsOnTeam={this.findPositionsOnTeam}
+                        findUserByID={this.findUserByID}
                 />
               </Route>
               <Route path='/search'>

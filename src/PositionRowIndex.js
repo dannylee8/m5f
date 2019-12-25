@@ -1,7 +1,7 @@
 import React from 'react'
 
-const PositionRow = props => (
+const PositionRowIndex = props => (
   <td>{props.idx + 1}</td>
 )
 
-export default PositionRow
+export default PositionRowIndex

@@ -49,7 +49,7 @@ class Teams extends Component {
             {this.state.teamSelected ? 
               <table className='positions-table'>
                 <tbody>
-                  {this.props.findPositionsOnTeam(this.state.teamObject.id).map( (p, idx) => <PositionRow key={uuidv4()} singlePosition={p} idx={idx} />)}
+                  {this.props.findPositionsOnTeam(this.state.teamObject.id).map( (p, idx) => <PositionRow key={uuidv4()} singlePosition={p} idx={idx} findUserByID={this.props.findUserByID}/>)}
                 </tbody>
               </table>
             :

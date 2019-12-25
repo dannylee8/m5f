@@ -1,7 +1,12 @@
 import React from 'react'
 
-const PositionRow = props => (
-  <td>{props.singlePosition.name}</td>
+const PositionRowName = props => (
+  <td>
+    {(props.findUserByID(props.singlePosition.user_id)) ? 
+      props.findUserByID(props.singlePosition.user_id).name
+      :
+      "---"}
+  </td>
 )
 
-export default PositionRow
+export default PositionRowName
