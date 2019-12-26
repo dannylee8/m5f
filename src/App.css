@@ -6,10 +6,12 @@
 .App-body {
  display: flex;
  flex-direction: row;
+ background-color: #d8d8d8;
 }
 
 .page-container {
   width: calc(100% - 200px);
+  background-color: gray;
 }
 
 .profile-content {
@@ -92,7 +94,7 @@
 
 .btn-secondary {
   color: #a64d79;
-  background-color: #fff;
+  background-color: #d8d8d8;
   border-color: #a64d79;
 }
 
@@ -192,6 +194,10 @@
   margin: 1rem auto;
   border-collapse: separate;
   width: 30vw;
+}
+
+table {
+  background-color: #D8D8D8;
 }
 
 .user-table td {
@@ -366,19 +372,18 @@ border:1px solid lightpink !important;
 }
 
 .positions-table {
-  margin-left: 250px;
-  margin-top: 50px;
+  float: left;
   border-spacing: .2em;
   margin: 1rem auto;
-  line-height: 2em;
+  line-height: 1.5em;
   width: 60vw;
   text-align: left;
+  margin-left: 45px;
 }
 
 .positions-table td {
-  padding: 0rem 1.2rem;
-  border-radius: 3px;
-  border: 1px solid black;
+  padding: 0rem .2rem;
+  border: 4px solid #d3d3d3;
 }
 
 .fade-in {
@@ -400,4 +405,24 @@ border:1px solid lightpink !important;
 
 .position-not-filled {
   background-color: goldenrod;
+}
+
+h6 {
+  color: antiquewhite;
+  background-color:  palevioletred;
+  line-height: 2em;
+  padding-left: 45px;
+  width: 64.5vw;
+}
+
+.owner {
+  color: black
+}
+
+.team-list {
+  font-size: 1.25em;
+  color: palevioletred;
+  background-color: #d8d8d8;
+  width: 40vw;
+  padding: 20px;
 }

@@ -102,6 +102,15 @@ class App extends Component {
 
   findUserPositions = (user_id) => this.state.positions.filter( ur => ur.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
+  findTeamLeader = (team_id) => {
+    let leaderID = this.findTeamByID(team_id).admin
+    if (leaderID) {
+      return this.findUserByID(leaderID)
+    } else {
+      return false
+    }
+  }
+
   findUserTeams = (user_id) => {
     let positions = this.findUserPositions(user_id)
     console.log("positions: ", positions)
@@ -310,6 +319,7 @@ class App extends Component {
                         findTeamByID={this.findTeamByID}
                         findPositionsOnTeam={this.findPositionsOnTeam}
                         findUserByID={this.findUserByID}
+                        findTeamLeader={this.findTeamLeader}
                 />
               </Route>
               <Route path='/search'>

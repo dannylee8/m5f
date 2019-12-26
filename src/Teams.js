@@ -52,7 +52,9 @@ class Teams extends Component {
               state={this.props.state}
               selectTeam={this.selectTeam}
               teamSelected={this.state.teamSelected}
+              teamObject={this.state.teamObject}
               goBackHandler={this.goBackHandler}
+              findTeamLeader={this.props.findTeamLeader}
             />
             {this.state.teamSelected ? 
             <table className='positions-table fade-in'>
