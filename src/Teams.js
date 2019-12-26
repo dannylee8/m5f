@@ -56,6 +56,12 @@ class Teams extends Component {
               goBackHandler={this.goBackHandler}
               findTeamLeader={this.props.findTeamLeader}
             />
+            {!this.state.teamSelected ? 
+              <button id='new_team' className='btn btn-warning btn-sm'>
+              create new team
+              </button>
+            :
+            null}
             {this.state.teamSelected ? 
             <table className='positions-table fade-in'>
               <tbody>

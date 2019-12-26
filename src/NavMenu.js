@@ -27,6 +27,7 @@ const NavMenu = props => {
           <button id='logout' onClick={props.onHandleLogout} className='btn btn-primary btn-sm'>
           logout
           </button>
+          
         </>)
       : ''
   )
