@@ -333,7 +333,7 @@ border:1px solid lightpink !important;
   padding-top: 25px;
   padding-left: 25px;
   text-align: left;
-  width: 300px;
+  width: 100%;
 }
 
 .team-content a {
@@ -379,4 +379,21 @@ border:1px solid lightpink !important;
   padding: 0rem 1.2rem;
   border-radius: 3px;
   border: 1px solid black;
+}
+
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

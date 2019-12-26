@@ -14,11 +14,11 @@ class TeamList extends Component {
     return (
       <>
         {this.props.teamSelected ? 
-          <h3>{this.props.teamSelected}</h3>
+          <h3 className='fade-in'><i className='fade-in' onClick={e => this.props.goBackHandler(e)} className="material-icons">arrow_back</i>{this.props.teamSelected}</h3>
           :
         <>
           <h3>Teams:</h3>
-          <ul>
+          <ul className='fade-in'>
             {this.props.state.current_user_teams.map(team => {
               if (team.name.trim().toLowerCase() === this.props.teamSelected.trim().toLowerCase() || this.props.teamSelected === '') {
                 return <li key={team.id} onClick={e => this.onClickHandler(e, team)}> { team.name } </li>
