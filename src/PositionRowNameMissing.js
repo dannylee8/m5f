@@ -1,7 +1,7 @@
 import React from 'react'
 
 const PositionRowName = props => (
-  <td className='position-not-filled'>
+  <td>
     Position not filled
   </td>
 )

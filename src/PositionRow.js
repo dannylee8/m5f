@@ -10,7 +10,7 @@ for (let i = 0; i < 10000; i++) {
 }
 
 const PositionRow = props => (
-  <tr>
+  <tr className={(props.findUserByID(props.singlePosition.user_id)) ? null : 'position-not-filled'}>
     <PositionRowIndex idx={props.idx}/>
     <PositionRowPositionName singlePosition={props.singlePosition} />
     {(props.findUserByID(props.singlePosition.user_id)) ? 
