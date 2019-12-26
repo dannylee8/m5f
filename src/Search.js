@@ -5,7 +5,7 @@ class Search extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      myState: true
+      // myState: true
     }
   }
 
@@ -14,8 +14,10 @@ class Search extends Component {
       return <Redirect to='/profile' />
     } else {
       return (
-        <div>
-          <h1>Hello Search</h1>
+        <div className='search-container fade-in'>
+          <div className='search-content fade-in'>
+            <h3>Search for teams:</h3>
+          </div>
         </div>
       )
     }

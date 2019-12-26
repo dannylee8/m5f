@@ -323,7 +323,8 @@ class App extends Component {
                 />
               </Route>
               <Route path='/search'>
-                <Search />
+                <Search state={this.state} 
+                />
               </Route>
               <Route path='/new_user'>
                 <NewUser logThemIn={this.logThemIn} addUserToState={this.addUserToState} addUserRoleToState={this.addUserRoleToState}/>
