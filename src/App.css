@@ -397,3 +397,7 @@ border:1px solid lightpink !important;
 		opacity: 1;
 	}
 }
+
+.position-not-filled {
+  background-color: goldenrod;
+}

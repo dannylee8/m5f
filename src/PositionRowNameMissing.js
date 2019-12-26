@@ -1,8 +1,8 @@
 import React from 'react'
 
 const PositionRowName = props => (
-  <td>
-    {props.findUserByID(props.singlePosition.user_id).name}
+  <td className='position-not-filled'>
+    Position not filled
   </td>
 )
 

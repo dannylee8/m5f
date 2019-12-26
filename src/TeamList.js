@@ -14,7 +14,7 @@ class TeamList extends Component {
     return (
       <>
         {this.props.teamSelected ? 
-          <h3 className='fade-in'><i className='fade-in' onClick={e => this.props.goBackHandler(e)} className="material-icons">arrow_back</i>{this.props.teamSelected}</h3>
+          <h3 className='fade-in'><i onClick={e => this.props.goBackHandler(e)} className="material-icons">arrow_back</i>{this.props.teamSelected}</h3>
           :
         <>
           <h3>Teams:</h3>

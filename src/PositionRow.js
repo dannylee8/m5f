@@ -2,6 +2,7 @@ import React from 'react'
 import PositionRowIndex from './PositionRowIndex'
 import PositionRowName from './PositionRowName'
 import PositionRowPositionName from './PositionRowPositionName'
+import PositionRowNameMissing from './PositionRowNameMissing'
 
 const listItems = []
 for (let i = 0; i < 10000; i++) {
@@ -12,7 +13,10 @@ const PositionRow = props => (
   <tr>
     <PositionRowIndex idx={props.idx}/>
     <PositionRowPositionName singlePosition={props.singlePosition} />
-    <PositionRowName findUserByID={props.findUserByID} singlePosition={props.singlePosition} />
+    {(props.findUserByID(props.singlePosition.user_id)) ? 
+      <PositionRowName findUserByID={props.findUserByID} singlePosition={props.singlePosition} />
+      :
+      <PositionRowNameMissing />}    
   </tr>
 )
 
