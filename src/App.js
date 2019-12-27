@@ -14,6 +14,7 @@ import Profile from './Profile'
 import Search from './Search'
 import Teams from './Teams'
 import NewUser from './NewUser'
+import NewTeam from './NewTeam'
 
 class App extends Component {
   constructor (props) {
@@ -353,16 +354,21 @@ class App extends Component {
                         findTeamLeader={this.findTeamLeader}
                         goBackHandler={this.goBackHandler}
                         selectTeam={this.selectTeam}
-                        
+
                 />
               )}>
               </Route>
               <Route path='/search'>
-                <Search state={this.state} 
+                <Search   state={this.state} 
                 />
               </Route>
               <Route path='/new_user'>
-                <NewUser logThemIn={this.logThemIn} addUserToState={this.addUserToState} addUserRoleToState={this.addUserRoleToState}/>
+                <NewUser  logThemIn={this.logThemIn} 
+                          addUserToState={this.addUserToState} 
+                          addUserRoleToState={this.addUserRoleToState}/>
+              </Route>
+              <Route path='/new_team'>
+                <NewTeam goBackHandler={this.goBackHandler}/>
               </Route>
               <Route exact path='/'>
                 <Home />

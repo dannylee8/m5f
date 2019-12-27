@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import TeamList from './TeamList'
 import PositionRow from './PositionRow'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 const uuidv4 = require('uuid/v4')
 
@@ -21,9 +21,11 @@ class Teams extends Component {
               findTeamLeader={this.props.findTeamLeader}
             />
             {!this.props.state.teamSelected ? 
-              <button id='new_team' className='btn btn-warning btn-sm'>
-              create new team
-              </button>
+              <Link to='/new_team'>
+                <button id='new_team' className='btn btn-warning btn-sm'>
+                create new team
+                </button>
+              </Link>
             :
             null}
             {this.props.state.teamSelected ? 

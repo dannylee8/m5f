@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom'
-import CheckboxGroup from "./CheckboxGroup";
 import { Button, Container, Form, Fade, Label, Input } from 'reactstrap';
+import { withRouter } from "react-router-dom"
 
 import _ from 'lodash';
 
@@ -12,22 +11,24 @@ const validationMethods =  {
       }
   },
   isEmail: (field, value) => {
+      // eslint-disable-next-line
       var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
       if (reg.test(value) === false) {
           return  `Invalid Email Address.`
       }        
   },
   isWebsite: (field, value) => {
+      // eslint-disable-next-line
       var reg = /^(ftp|http|https):\/\/[^ "]+$/;
       if (reg.test(value) === false) {
           return  `Invalid Website Address.`
-      }        
-  },
+      }
+  }
 } 
 
 const validateForm = (form) => {
-  const loginForm = document.getElementById(form)
-      return loginForm.querySelectorAll('[validations]');
+  const teamForm = document.getElementById(form)
+      return teamForm.querySelectorAll('[validations]');
 }
 
 const runValidationRules  = (element, errors) => {
@@ -58,95 +59,15 @@ const runValidationRules  = (element, errors) => {
 class NewUser extends Component {
   state = {
     name: '',
-    email: '',
-    password: '',
-    errors: [],
-    redirect: false,
-    checkboxes: OPTIONS.reduce(
-      (options, option) => ({
-        ...options,
-        [option]: false
-      }),
-      {}
-    ),
-    yrsExp: OPTIONS.reduce(
-      (options, option) => ({
-        ...options,
-        [option]: null
-      }),
-      {}
-    )
+    website: '',
+    admin: '',
+    errors: []
   };
-
-  setRedirect = () => {
-    this.setState({
-        redirect: true
-    })
-  }
-  renderRedirect = () => {
-      if (this.state.redirect) {
-          return <Redirect to='/login' />
-      }
-  }
-
-  selectAllCheckboxes = isSelected => {
-    Object.keys(this.state.checkboxes).forEach(checkbox => {
-      // BONUS: Can you explain why we pass updater function to setState instead of an object?
-      this.setState(prevState => ({
-        checkboxes: {
-          ...prevState.checkboxes,
-          [checkbox]: isSelected
-        }
-      }));
-    });
-  };
-
-  selectAll = () => this.selectAllCheckboxes(true);
-
-  deselectAll = () => this.selectAllCheckboxes(false);
-
-  handleCheckboxChange = changeEvent => {
-    const { name } = changeEvent.target;
-    console.log(changeEvent.target.value)
-    this.setState(prevState => ({
-      checkboxes: {
-        ...prevState.checkboxes,
-        [name]: !prevState.checkboxes[name]
-      }
-    }));
-  };
-
-  // handleFormSubmit = formSubmitEvent => {
-  //   formSubmitEvent.preventDefault();
-
-  //   Object.keys(this.state.checkboxes)
-  //     .filter(checkbox => this.state.checkboxes[checkbox])
-  //     .forEach(checkbox => {
-  //       console.log(checkbox, "is selected.");
-  //     });
-  // };
-
-  isOptionSelected = option => {
-    return this.state.checkboxes[option]
-  }
 
   handleInputChange = (e) => {
     this.setState({
         [e.target.name]: e.target.value
     });
-  }
-
-  handleYrsExpChange = (changeEvent) => {
-    changeEvent.persist()
-    // console.log(changeEvent)
-    const { name, value } = changeEvent.target;
-    // console.log(name, value)
-    this.setState(prevState => ({
-      yrsExp: {
-        ...prevState.yrsExp,
-        [name]: value
-      }
-    }));
   }
 
   handleUserInputChange = (event) => {
@@ -155,9 +76,6 @@ class NewUser extends Component {
     const value = target.value
 
     const errors = runValidationRules(target, this.state.errors);
-
-    // console.log("errors: ", errors)
-    // console.log("errors: ", value)
 
     this.setState({
       errors: errors
@@ -168,7 +86,7 @@ class NewUser extends Component {
     });
   }
 
-  handleCreateUserFormSubmit = (event) => {
+  handleCreateTeamFormSubmit = (event) => {
     event.preventDefault();
 
     const formElements = validateForm("createForm");
@@ -181,59 +99,60 @@ class NewUser extends Component {
     })
 
     const name = this.state.name;
-    const email = this.state.email;
-    const password = this.state.password;
+    const website = this.state.website;
+    const admin = this.state.current_user.id;
     const errors =  this.state.errors;
-    if (!this.state.errors.email && !this.state.errors.password) {
+    if (!this.state.errors.name && !this.state.errors.website && this.state.current_user) {
         // console.log(name,email);
         // Create a new user
-        fetch('http://localhost:3000/api/v1/users', {
+        fetch('http://localhost:3000/api/v1/teams', {
           headers: { "Content-Type": "application/json; charset=utf-8" },
           method: 'POST',
           body: JSON.stringify({
             name: name,
-            email_address: email,
+            website: website,
+            admin: admin
           })
         })
         .then(resp => resp.json())
-        .then(user => {
-          console.log(user)
-          if (user.email_address) {
-            this.props.addUserToState(user)
-            this.props.logThemIn(user.email_address)
+        .then(team => {
+          console.log(team)
+          // if (user.email_address) {
+          //   this.props.addUserToState(user)
+          //   this.props.logThemIn(user.email_address)
             
-            console.log("success?", this.state.yrsExp)
+          //   console.log("success?", this.state.yrsExp)
 
-            const entries = Object.entries(this.state.yrsExp)
-            const entriesMap = entries.filter(e => {
-              if (e[1] > 0) {
-                return e;
-              }
-              return null;
-            })
-            console.log(entriesMap)
-            entriesMap.forEach(e => {
-              fetch('http://localhost:3000/api/v1/user_roles', {
-                headers: { "Content-Type": "application/json; charset=utf-8" },
-                method: 'POST',
-                body: JSON.stringify({
-                  user_id: user.id,
-                  role_id: OPTIONS.indexOf(e[0])+1,
-                  name: e[0],
-                  years_exp: e[1]
-                })
-              })
-              .then(resp => resp.json())
-              .then(role => {
-                this.props.addUserRoleToState(role)
-                console.log("entriesMap: ", role)
-              })
-            })
-          }
-          else console.log("error with then...");
+          //   const entries = Object.entries(this.state.yrsExp)
+          //   const entriesMap = entries.filter(e => {
+          //     if (e[1] > 0) {
+          //       return e;
+          //     }
+          //     return null;
+          //   })
+          //   console.log(entriesMap)
+          //   entriesMap.forEach(e => {
+          //     fetch('http://localhost:3000/api/v1/user_roles', {
+          //       headers: { "Content-Type": "application/json; charset=utf-8" },
+          //       method: 'POST',
+          //       body: JSON.stringify({
+          //         user_id: user.id,
+          //         role_id: OPTIONS.indexOf(e[0])+1,
+          //         name: e[0],
+          //         years_exp: e[1]
+          //       })
+          //     })
+          //     .then(resp => resp.json())
+          //     .then(role => {
+          //       this.props.addUserRoleToState(role)
+          //       console.log("entriesMap: ", role)
+          //     })
+          //   })
+          // }
+          // else console.log("error with then...");
         })
     } else {
-        console.log(email, password, errors);
+        console.log(name, website, errors);
     }
   }
 
@@ -243,7 +162,6 @@ class NewUser extends Component {
       <>
         <Container className="create-container">
           <h4>Create a new user</h4>
-          {this.renderRedirect()}
               <Form id='createForm' method="post" onSubmit={this.handleCreateUserFormSubmit}>
               <div className="login-row">
                   <Label>Name</Label>
@@ -284,36 +202,15 @@ class NewUser extends Component {
                       placeholder="Please enter your password."
                   />
                 </div>
-                <FromValidationError field={this.state.errors.email} />
-                <FromValidationError field={this.state.errors.password} />
-                <CheckboxGroup  isSelected={this.isOptionSelected} 
-                                roleOptions={OPTIONS}
-                                onCheckboxChange={this.handleCheckboxChange}
-                                onInputChange={this.handleInputChange}
-                                onYrsExpChange={this.handleYrsExpChange}
-                                state={this.state}
-                />
+                <FromValidationError field={this.state.errors.name} />
+                <FromValidationError field={this.state.errors.website} />
                 <div className="form-group mt-2">
-                  <Button
-                    type="button"
-                    className="btn btn-outline-primary mr-2"
-                    onClick={this.selectAll}
-                  >
-                    Select All
-                  </Button>
-                  <Button
-                    type="button"
-                    className="btn btn-outline-primary mr-2"
-                    onClick={this.deselectAll}
-                  >
-                    Deselect All
-                  </Button>
                   <Button type="submit" className="btn btn-primary">
                     Save
                   </Button>
                 </div>
-                <Button onClick={this.setRedirect} className="btn btn-primary">
-                  back to Login
+                <Button onClick={()=>this.props.history.push('/teams')} className="btn btn-primary">
+                  Exit without Save
                 </Button>
               </Form>
         </Container>
@@ -328,4 +225,4 @@ const FromValidationError = props => (
   </Fade>
 );
 
-export default NewUser;
+export default withRouter(NewUser);
