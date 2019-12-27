@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Container, Form, Fade, Label, Input } from 'reactstrap';
 import { withRouter } from "react-router-dom"
+import validator from 'validator';
 
 import _ from 'lodash';
 
@@ -19,9 +20,12 @@ const validationMethods =  {
   },
   isWebsite: (field, value) => {
       // eslint-disable-next-line
-      var reg = /^(ftp|http|https):\/\/[^ "]+$/;
-      if (reg.test(value) === false) {
-          return  `Invalid Website Address.`
+      // var reg = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
+      // if (reg.test(value) === false) {
+      //     return  `Invalid Website Address.`
+      // }
+      if (!validator.isURL(value)) {
+        return 'Invalid Website Address.'
       }
   }
 } 
@@ -64,15 +68,15 @@ class NewUser extends Component {
     errors: []
   };
 
-  handleInputChange = (e) => {
-    this.setState({
-        [e.target.name]: e.target.value
-    });
-  }
+  // handleInputChange = (e) => {
+  //   this.setState({
+  //       [e.target.name]: e.target.value
+  //   });
+  // }
 
-  handleUserInputChange = (event) => {
+  handleInputChange = (event) => {
     const target = event.target;
-    const field =  target.name;
+    const field = target.name;
     const value = target.value
 
     const errors = runValidationRules(target, this.state.errors);
@@ -86,7 +90,7 @@ class NewUser extends Component {
     });
   }
 
-  handleCreateTeamFormSubmit = (event) => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
 
     const formElements = validateForm("createForm");
@@ -97,12 +101,13 @@ class NewUser extends Component {
           errors: errors
       });
     })
+    console.log(this.props.state)
 
     const name = this.state.name;
     const website = this.state.website;
-    const admin = this.state.current_user.id;
+    const admin = this.props.state.current_user.id;
     const errors =  this.state.errors;
-    if (!this.state.errors.name && !this.state.errors.website && this.state.current_user) {
+    if (!this.state.errors.name && !this.state.errors.website && this.props.state.current_user) {
         // console.log(name,email);
         // Create a new user
         fetch('http://localhost:3000/api/v1/teams', {
@@ -161,10 +166,10 @@ class NewUser extends Component {
     return (
       <>
         <Container className="create-container">
-          <h4>Create a new user</h4>
-              <Form id='createForm' method="post" onSubmit={this.handleCreateUserFormSubmit}>
-              <div className="login-row">
-                  <Label>Name</Label>
+          <h4>Create a new team</h4>
+              <Form id='createForm' method="post" onSubmit={this.handleFormSubmit}>
+              <div>
+                  <Label>Team Name</Label>
                   <Input 
                       className="input"
                       type="text"
@@ -173,34 +178,21 @@ class NewUser extends Component {
                       value={this.state.name}
                       onChange={this.handleInputChange}
                       id="name"
-                      placeholder="Please enter your name."
+                      placeholder="Please enter your new team's name."
                     />
                 </div>
-                <div className="login-row">
-                  <Label>Email</Label>
+                <div>
+                  <Label>Website address</Label>
                   <Input 
                       className="input"
                       type="text"
-                      validations={['required','isEmail']}
-                      name="email"
-                      value={this.state.email}
+                      validations={['required','isWebsite']}
+                      name="website"
+                      value={this.state.website}
                       onChange={this.handleInputChange}
-                      id="email"
-                      placeholder="Please enter your email address."
+                      id="website"
+                      placeholder="Please enter your website address."
                     />
-                </div>
-                <div className="login-row">
-                  <Label>Password</Label>
-                  <Input
-                      className="input"
-                      type="password"
-                      validations={['required']}
-                      name="password"
-                      value={this.state.password}
-                      onChange={this.handleInputChange}
-                      id="password"
-                      placeholder="Please enter your password."
-                  />
                 </div>
                 <FromValidationError field={this.state.errors.name} />
                 <FromValidationError field={this.state.errors.website} />
@@ -208,10 +200,10 @@ class NewUser extends Component {
                   <Button type="submit" className="btn btn-primary">
                     Save
                   </Button>
+                  <Button onClick={()=>this.props.history.push('/teams')} className="btn btn-primary">
+                    Exit without Save
+                  </Button>
                 </div>
-                <Button onClick={()=>this.props.history.push('/teams')} className="btn btn-primary">
-                  Exit without Save
-                </Button>
               </Form>
         </Container>
       </>

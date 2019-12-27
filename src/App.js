@@ -368,7 +368,7 @@ class App extends Component {
                           addUserRoleToState={this.addUserRoleToState}/>
               </Route>
               <Route path='/new_team'>
-                <NewTeam goBackHandler={this.goBackHandler}/>
+                <NewTeam state={this.state} />
               </Route>
               <Route exact path='/'>
                 <Home />
