@@ -122,6 +122,12 @@ class NewUser extends Component {
         .then(resp => resp.json())
         .then(team => {
           console.log(team)
+          if (team.name) {
+            this.props.addTeamToState(team)
+            this.props.setNewTeam(team)
+            this.props.history.push('/teams')
+            console.log((this.props.state))
+          }
           // if (user.email_address) {
           //   this.props.addUserToState(user)
           //   this.props.logThemIn(user.email_address)

@@ -106,8 +106,10 @@ class App extends Component {
 
   findUserPositions = (user_id) => this.state.positions.filter( ur => ur.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
+  findUserAdminTeams = (user_id) => this.state.teams.filter( team => team.admin === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
+
   findTeamLeader = (team_id) => {
-    let leaderID = this.findTeamByID(team_id).admin
+    let leaderID = this.findTeamByID(team_id).admin 
     if (leaderID) {
       return this.findUserByID(leaderID)
     } else {
@@ -117,10 +119,15 @@ class App extends Component {
 
   findUserTeams = (user_id) => {
     let positions = this.findUserPositions(user_id)
-    console.log("positions: ", positions)
+    // console.log("positions: ", positions)
     let teams = positions.map(position => this.getTeamById(position.team_id))
+
+    let adminTeams = this.state.teams.filter(team => team.admin === user_id )
+    console.log(adminTeams)
+    console.log(teams)
+
     teams.sort((a, b) => (a.name > b.name) ? 1 : -1)
-    console.log("findUserTeams: ", this.state.current_user_teams)
+    // console.log("findUserTeams: ", this.state.current_user_teams)
     return teams
   }
 
@@ -187,18 +194,26 @@ class App extends Component {
     return this.state.users
   }
 
+  addUserToState = (user) => {
+    this.setState({ users: [...this.state.users, user] });
+    return this.state.users
+  }
+
   addUserRoleToState = (userRole) => {
     this.setState({ 
       user_roles: [...this.state.user_roles, userRole],
-      current_user_roles: [...this.state.current_user_roles, userRole]
+      current_user_roles: [...this.state.current_user_roles, userRole],
     })
+    localStorage.setItem('cUserRoles', JSON.stringify(this.state.current_user_roles))
   }
 
-  addUserTeamToState = (userTeam) => {
+
+  addTeamToState = (Team) => {
     this.setState({ 
-      user_roles: [...this.state.teams, userTeam],
-      current_user_teams: [...this.state.current_user_teams, userTeam]
+      teams: [...this.state.teams, Team],
+      current_user_teams: [...this.state.current_user_teams, Team]
     })
+    localStorage.setItem('cUserTeams', JSON.stringify(this.state.current_user_teams))
   }
 
   changeUserName = (string) => {
@@ -295,6 +310,17 @@ class App extends Component {
     }) 
   }
 
+
+  setNewTeam = (team) => {
+    if (team) { 
+      this.setState({ 
+        teamObject: team,
+        teamSelected: team.name,
+        showTeam: true
+      }) 
+    }
+  }
+
   selectTeam = (e, team) => {
     if ((e.target.innerHTML === this.state.teamSelected) && this.state.showTeam) {
       this.setState({ 
@@ -354,6 +380,7 @@ class App extends Component {
                         findTeamLeader={this.findTeamLeader}
                         goBackHandler={this.goBackHandler}
                         selectTeam={this.selectTeam}
+                        findUserAdminTeams={this.findUserAdminTeams}
 
                 />
               )}>
@@ -368,7 +395,7 @@ class App extends Component {
                           addUserRoleToState={this.addUserRoleToState}/>
               </Route>
               <Route path='/new_team'>
-                <NewTeam state={this.state} />
+                <NewTeam state={this.state} setNewTeam={this.setNewTeam} addTeamToState={this.addTeamToState} />
               </Route>
               <Route exact path='/'>
                 <Home />
