@@ -120,12 +120,10 @@ class App extends Component {
   findUserTeams = (user_id) => {
     let positions = this.findUserPositions(user_id)
     // console.log("positions: ", positions)
-    let teams = positions.map(position => this.getTeamById(position.team_id))
-
+    let positionTeams = positions.map(position => this.getTeamById(position.team_id))
     let adminTeams = this.state.teams.filter(team => team.admin === user_id )
-    console.log(adminTeams)
-    console.log(teams)
-
+    var teams = positionTeams.concat(adminTeams);
+console.log(teams)
     teams.sort((a, b) => (a.name > b.name) ? 1 : -1)
     // console.log("findUserTeams: ", this.state.current_user_teams)
     return teams
