@@ -12,7 +12,7 @@ const NavMenu = props => {
                 <Link to='/profile'>Profile</Link>
               </li>
               <li>
-                <Link to='/teams'>Teams</Link>
+                <Link onClick={()=> {props.goBackHandler()}} to='/teams'>Teams</Link>
               </li>
               <li>
                 <Link to='/search'>Search</Link>

@@ -28,7 +28,10 @@ class App extends Component {
       positions: [],
       user_roles: [],
       rerender: false,
-      loggedIn: false
+      loggedIn: false,
+      teamObject: null,
+      teamSelected: '',
+      showTeam: false
     }
   }
 
@@ -282,6 +285,34 @@ class App extends Component {
       .catch(err => console.log('Error, with message:', err.statusText))
   }
 
+  // TEAMS.JS FUNCTIONS:
+  goBackHandler = () => {
+    this.setState({ 
+      teamObject: null,
+      teamSelected: "",
+      showTeam: false
+    }) 
+  }
+
+  selectTeam = (e, team) => {
+    if ((e.target.innerHTML === this.state.teamSelected) && this.state.showTeam) {
+      this.setState({ 
+        teamObject: null,
+        teamSelected: "",
+        showTeam: false
+      }) 
+    } else if (this.state.showTeam && e.target.innerHTML !== this.state.teamSelected) {
+      return;
+    } else {
+      this.setState({ 
+        teamObject: team,
+        teamSelected: e.target.innerHTML,
+        showTeam: !this.state.showTeam
+      }) 
+    }
+  }
+  // END - TEAMS.JS FUNCTIONS
+
   render () {
     if (this.state.users.length > 0) {
       // console.log(this.state.users)
@@ -296,7 +327,7 @@ class App extends Component {
             <TopBar />
           </div>
           <div className='App-body'>
-            <Sidebar cUser={this.state.current_user} handleLogout={this.handleLogout} handleDelete={this.handleDelete} />
+            <Sidebar cUser={this.state.current_user} goBackHandler={this.goBackHandler} handleLogout={this.handleLogout} handleDelete={this.handleDelete} />
             {/* {(this.state.current_user) ? 'logged in' : 'logged out'} */}
             {(this.state.current_user) ? <Redirect to='/profile' /> : <Redirect to='/login' />}
               <div className="page-container">
@@ -312,7 +343,7 @@ class App extends Component {
                                                       changeUserName={this.changeUserName} 
                                                       changeEmailAddress={this.changeEmailAddress} /> : <Redirect to='/login' />}
               </Route>
-              <Route path='/teams'>
+              <Route path='/teams' component={ (props) => (
                 <Teams  state={this.state}
                         findUserTeams={this.findUserTeams}
                         findUserPositions={this.findUserPositions}
@@ -320,7 +351,11 @@ class App extends Component {
                         findPositionsOnTeam={this.findPositionsOnTeam}
                         findUserByID={this.findUserByID}
                         findTeamLeader={this.findTeamLeader}
+                        goBackHandler={this.goBackHandler}
+                        selectTeam={this.selectTeam}
+                        
                 />
+              )}>
               </Route>
               <Route path='/search'>
                 <Search state={this.state} 
