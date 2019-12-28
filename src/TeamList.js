@@ -19,24 +19,24 @@ class TeamList extends Component {
         {this.props.state.current_user_teams.map(team => {
           if (team.name.trim().toLowerCase() === this.props.state.teamSelected.trim().toLowerCase() || this.props.state.teamSelected === '') {
             return (
-              <>
-                <tr key={uuidv4()}>
+              <React.Fragment key={uuidv4()}>
+                <tr key={uuidv4()} >
                   <td key={team.id} className='team-list' onClick={e => this.onClickHandler(team)}> 
                     { team.name } 
                   </td>
-                  <td>
+                  <td key={uuidv4()}>
                     <Tooltip title="Delete">
                         <i onClick={()=>this.props.handleDeleteTeam(team)} className='material-icons-outlined'>delete</i>
                     </Tooltip>
                   </td>
                 </tr>
-              </>
+              </React.Fragment>
             )
           } else {
             return null
           }
         })}
-    </>
+      </>
     )
   }
 }
