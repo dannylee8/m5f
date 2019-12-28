@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Tooltip from '@material-ui/core/Tooltip';
 
 class TeamList extends Component {
   constructor (props) {
@@ -24,7 +25,14 @@ class TeamList extends Component {
           <ul className='fade-in'>
             {this.props.state.current_user_teams.map(team => {
               if (team.name.trim().toLowerCase() === this.props.state.teamSelected.trim().toLowerCase() || this.props.state.teamSelected === '') {
-                return <li key={team.id} className='team-list' onClick={e => this.onClickHandler(e, team)}> { team.name } </li>
+                return (
+                  <li key={team.id} className='team-list' onClick={e => this.onClickHandler(e, team)}> 
+                    { team.name } 
+                    <Tooltip title="Delete">
+                      <i onClick={()=>this.props.handleDeleteTeam(team)} className='material-icons-outlined'>delete</i>
+                    </Tooltip>
+                  </li>
+                )
               } else {
                 return null
               }

@@ -19,6 +19,7 @@ class Teams extends Component {
               selectTeam={this.props.selectTeam}
               goBackHandler={this.props.goBackHandler}
               findTeamLeader={this.props.findTeamLeader}
+              handleDeleteTeam={this.props.handleDeleteTeam}
             />
             {!this.props.state.teamSelected ? 
               <Link to='/new_team'>

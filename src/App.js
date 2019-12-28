@@ -109,7 +109,7 @@ class App extends Component {
   findUserAdminTeams = (user_id) => this.state.teams.filter( team => team.admin === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
   findTeamLeader = (team_id) => {
-    let leaderID = this.findTeamByID(team_id).admin 
+    let leaderID = this.findTeamByID(team_id).admin && null
     if (leaderID) {
       return this.findUserByID(leaderID)
     } else {
@@ -123,7 +123,7 @@ class App extends Component {
     let positionTeams = positions.map(position => this.getTeamById(position.team_id))
     let adminTeams = this.state.teams.filter(team => team.admin === user_id )
     var teams = positionTeams.concat(adminTeams);
-console.log(teams)
+
     teams.sort((a, b) => (a.name > b.name) ? 1 : -1)
     // console.log("findUserTeams: ", this.state.current_user_teams)
     return teams
@@ -336,6 +336,50 @@ console.log(teams)
       }) 
     }
   }
+
+  handleDeleteTeam = (team) => {
+    if (team) { 
+      this.removeTeamFromState(team)
+      this.destroyTeam(team)
+      this.goBackHandler()
+    }
+  }
+
+  removeTeamFromState = (team) => {
+    let teams_array = [...this.state.teams]
+    let current_user_teams_array = [...this.state.current_user_teams]
+    // console.log(teams_array)
+    // console.log(current_user_teams_array)
+    let index = teams_array.indexOf(team)
+    let index2 = current_user_teams_array.indexOf(team)
+    // console.log(index)
+    // console.log(index2)
+    if (index !== -1) {
+      teams_array.splice(index, 1)
+      this.setState({ teams: teams_array });
+    }
+    if (index2 !== -1) {
+      current_user_teams_array.splice(index2, 1)
+      this.setState({ current_user_teams: current_user_teams_array });
+    }
+    localStorage.setItem('cUserTeams', JSON.stringify(this.state.current_user_teams))
+    return current_user_teams_array
+  }
+
+  destroyTeam = (team) => {
+    return fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'DELETE'})
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject({ status: res.status, statusText: res.statusText });
+        }
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log('Error, with message:', err.statusText))
+  }
   // END - TEAMS.JS FUNCTIONS
 
   render () {
@@ -379,6 +423,7 @@ console.log(teams)
                         goBackHandler={this.goBackHandler}
                         selectTeam={this.selectTeam}
                         findUserAdminTeams={this.findUserAdminTeams}
+                        handleDeleteTeam={this.handleDeleteTeam}
 
                 />
               )}>
