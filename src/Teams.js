@@ -30,6 +30,7 @@ class Teams extends Component {
                     findTeamLeader={this.props.findTeamLeader}
                     handleDeleteTeam={this.props.handleDeleteTeam}
                     isUserTeamAdmin={this.props.isUserTeamAdmin}
+                    sortUserTeams={this.props.sortUserTeams}
                   />
                 </tbody>
               </table>

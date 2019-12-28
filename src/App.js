@@ -107,7 +107,22 @@ class App extends Component {
 
   findUserPositions = (user_id) => this.state.positions.filter( ur => ur.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
-  isUserTeamAdmin = (user, team) => (team.admin === user.id) ? true : false 
+  isUserTeamAdmin = (user, team) => ((team.admin === user.id) ? true : false )
+
+  sortUserTeams = () => {
+    let adminTeams = []
+    let otherTeams = []
+    this.state.current_user_teams.forEach(team => {
+      if (team.admin === this.state.current_user.id) {
+        adminTeams.push(team)
+      }
+      else {
+        otherTeams.push(team)
+      }
+    })
+    return adminTeams.sort().concat(otherTeams.sort())
+  }
+
 
   findTeamLeader = (team_id) => {
     let leaderID = this.findTeamByID(team_id).admin
@@ -427,6 +442,7 @@ class App extends Component {
                           selectTeam={this.selectTeam}
                           isUserTeamAdmin={this.isUserTeamAdmin}
                           handleDeleteTeam={this.handleDeleteTeam}
+                          sortUserTeams={this.sortUserTeams}
 
                   />
                 )}>

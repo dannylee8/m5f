@@ -5,7 +5,7 @@ const uuidv4 = require('uuid/v4')
 
 const TeamList = props => (
   <>
-    {props.state.current_user_teams.map(team => {
+    {props.sortUserTeams().map(team => {
       if (team.name.trim().toLowerCase() === props.state.teamSelected.trim().toLowerCase() || props.state.teamSelected === '') {
         return (
           <React.Fragment key={uuidv4()}>
