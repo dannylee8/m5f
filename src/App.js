@@ -320,19 +320,19 @@ class App extends Component {
     }
   }
 
-  selectTeam = (e, team) => {
-    if ((e.target.innerHTML === this.state.teamSelected) && this.state.showTeam) {
+  selectTeam = (team) => {
+    if ((team.name === this.state.teamSelected) && this.state.showTeam) {
       this.setState({ 
         teamObject: null,
         teamSelected: "",
         showTeam: false
       }) 
-    } else if (this.state.showTeam && e.target.innerHTML !== this.state.teamSelected) {
+    } else if (this.state.showTeam && team.name !== this.state.teamSelected) {
       return;
     } else {
       this.setState({ 
         teamObject: team,
-        teamSelected: e.target.innerHTML,
+        teamSelected: team.name,
         showTeam: !this.state.showTeam
       }) 
     }
@@ -343,6 +343,7 @@ class App extends Component {
       this.removeTeamFromState(team)
       this.destroyTeam(team)
       this.goBackHandler()
+      return <Redirect to='/teams' />
     }
   }
 

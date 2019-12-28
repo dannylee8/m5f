@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Tooltip from '@material-ui/core/Tooltip';
 
+const uuidv4 = require('uuid/v4')
+
 class TeamList extends Component {
   constructor (props) {
     super(props)
@@ -9,38 +11,32 @@ class TeamList extends Component {
     }
   }
 
-  onClickHandler = (e, team) => { this.props.selectTeam(e, team) }
+  onClickHandler = (team) => { this.props.selectTeam(team) }
 
   render () {
     return (
       <>
-        {this.props.state.teamSelected ? 
-        <>
-          <h3 className='fade-in'><i onClick={e => this.props.goBackHandler(e)} className="material-icons">arrow_back</i>{this.props.state.teamSelected}</h3>
-          <h6><span className="owner">Team Owner:</span> {this.props.findTeamLeader(this.props.state.teamObject.id).name}</h6>
-        </>
-          :
-        <>
-          <h3>Teams:</h3>
-          <ul className='fade-in'>
-            {this.props.state.current_user_teams.map(team => {
-              if (team.name.trim().toLowerCase() === this.props.state.teamSelected.trim().toLowerCase() || this.props.state.teamSelected === '') {
-                return (
-                  <li key={team.id} className='team-list' onClick={e => this.onClickHandler(e, team)}> 
+        {this.props.state.current_user_teams.map(team => {
+          if (team.name.trim().toLowerCase() === this.props.state.teamSelected.trim().toLowerCase() || this.props.state.teamSelected === '') {
+            return (
+              <>
+                <tr key={uuidv4()}>
+                  <td key={team.id} className='team-list' onClick={e => this.onClickHandler(team)}> 
                     { team.name } 
+                  </td>
+                  <td>
                     <Tooltip title="Delete">
-                      <i onClick={()=>this.props.handleDeleteTeam(team)} className='material-icons-outlined'>delete</i>
+                        <i onClick={()=>this.props.handleDeleteTeam(team)} className='material-icons-outlined'>delete</i>
                     </Tooltip>
-                  </li>
-                )
-              } else {
-                return null
-              }
-            })}
-          </ul>
-        </>
-        }
-      </>
+                  </td>
+                </tr>
+              </>
+            )
+          } else {
+            return null
+          }
+        })}
+    </>
     )
   }
 }

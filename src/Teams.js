@@ -13,13 +13,25 @@ class Teams extends Component {
       return (
         <div className='team-container fade-in'>
           <div className='team-content fade-in'>
-            <TeamList
-              state={this.props.state}
-              selectTeam={this.props.selectTeam}
-              goBackHandler={this.props.goBackHandler}
-              findTeamLeader={this.props.findTeamLeader}
-              handleDeleteTeam={this.props.handleDeleteTeam}
-            />
+          {this.props.state.teamSelected ? 
+            <>
+              <h3 className='fade-in'><i onClick={e => this.props.goBackHandler(e)} className="material-icons">arrow_back</i>{this.props.state.teamSelected}</h3>
+              <h6><span className="owner">Team Owner:</span> {this.props.findTeamLeader(this.props.state.teamObject.id).name}</h6>
+            </>
+          :
+            <h3>Teams:</h3>
+          }
+            <table>
+              <tbody>
+                <TeamList
+                  state={this.props.state}
+                  selectTeam={this.props.selectTeam}
+                  goBackHandler={this.props.goBackHandler}
+                  findTeamLeader={this.props.findTeamLeader}
+                  handleDeleteTeam={this.props.handleDeleteTeam}
+                />
+              </tbody>
+            </table>
             {!this.props.state.teamSelected ? 
               <Link to='/new_team'>
                 <button id='new_team' className='btn btn-warning btn-sm'>
