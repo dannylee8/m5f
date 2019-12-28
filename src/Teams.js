@@ -29,6 +29,7 @@ class Teams extends Component {
                     goBackHandler={this.props.goBackHandler}
                     findTeamLeader={this.props.findTeamLeader}
                     handleDeleteTeam={this.props.handleDeleteTeam}
+                    isUserTeamAdmin={this.props.isUserTeamAdmin}
                   />
                 </tbody>
               </table>

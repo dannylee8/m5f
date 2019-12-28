@@ -107,7 +107,7 @@ class App extends Component {
 
   findUserPositions = (user_id) => this.state.positions.filter( ur => ur.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
-  findUserAdminTeams = (user_id) => this.state.teams.filter( team => team.admin === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
+  isUserTeamAdmin = (user, team) => (team.admin === user.id) ? true : false 
 
   findTeamLeader = (team_id) => {
     let leaderID = this.findTeamByID(team_id).admin
@@ -425,7 +425,7 @@ class App extends Component {
                           findTeamLeader={this.findTeamLeader}
                           goBackHandler={this.goBackHandler}
                           selectTeam={this.selectTeam}
-                          findUserAdminTeams={this.findUserAdminTeams}
+                          isUserTeamAdmin={this.isUserTeamAdmin}
                           handleDeleteTeam={this.handleDeleteTeam}
 
                   />
