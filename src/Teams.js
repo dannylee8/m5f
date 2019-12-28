@@ -6,7 +6,6 @@ import { Link, Redirect } from 'react-router-dom'
 const uuidv4 = require('uuid/v4')
 
 class Teams extends Component {
-
   render () {
     if (!this.props.state.loggedIn) {
       return <Redirect to='/profile' />

@@ -15,6 +15,7 @@ import Search from './Search'
 import Teams from './Teams'
 import NewUser from './NewUser'
 import NewTeam from './NewTeam'
+import ErrorBoundary from './ErrorBoundary'
 
 class App extends Component {
   constructor (props) {
@@ -109,7 +110,7 @@ class App extends Component {
   findUserAdminTeams = (user_id) => this.state.teams.filter( team => team.admin === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
   findTeamLeader = (team_id) => {
-    let leaderID = this.findTeamByID(team_id).admin && null
+    let leaderID = this.findTeamByID(team_id).admin
     if (leaderID) {
       return this.findUserByID(leaderID)
     } else {
@@ -391,62 +392,64 @@ class App extends Component {
     }
     return (
       <Router>
-        <div className='App'>
-          <div className='App-header'>
-            <TopBar />
-          </div>
-          <div className='App-body'>
-            <Sidebar cUser={this.state.current_user} goBackHandler={this.goBackHandler} handleLogout={this.handleLogout} handleDelete={this.handleDelete} />
-            {/* {(this.state.current_user) ? 'logged in' : 'logged out'} */}
-            {(this.state.current_user) ? <Redirect to='/profile' /> : <Redirect to='/login' />}
-              <div className="page-container">
-              <Switch>
-              <Route path='/login'>
-                <Login logthemin={this.logThemIn} />
-              </Route>
-              <Route path='/profile'>
-                {(this.state.current_user) ? <Profile state={this.state}
-                                                      handleDeleteUserRole={this.handleDeleteUserRole} 
-                                                      findUserRoles={this.findUserRoles}
-                                                      addUserRoleToState={this.addUserRoleToState}
-                                                      changeUserName={this.changeUserName} 
-                                                      changeEmailAddress={this.changeEmailAddress} /> : <Redirect to='/login' />}
-              </Route>
-              <Route path='/teams' component={ (props) => (
-                <Teams  state={this.state}
-                        findUserTeams={this.findUserTeams}
-                        findUserPositions={this.findUserPositions}
-                        findTeamByID={this.findTeamByID}
-                        findPositionsOnTeam={this.findPositionsOnTeam}
-                        findUserByID={this.findUserByID}
-                        findTeamLeader={this.findTeamLeader}
-                        goBackHandler={this.goBackHandler}
-                        selectTeam={this.selectTeam}
-                        findUserAdminTeams={this.findUserAdminTeams}
-                        handleDeleteTeam={this.handleDeleteTeam}
+        <ErrorBoundary>
+          <div className='App'>
+            <div className='App-header'>
+              <TopBar />
+            </div>
+            <div className='App-body'>
+              <Sidebar cUser={this.state.current_user} goBackHandler={this.goBackHandler} handleLogout={this.handleLogout} handleDelete={this.handleDelete} />
+              {/* {(this.state.current_user) ? 'logged in' : 'logged out'} */}
+              {(this.state.current_user) ? <Redirect to='/profile' /> : <Redirect to='/login' />}
+                <div className="page-container">
+                <Switch>
+                <Route path='/login'>
+                  <Login logthemin={this.logThemIn} />
+                </Route>
+                <Route path='/profile'>
+                  {(this.state.current_user) ? <Profile state={this.state}
+                                                        handleDeleteUserRole={this.handleDeleteUserRole} 
+                                                        findUserRoles={this.findUserRoles}
+                                                        addUserRoleToState={this.addUserRoleToState}
+                                                        changeUserName={this.changeUserName} 
+                                                        changeEmailAddress={this.changeEmailAddress} /> : <Redirect to='/login' />}
+                </Route>
+                <Route path='/teams' component={ (props) => (
+                  <Teams  state={this.state}
+                          findUserTeams={this.findUserTeams}
+                          findUserPositions={this.findUserPositions}
+                          findTeamByID={this.findTeamByID}
+                          findPositionsOnTeam={this.findPositionsOnTeam}
+                          findUserByID={this.findUserByID}
+                          findTeamLeader={this.findTeamLeader}
+                          goBackHandler={this.goBackHandler}
+                          selectTeam={this.selectTeam}
+                          findUserAdminTeams={this.findUserAdminTeams}
+                          handleDeleteTeam={this.handleDeleteTeam}
 
-                />
-              )}>
-              </Route>
-              <Route path='/search'>
-                <Search   state={this.state} 
-                />
-              </Route>
-              <Route path='/new_user'>
-                <NewUser  logThemIn={this.logThemIn} 
-                          addUserToState={this.addUserToState} 
-                          addUserRoleToState={this.addUserRoleToState}/>
-              </Route>
-              <Route path='/new_team'>
-                <NewTeam state={this.state} setNewTeam={this.setNewTeam} addTeamToState={this.addTeamToState} />
-              </Route>
-              <Route exact path='/'>
-                <Home />
-              </Route>
-            </Switch>
-              </div>
+                  />
+                )}>
+                </Route>
+                <Route path='/search'>
+                  <Search   state={this.state} 
+                  />
+                </Route>
+                <Route path='/new_user'>
+                  <NewUser  logThemIn={this.logThemIn} 
+                            addUserToState={this.addUserToState} 
+                            addUserRoleToState={this.addUserRoleToState}/>
+                </Route>
+                <Route path='/new_team'>
+                  <NewTeam state={this.state} setNewTeam={this.setNewTeam} addTeamToState={this.addTeamToState} />
+                </Route>
+                <Route exact path='/'>
+                  <Home />
+                </Route>
+              </Switch>
+                </div>
+            </div>
           </div>
-        </div>
+        </ErrorBoundary>
       </Router>
     )
   }
