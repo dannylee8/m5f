@@ -20,7 +20,7 @@ class Teams extends Component {
                 </>
               : <h3>Teams:</h3>}
             {!this.props.state.teamSelected
-              ? <table>
+              ? <table className='team-list-table'>
                 <tbody>
                   <TeamList
                     key={uuidv4()}

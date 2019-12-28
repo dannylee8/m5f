@@ -421,10 +421,50 @@ h6 {
 
 .team-list {
   font-size: 1.25em;
-  color: palevioletred;
-  background-color: #d8d8d8;
+  color: #fff;
+  background-color: #a64d79;
   width: 40vw;
   padding: 20px;
+  border-radius: 5px;
+}
+
+.team-list-admin {
+  font-size: 1.25em;
+  color: #fff;
+  background-color: #92426a;
+  width: 40vw;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.team-list:hover{
+  background-color: #92426a;
+  color: antiquewhite;
+  width: 40vw;
+  padding: 20px;
+}
+
+.team-list-admin:hover{
+  background-color: thistle;
+  color: #000;
+  width: 40vw;
+  padding: 20px;
+}
+
+.team-list-admin-row {
+  background-color: gray;
+}
+
+.team-list-table {
+  background-color: gray;
+}
+
+.team-list-row {
+  background-color: gray;
+}
+
+.vpn-key {
+  color: white;
 }
 
 .search-content {

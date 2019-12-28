@@ -9,8 +9,8 @@ const TeamList = props => (
       if (team.name.trim().toLowerCase() === props.state.teamSelected.trim().toLowerCase() || props.state.teamSelected === '') {
         return (
           <React.Fragment key={uuidv4()}>
-            <tr>
-              <td key={team.id} className='team-list' onClick={() => props.selectTeam(team)}>
+            <tr className={props.isUserTeamAdmin(props.state.current_user, team) ? 'team-list-admin-row' : 'team-list-row'}>
+              <td key={team.id} className={props.isUserTeamAdmin(props.state.current_user, team) ? 'team-list-admin' : 'team-list'} onClick={() => props.selectTeam(team)}>
                 {team.name}
               </td>
               <td>
@@ -18,7 +18,7 @@ const TeamList = props => (
                   ? 
                     <>
                       <Tooltip title='Admin'>
-                        <i className='material-icons'>vpn_key</i>
+                        <i className='material-icons vpn-key'>vpn_key</i>
                       </Tooltip>
                       <Tooltip title='Delete'>
                         <i onClick={() => props.handleDeleteTeam(team)} className='material-icons-outlined'>delete</i>
