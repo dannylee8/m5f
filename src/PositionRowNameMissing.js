@@ -6,7 +6,13 @@ const PositionRowName = props => {
   return (
     <td className='position-user-search'>
       <Tooltip title='Find a user with this skill' arrow>
-        <Link to='position-user-search'>Position not filled</Link>
+        <Link to={{
+          pathname: 'position-user-search/' + props.singlePosition.id,
+          singlePosition: props.singlePosition
+        }}
+        >
+          Position not filled
+        </Link>
       </Tooltip>
     </td>
   )

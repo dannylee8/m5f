@@ -1,9 +1,15 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
-const PositionUserSearch = props => (
-  <div>
-    <h1>Hello, {props.name}</h1>
-  </div>
-)
+const PositionUserSearch = props => {
+  const location = useLocation()
+
+  return (
+    <div>
+      {console.log(location.singlePosition)}
+      <h1>Hello</h1>
+    </div>
+  )
+}
 
 export default PositionUserSearch

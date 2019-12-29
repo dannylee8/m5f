@@ -14,7 +14,7 @@ const PositionRow = props => (
     {(props.findUserByID(props.singlePosition.user_id)) ? 
       <PositionRowName state={props.state} findUserByID={props.findUserByID} singlePosition={props.singlePosition} />
       :
-      <PositionRowNameMissing />}    
+      <PositionRowNameMissing singlePosition={props.singlePosition} />}  
   </tr>
 )
 
