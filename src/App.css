@@ -362,11 +362,6 @@ border:1px solid lightpink !important;
   text-align: left;
 }
 
-.team-content li {
-  /* padding-left: 10px; */
-  /* list-style-type: none; */
-}
-
 .team-content li:hover {
   background-color: #fad83e;
 }

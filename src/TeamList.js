@@ -14,19 +14,16 @@ const TeamList = props => (
                 {team.name}
               </td>
               <td>
-                {(props.isUserTeamAdmin(props.state.current_user, team))
-                  ? 
-                    <>
-                      <Tooltip title='Admin'>
-                        <i className='material-icons vpn-key'>vpn_key</i>
-                      </Tooltip>
-                      <Tooltip title='Delete'>
-                        <i onClick={() => props.handleDeleteTeam(team)} className='material-icons-outlined'>delete</i>
-                      </Tooltip>
-                    </>
-                  : 
-                  null
-                }
+                {(props.isUserTeamAdmin(props.state.current_user, team)) ?
+                  <>
+                    <Tooltip title='Admin'>
+                      <i className='material-icons vpn-key'>vpn_key</i>
+                    </Tooltip>
+                    <Tooltip title='Delete'>
+                      <i onClick={() => props.onHandleDeleteTeam(team)} className='material-icons-outlined'>delete</i>
+                    </Tooltip>
+                  </>
+                  : null}
               </td>
             </tr>
           </React.Fragment>

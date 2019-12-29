@@ -6,7 +6,8 @@ const PositionUserSearch = props => {
 
   return (
     <div>
-      {console.log(location.singlePosition)}
+      {console.log()}
+      {console.log(props.listMatchingUserRoles(location.singlePosition.role_id))}
       <h1>Hello</h1>
     </div>
   )

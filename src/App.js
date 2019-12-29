@@ -455,7 +455,10 @@ class App extends Component {
                   <Search   state={this.state} />
                 </Route>
                 <Route path='/position-user-search'>
-                  <PositionUserSearch state={this.state} location={this.props.location}/>
+                  <PositionUserSearch state={this.state} 
+                                      location={this.props.location}
+                                      listMatchingUserRoles={this.listMatchingUserRoles}
+                  />
                 </Route>
                 <Route path='/new_user'>
                   <NewUser  logThemIn={this.logThemIn} 
