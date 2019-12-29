@@ -40,19 +40,19 @@ class App extends Component {
 
   componentDidMount () {
     window.fetch('http://localhost:3000/api/v1/roles')
-    .then(resp => resp.json())
-    .then(json => {
-      this.setState({
-        roles: json
+      .then(resp => resp.json())
+      .then(json => {
+        this.setState({
+          roles: json
+        })
       })
-    })  
     window.fetch('http://localhost:3000/api/v1/user_roles')
-    .then(resp => resp.json())
-    .then(json => {
-      this.setState({
-        user_roles: json
+      .then(resp => resp.json())
+      .then(json => {
+        this.setState({
+          user_roles: json
+        })
       })
-    })  
     window.fetch('http://localhost:3000/api/v1/users')
       .then(resp => resp.json())
       .then(json => {
@@ -75,62 +75,59 @@ class App extends Component {
         })
       })
     // console.log(JSON.parse(localStorage.getItem('cUser')))
-    if (localStorage.getItem('cUser')) {
-
-      let userID = JSON.parse(localStorage.getItem('cUser')).id
+    if (window.localStorage.getItem('cUser')) {
+      const userID = JSON.parse(window.localStorage.getItem('cUser')).id
 
       window.fetch(`http://localhost:3000/api/v1/users/${userID}`)
-      .then(resp => resp.json())
-      .then(json => {
-        if (json.id === userID) {
-          this.setState((prevState) => ({
-            current_user: JSON.parse(localStorage.getItem('cUser')),
-            current_user_roles: JSON.parse(localStorage.getItem('cUserRoles')),
-            current_user_teams: JSON.parse(localStorage.getItem('cUserTeams')),
-            loggedIn: true
-          }));
-        } else {
-          this.handleLogout()
-          // console.log("fake logout")
-        }
-      })
+        .then(resp => resp.json())
+        .then(json => {
+          if (json.id === userID) {
+            this.setState((prevState) => ({
+              current_user: JSON.parse(window.localStorage.getItem('cUser')),
+              current_user_roles: JSON.parse(window.localStorage.getItem('cUserRoles')),
+              current_user_teams: JSON.parse(window.localStorage.getItem('cUserTeams')),
+              loggedIn: true
+            }))
+          } else {
+            this.handleLogout()
+          // console.log('fake logout')
+          }
+        })
     }
     // console.log(JSON.parse(localStorage.getItem('cUser')))
   }
 
-  findUserByID = (user_id) => this.state.users.find( u => u.id === user_id)
-  
-  findTeamByID = (team_id) => this.state.teams.find( t => t.id === team_id)
+  findUserByID = (user_id) => this.state.users.find(u => u.id === user_id)
 
-  findPositionsOnTeam = (team_id) => this.state.positions.filter( p => p.team_id === team_id)
-  
-  findMembersOfTeam = (team_id) => this.findPositionsOnTeam(team_id).filter( p => this.findUserByID(p.id))
+  findTeamByID = (team_id) => this.state.teams.find(t => t.id === team_id)
 
-  findUserPositions = (user_id) => this.state.positions.filter( pos => pos.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
+  findPositionsOnTeam = (team_id) => this.state.positions.filter(p => p.team_id === team_id)
+
+  findMembersOfTeam = (team_id) => this.findPositionsOnTeam(team_id).filter(p => this.findUserByID(p.id))
+
+  findUserPositions = (user_id) => this.state.positions.filter(pos => pos.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
   isUserTeamAdmin = (user, team) => ((team.admin === user.id) ? true : false )
 
   listMatchingUserRoles = (role_id) => {
-    return this.state.user_roles.filter( ur => ur.role_id === role_id )
+    return this.state.user_roles.filter(ur => ur.role_id === role_id)
   }
 
   sortUserTeams = () => {
-    let adminTeams = []
-    let otherTeams = []
+    const adminTeams = []
+    const otherTeams = []
     this.state.current_user_teams.forEach(team => {
       if (team.admin === this.state.current_user.id) {
         adminTeams.push(team)
-      }
-      else {
+      } else {
         otherTeams.push(team)
       }
     })
     return adminTeams.sort().concat(otherTeams.sort())
   }
 
-
   findTeamLeader = (team_id) => {
-    let leaderID = this.findTeamByID(team_id).admin
+    const leaderID = this.findTeamByID(team_id).admin
     if (leaderID) {
       return this.findUserByID(leaderID)
     } else {
@@ -139,64 +136,63 @@ class App extends Component {
   }
 
   findUserTeams = (user_id) => {
-    let positions = this.findUserPositions(user_id)
-    // console.log("positions: ", positions)
-    let positionTeams = positions.map(position => this.getTeamById(position.team_id))
-    let adminTeams = this.state.teams.filter(team => team.admin === user_id )
-    var teams = positionTeams.concat(adminTeams);
+    const positions = this.findUserPositions(user_id)
+    // console.log('positions: ', positions)
+    const positionTeams = positions.map(position => this.getTeamById(position.team_id))
+    const adminTeams = this.state.teams.filter(team => team.admin === user_id)
+    var teams = positionTeams.concat(adminTeams)
 
     teams.sort((a, b) => (a.name > b.name) ? 1 : -1)
-    // console.log("findUserTeams: ", this.state.current_user_teams)
+    // console.log('findUserTeams: ', this.state.current_user_teams)
     return teams
   }
 
-  getTeamById = (team_id) => this.state.teams.find( team => team.id === team_id)
+  getTeamById = (team_id) => this.state.teams.find(team => team.id === team_id)
 
   findUserRoles = (user_id) => {
-    let arr = this.state.user_roles.filter(ur => ur.user_id === user_id) 
+    const arr = this.state.user_roles.filter(ur => ur.user_id === user_id)
     arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
     return arr
   }
 
   logThemIn = (email) => {
-    const cUser = this.state.users.find(user =>  {
+    const cUser = this.state.users.find(user => {
       return user.email_address === email
     })
 
     if (cUser) {
-      let cUserRoles = this.findUserRoles(cUser.id)
-      let cUserTeams = this.findUserTeams(cUser.id)
-      // console.log("App <ln 70> cUserRoles: ", cUserRoles)   
+      const cUserRoles = this.findUserRoles(cUser.id)
+      const cUserTeams = this.findUserTeams(cUser.id)
+      // console.log('App <ln 70> cUserRoles: ', cUserRoles)   
       this.setState({
         current_user: cUser,
         current_user_roles: cUserRoles,
         current_user_teams: cUserTeams,
         loggedIn: true
       })
-      localStorage.setItem('cUser', JSON.stringify(cUser))
-      localStorage.setItem('cUserRoles', JSON.stringify(cUserRoles))
-      localStorage.setItem('cUserTeams', JSON.stringify(cUserTeams))
-      // console.log("App <ln 75> Local user: ", localStorage.getItem('cUser'))
+      window.localStorage.setItem('cUser', JSON.stringify(cUser))
+      window.localStorage.setItem('cUserRoles', JSON.stringify(cUserRoles))
+      window.localStorage.setItem('cUserTeams', JSON.stringify(cUserTeams))
+      // console.log('App <ln 75> Local user: ', window.localStorage.getItem('cUser'))
       return true
-    }
-    else {
+    } else {
       return false
     }
   }
 
   handleLogout = () => {
-    // console.log("click")
+    // console.log('click')
     this.setState({
       current_user: undefined,
       current_user_roles: [],
       current_user_teams: [],
       loggedIn: false
     })
-    localStorage.clear();
+    window.localStorage.clear()
   }
 
   handleDelete = () => {
-    // console.log("delete click in app")
+    // console.log('delete click in app')
     this.removeUserFromState()
     this.destroyUser(this.state.current_user.id)
     this.setState({
@@ -205,25 +201,25 @@ class App extends Component {
       current_user_teams: [],
       loggedIn: false
     })
-    localStorage.clear();
+    window.localStorage.clear()
   }
 
   addUserToState = (user) => {
-    this.setState({ users: [...this.state.users, user] });
+    this.setState({ users: [...this.state.users, user] })
     return this.state.users
   }
 
   addUserToState = (user) => {
-    this.setState({ users: [...this.state.users, user] });
+    this.setState({ users: [...this.state.users, user] })
     return this.state.users
   }
 
   addUserRoleToState = (userRole) => {
     this.setState({ 
       user_roles: [...this.state.user_roles, userRole],
-      current_user_roles: [...this.state.current_user_roles, userRole],
+      current_user_roles: [...this.state.current_user_roles, userRole]
     })
-    localStorage.setItem('cUserRoles', JSON.stringify(this.state.current_user_roles))
+    window.localStorage.setItem('cUserRoles', JSON.stringify(this.state.current_user_roles))
   }
 
 
@@ -232,46 +228,44 @@ class App extends Component {
       teams: [...this.state.teams, Team],
       current_user_teams: [...this.state.current_user_teams, Team]
     })
-    localStorage.setItem('cUserTeams', JSON.stringify(this.state.current_user_teams))
+    window.localStorage.setItem('cUserTeams', JSON.stringify(this.state.current_user_teams))
   }
 
   changeUserName = (string) => {
     if (this.state.current_user) {
-      let newState = Object.assign({}, this.state);
-      newState.current_user.name = string;
-      this.setState(newState);
-      localStorage.setItem('cUser', JSON.stringify(this.state.current_user))
+      const newState = Object.assign({}, this.state)
+      newState.current_user.name = string
+      this.setState(newState)
+      window.localStorage.setItem('cUser', JSON.stringify(this.state.current_user))
     } else {
-      return;
     }
   }
 
   changeEmailAddress = (string) => {
     if (this.state.current_user) {
-      let newState = Object.assign({}, this.state);
-      newState.current_user.email_address = string;
-      this.setState(newState);
-      localStorage.setItem('cUser', JSON.stringify(this.state.current_user))
+      const newState = Object.assign({}, this.state)
+      newState.current_user.email_address = string
+      this.setState(newState)
+      window.localStorage.setItem('cUser', JSON.stringify(this.state.current_user))
       // console.log(this.state)
       // console.log(localStorage)
     } else {
-      return;
     }
   }
 
   removeUserFromState = () => {
-    let array = [...this.state.users]
-    let index = array.indexOf(this.state.current_user)
+    const array = [...this.state.users]
+    const index = array.indexOf(this.state.current_user)
     if (index !== -1) {
       array.splice(index, 1)
-      this.setState({ users: array });
+      this.setState({ users: array })
     }
     return array
   }
 
   destroyUser = (id) => {
-    return fetch(`http://localhost:3000/api/v1/users/${id}`, {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+    return window.fetch(`http://localhost:3000/api/v1/users/${id}`, {
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'DELETE'})
       .then(res => {
         if (res.ok) {
@@ -284,7 +278,7 @@ class App extends Component {
       .catch(err => console.log('Error, with message:', err.statusText))
   }
 
-  handleDeleteUserRole = (ur) => {
+  onHandleDeleteUserRole = (ur) => {
     this.removeUserRoleFromState(ur)
     this.destroyUserRole(ur)
   }
@@ -296,24 +290,24 @@ class App extends Component {
     let index2 = current_user_roles_array.indexOf(ur)
     if (index !== -1) {
       user_roles_array.splice(index, 1)
-      this.setState({ user_roles: user_roles_array });
+      this.setState({ user_roles: user_roles_array })
     }
     if (index2 !== -1) {
       current_user_roles_array.splice(index2, 1)
-      this.setState({ users: current_user_roles_array });
+      this.setState({ users: current_user_roles_array })
     }
     return user_roles_array
   }
 
   destroyUserRole = (ur) => {
-    return fetch(`http://localhost:3000/api/v1/user_roles/${ur.id}`, {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+    return window.fetch(`http://localhost:3000/api/v1/user_roles/${ur.id}`, {
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'DELETE'})
       .then(res => {
         if (res.ok) {
-          return res.json();
+          return res.json()
         } else {
-          return Promise.reject({ status: res.status, statusText: res.statusText });
+          return Promise.reject({ status: res.status, statusText: res.statusText })
         }
       })
       .then(res => console.log(res))
@@ -322,39 +316,37 @@ class App extends Component {
 
   // TEAMS.JS FUNCTIONS:
   goBackHandler = () => {
-    this.setState({ 
+    this.setState({
       teamObject: null,
-      teamSelected: "",
+      teamSelected: '',
       showTeam: false
-    }) 
+    })
   }
 
-
   setNewTeam = (team) => {
-    if (team) { 
-      this.setState({ 
+    if (team) {
+      this.setState({
         teamObject: team,
         teamSelected: team.name,
         showTeam: true
-      }) 
+      })
     }
   }
 
   selectTeam = (team) => {
     if ((team.name === this.state.teamSelected) && this.state.showTeam) {
-      this.setState({ 
+      this.setState({
         teamObject: null,
-        teamSelected: "",
+        teamSelected: '',
         showTeam: false
       }) 
     } else if (this.state.showTeam && team.name !== this.state.teamSelected) {
-      return;
     } else {
-      this.setState({ 
+      this.setState({
         teamObject: team,
         teamSelected: team.name,
         showTeam: !this.state.showTeam
-      }) 
+      })
     }
   }
 
@@ -368,12 +360,12 @@ class App extends Component {
   }
 
   removeTeamFromState = (team) => {
-    let teams_array = [...this.state.teams]
-    let current_user_teams_array = [...this.state.current_user_teams]
+    const teams_array = [...this.state.teams]
+    const current_user_teams_array = [...this.state.current_user_teams]
     // console.log(teams_array)
     // console.log(current_user_teams_array)
-    let index = teams_array.indexOf(team)
-    let index2 = current_user_teams_array.indexOf(team)
+    const index = teams_array.indexOf(team)
+    const index2 = current_user_teams_array.indexOf(team)
     // console.log(index)
     // console.log(index2)
     if (index !== -1) {
@@ -384,13 +376,13 @@ class App extends Component {
       current_user_teams_array.splice(index2, 1)
       this.setState({ current_user_teams: current_user_teams_array });
     }
-    localStorage.setItem('cUserTeams', JSON.stringify(this.state.current_user_teams))
+    window.localStorage.setItem('cUserTeams', JSON.stringify(this.state.current_user_teams))
     return current_user_teams_array
   }
 
   destroyTeam = (team) => {
-    return fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+    return window.fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'DELETE'})
       .then(res => {
         if (res.ok) {
@@ -408,8 +400,8 @@ class App extends Component {
     if (this.state.users.length > 0) {
       // console.log(this.state.users)
       // console.log(this.findMembersOfTeam(2))
-      console.log("Has roles: taryn@gmail.com (6)")
-      console.log("Has teams: jefferson@gmail.com (7)")
+      console.log('Has roles: taryn@gmail.com (6)')
+      console.log('Has teams: jefferson@gmail.com (7)')
     }
     return (
       <Router>
@@ -422,14 +414,14 @@ class App extends Component {
               <Sidebar cUser={this.state.current_user} goBackHandler={this.goBackHandler} handleLogout={this.handleLogout} handleDelete={this.handleDelete} />
               {/* {(this.state.current_user) ? 'logged in' : 'logged out'} */}
               {(this.state.current_user) ? <Redirect to='/profile' /> : <Redirect to='/login' />}
-                <div className="page-container">
+                <div className='page-container'>
                 <Switch>
                 <Route path='/login'>
                   <Login logthemin={this.logThemIn} />
                 </Route>
                 <Route path='/profile'>
                   {(this.state.current_user) ? <Profile state={this.state}
-                                                        handleDeleteUserRole={this.handleDeleteUserRole} 
+                                                        onHandleDeleteUserRole={this.onHandleDeleteUserRole} 
                                                         findUserRoles={this.findUserRoles}
                                                         addUserRoleToState={this.addUserRoleToState}
                                                         changeUserName={this.changeUserName} 

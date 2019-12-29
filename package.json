@@ -51,5 +51,8 @@
     "terser": "^4.4.3",
     "terser-brunch": "^4.0.0",
     "uglifyify": "^5.0.2"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }
