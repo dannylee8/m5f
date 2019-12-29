@@ -15,6 +15,7 @@ import Search from './Search'
 import Teams from './Teams'
 import NewUser from './NewUser'
 import NewTeam from './NewTeam'
+import PositionUserSearch from './PositionUserSearch'
 import ErrorBoundary from './ErrorBoundary'
 
 class App extends Component {
@@ -451,8 +452,10 @@ class App extends Component {
                 )}>
                 </Route>
                 <Route path='/search'>
-                  <Search   state={this.state} 
-                  />
+                  <Search   state={this.state} />
+                </Route>
+                <Route path='/position-user-search'>
+                  <PositionUserSearch state={this.state} />
                 </Route>
                 <Route path='/new_user'>
                   <NewUser  logThemIn={this.logThemIn} 

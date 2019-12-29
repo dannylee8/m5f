@@ -1,9 +1,9 @@
 import React from 'react'
 
-const TeamRole = props => (
+const PositionUserSearch = props => (
   <div>
     <h1>Hello, {props.name}</h1>
   </div>
 )
 
-export default TeamRole
+export default PositionUserSearch

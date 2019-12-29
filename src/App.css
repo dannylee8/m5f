@@ -507,3 +507,11 @@ h5 {
   display: inline-block;
   width: 100%;
 }
+
+.position-user-search a {
+  font-size: 1em;
+}
+
+.position-user-search a:hover {
+  color: indianred;
+}
