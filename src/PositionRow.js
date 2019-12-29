@@ -4,17 +4,15 @@ import PositionRowName from './PositionRowName'
 import PositionRowPositionName from './PositionRowPositionName'
 import PositionRowNameMissing from './PositionRowNameMissing'
 
-const listItems = []
-for (let i = 0; i < 10000; i++) {
-  listItems.push({ id: i, content: i })
-}
-
 const PositionRow = props => (
-  <tr className={(props.findUserByID(props.singlePosition.user_id)) ? null : 'position-not-filled'}>
+  <tr className={ (props.state.current_user.id === props.singlePosition.user_id) ?  'self-position'        :
+                  (props.findUserByID(props.singlePosition.user_id))             ?   null                  :
+                                                                                    'position-not-filled'} 
+    >
     <PositionRowIndex idx={props.idx}/>
     <PositionRowPositionName singlePosition={props.singlePosition} />
     {(props.findUserByID(props.singlePosition.user_id)) ? 
-      <PositionRowName findUserByID={props.findUserByID} singlePosition={props.singlePosition} />
+      <PositionRowName state={props.state} findUserByID={props.findUserByID} singlePosition={props.singlePosition} />
       :
       <PositionRowNameMissing />}    
   </tr>

@@ -404,7 +404,11 @@ border:1px solid lightpink !important;
 }
 
 .position-not-filled {
-  background-color: goldenrod;
+  background-color: yellow;
+}
+
+.self-position {
+  background-color: greenyellow;
 }
 
 h6 {
