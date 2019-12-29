@@ -105,9 +105,13 @@ class App extends Component {
   
   findMembersOfTeam = (team_id) => this.findPositionsOnTeam(team_id).filter( p => this.findUserByID(p.id))
 
-  findUserPositions = (user_id) => this.state.positions.filter( ur => ur.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
+  findUserPositions = (user_id) => this.state.positions.filter( pos => pos.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
   isUserTeamAdmin = (user, team) => ((team.admin === user.id) ? true : false )
+
+  listMatchingUserRoles = (role_id) => {
+    return this.state.user_roles.filter( ur => ur.role_id === role_id )
+  }
 
   sortUserTeams = () => {
     let adminTeams = []
@@ -403,8 +407,8 @@ class App extends Component {
     if (this.state.users.length > 0) {
       // console.log(this.state.users)
       // console.log(this.findMembersOfTeam(2))
-      console.log("Has roles: marvella@gmail.com (4)")
-      console.log("Has teams: consuela@gmail.com (4)")
+      console.log("Has roles: taryn@gmail.com (6)")
+      console.log("Has teams: jefferson@gmail.com (7)")
     }
     return (
       <Router>
@@ -433,7 +437,6 @@ class App extends Component {
                 <Route path='/teams' component={ (props) => (
                   <Teams  state={this.state}
                           findUserTeams={this.findUserTeams}
-                          findUserPositions={this.findUserPositions}
                           findTeamByID={this.findTeamByID}
                           findPositionsOnTeam={this.findPositionsOnTeam}
                           findUserByID={this.findUserByID}
@@ -443,7 +446,7 @@ class App extends Component {
                           isUserTeamAdmin={this.isUserTeamAdmin}
                           handleDeleteTeam={this.handleDeleteTeam}
                           sortUserTeams={this.sortUserTeams}
-
+                          listMatchingUserRoles ={this.listMatchingUserRoles}
                   />
                 )}>
                 </Route>

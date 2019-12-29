@@ -12,6 +12,7 @@ class Teams extends Component {
     } else {
       return (
         <div className='team-container fade-in'>
+          {console.log(this.props.listMatchingUserRoles(1))}
           <div className='team-content fade-in'>
             {this.props.state.teamSelected
               ? <>
