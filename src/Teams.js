@@ -11,7 +11,7 @@ class Teams extends Component {
       return <Redirect to='/profile' />
     } else {
       return (
-        <div className='team-container fade-in'>
+        <div className='team-container fade-in flex'>
           {console.log(this.props.listMatchingUserRoles(1))}
           <div className='team-content fade-in'>
             {this.props.state.teamSelected
@@ -44,12 +44,23 @@ class Teams extends Component {
                 </Link>
               : null}
             {this.props.state.teamSelected
-              ? <table className='positions-table fade-in'>
-                <tbody>
-                  {this.props.findPositionsOnTeam(this.props.state.teamObject.id).map((p, idx) => <PositionRow key={uuidv4()} state={this.props.state} singlePosition={p} idx={idx} findUserByID={this.props.findUserByID} />)}
-                </tbody>
-              </table>
-              : null}
+              ? 
+              <>
+                <table className='positions-table fade-in'>
+                  <tbody>
+                    {this.props.findPositionsOnTeam(this.props.state.teamObject.id).map((p, idx) => <PositionRow key={uuidv4()} state={this.props.state} singlePosition={p} idx={idx} findUserByID={this.props.findUserByID} />)}
+                  </tbody>
+                </table>
+                <div className='team-right-side'>
+                  <h5>Team Description</h5>
+                  {this.props.state.teamObject.description}
+                </div>
+{/* 
+                <div className='team-right-side'>
+                  <h5>Team Address</h5>
+                </div> */}
+              </>
+            : null}
           </div>
         </div>
       )

@@ -376,9 +376,9 @@ border:1px solid lightpink !important;
   border-spacing: .2em;
   margin: 1rem auto;
   line-height: 1.5em;
-  width: 60vw;
+  width: 50vw;
   text-align: left;
-  margin-left: 45px;
+  margin-left: 25px;
 }
 
 .positions-table td {
@@ -417,6 +417,13 @@ h6 {
   line-height: 2em;
   padding-left: 45px;
   width: 64.5vw;
+}
+
+
+h5 {
+  color: antiquewhite;
+  font-size: 1em;
+  line-height: 2em;
 }
 
 .owner {
@@ -465,6 +472,20 @@ h6 {
 
 .team-list-row {
   background-color: gray;
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+}
+
+.team-right-side {
+  margin-top: 25px;
+  text-align: center;
+  background-color: palevioletred;
+  width: 20vw;
+  margin-left: auto;
+
 }
 
 .vpn-key {
