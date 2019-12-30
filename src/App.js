@@ -22,7 +22,6 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      current_user: undefined,
       current_user_roles: [],
       current_user_teams: [],
       users: [],
@@ -102,9 +101,7 @@ class App extends Component {
   findTeamByID = (team_id) => this.state.teams.find(t => t.id === team_id)
 
   findPositionsOnTeam = (team_id) => { 
-    return this.state.positions.filter(p => p.team_id === team_id).sort(function(a, b) {
-      return (a.name > b.name) - (a.name < b.name)
-    })
+    return this.state.positions.filter(p => p.team_id === team_id).sort((a, b) => (a.name > b.name) - (a.name < b.name))
     // return this.state.positions.filter(p => p.team_id === team_id)
   }
 
