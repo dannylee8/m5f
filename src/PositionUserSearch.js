@@ -19,24 +19,27 @@ const PositionUserSearch = props => {
         <h6>
           <Link to='/teams'>[back]</Link>
         </h6>
-        <table className='position-user-search-table fade-in'>
-          <thead>
-            <tr>
-              <th width='60%'>Name</th>
-              <th className='centered' width='40%'>Years Exp.</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.listMatchingUserRoles(location.singlePosition.role_id).map(
-              (singleRole) =>
-                <PositionUserSearchSingle
-                  key={uuidv4()}
-                  singleRole={singleRole}
-                  findUserByID={props.findUserByID}
-                />
-            )}
-          </tbody>
-        </table>
+        <div className='test-box'>
+          <table className='position-user-search-table fade-in'>
+            <thead>
+              <tr>
+                <th width='60%'>Name</th>
+                <th className='centered' width='40%'>Years Exp.</th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.listMatchingUserRoles(location.singlePosition.role_id).map(
+                (singleRole) =>
+                  <PositionUserSearchSingle
+                    key={uuidv4()}
+                    singleRole={singleRole}
+                    findUserByID={props.findUserByID}
+                  />
+              )}
+            </tbody>
+          </table>
+        </div>  
+
       </>
     )
   }

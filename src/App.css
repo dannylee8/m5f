@@ -542,3 +542,29 @@ h5 {
 a {
   color: yellow;
 }
+
+.test-box {
+  height: 400px;
+  overflow: auto;
+  width: 45vw;
+}
+
+/* width */
+.test-box::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.test-box::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+.test-box::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.test-box::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
