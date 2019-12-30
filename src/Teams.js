@@ -46,7 +46,16 @@ class Teams extends Component {
               <>
                 <table className='positions-table fade-in'>
                   <tbody>
-                    {this.props.findPositionsOnTeam(this.props.state.teamObject.id).map((p, idx) => <PositionRow key={uuidv4()} state={this.props.state} singlePosition={p} idx={idx} findUserByID={this.props.findUserByID} />)}
+                    {this.props.findPositionsOnTeam(this.props.state.teamObject.id).map(
+                      (p, idx) =>
+                        <PositionRow
+                          key={uuidv4()}
+                          idx={idx}
+                          state={this.props.state}
+                          singlePosition={p}
+                          findUserByID={this.props.findUserByID}
+                        />
+                    )}
                   </tbody>
                 </table>
                 <div className='team-right-side'>

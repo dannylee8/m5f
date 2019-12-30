@@ -412,6 +412,7 @@ h6 {
   line-height: 2em;
   padding-left: 45px;
   width: 64.5vw;
+  text-align: left
 }
 
 
@@ -509,4 +510,35 @@ h5 {
 
 .position-user-search a:hover {
   color: indianred;
+}
+
+.position-user-search-table {
+  float: left;
+  border-spacing: .2em;
+  margin: 1rem auto;
+  line-height: 1.5em;
+  width: 40vw;
+  text-align: left;
+  margin-left: 25px;
+}
+
+.position-user-search-table td {
+  padding: 0rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.position-user-search-table th {
+  padding: 0rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid black;
+  background-color: #D8D8D8;
+}
+
+.centered {
+  text-align: center;
+}
+
+a {
+  color: yellow;
 }

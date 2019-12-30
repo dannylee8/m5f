@@ -452,6 +452,8 @@ class App extends Component {
                   <PositionUserSearch state={this.state} 
                                       location={this.props.location}
                                       listMatchingUserRoles={this.listMatchingUserRoles}
+                                      findUserByID={this.findUserByID}
+                                      getTeamById={this.getTeamById}
                   />
                 </Route>
                 <Route path='/new_user'>
