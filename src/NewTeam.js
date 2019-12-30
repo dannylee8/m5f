@@ -84,7 +84,7 @@ class NewUser extends Component {
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to={{
-        pathname: '/teams/' + this.state.name
+        pathname: '/teams/' + this.state.name.replace(/ /g, '-')
       }} />
     }
   }

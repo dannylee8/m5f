@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Redirect,
-  Route
+  Route,
+  withRouter
 } from 'react-router-dom'
 
 import './App.css'
@@ -381,6 +382,7 @@ class App extends Component {
         teamSelected: team.name,
         showTeam: !this.state.showTeam
       })
+      this.props.history.push('/teams/' + team.name)
     }
   }
 
@@ -517,4 +519,4 @@ function Home () {
   return <h2>Home</h2>
 }
 
-export default App
+export default withRouter(App)
