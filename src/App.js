@@ -113,6 +113,20 @@ class App extends Component {
     return this.state.user_roles.filter(ur => ur.role_id === role_id)
   }
 
+  updatePositionsUser = (positionID, userID) => {
+    window.fetch(`http://localhost:3000/api/v1/positions/${positionID}`, {
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      method: 'PATCH',
+      body: JSON.stringify({
+        user_id: userID
+      })
+    })
+      .then(resp => resp.json())
+      .then(position => {
+        console.log(position)
+      })
+  }
+
   sortUserTeams = () => {
     const adminTeams = []
     const otherTeams = []
@@ -454,6 +468,7 @@ class App extends Component {
                                       listMatchingUserRoles={this.listMatchingUserRoles}
                                       findUserByID={this.findUserByID}
                                       getTeamById={this.getTeamById}
+                                      updatePositionsUser={this.updatePositionsUser}
                   />
                 </Route>
                 <Route path='/new_user'>

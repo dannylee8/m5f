@@ -517,7 +517,7 @@ h5 {
   border-spacing: .2em;
   margin: 1rem auto;
   line-height: 1.5em;
-  width: 40vw;
+  width: 58vw;
   text-align: left;
   margin-left: 25px;
 }
@@ -546,7 +546,7 @@ a {
 .test-box {
   height: 400px;
   overflow: auto;
-  width: 45vw;
+  width: 62vw;
 }
 
 /* width */

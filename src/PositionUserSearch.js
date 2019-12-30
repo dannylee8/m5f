@@ -10,6 +10,7 @@ const PositionUserSearch = props => {
   } else {
     return (
       <>
+        {console.log(location.singlePosition)}
         <h6 className='fade-in'>
           Team: {props.getTeamById(location.singlePosition.team_id).name}
         </h6>
@@ -24,7 +25,8 @@ const PositionUserSearch = props => {
             <thead>
               <tr>
                 <th width='60%'>Name</th>
-                <th className='centered' width='40%'>Years Exp.</th>
+                <th width='20%' className='centered'>Years Exp.</th>
+                <th width='20%' className='centered'>Add</th>
               </tr>
             </thead>
             <tbody>
@@ -34,6 +36,8 @@ const PositionUserSearch = props => {
                     key={uuidv4()}
                     singleRole={singleRole}
                     findUserByID={props.findUserByID}
+                    updatePositionsUser={props.updatePositionsUser}
+                    singlePosition={location.singlePosition}
                   />
               )}
             </tbody>
