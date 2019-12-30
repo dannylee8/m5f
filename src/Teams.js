@@ -46,6 +46,7 @@ class Teams extends Component {
               <>
                 <table className='positions-table fade-in'>
                   <tbody>
+                    
                     {this.props.findPositionsOnTeam(this.props.state.teamObject.id).map(
                       (p, idx) =>
                         <PositionRow

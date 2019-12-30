@@ -74,7 +74,7 @@ class App extends Component {
           positions: json
         })
       })
-    // console.log(JSON.parse(localStorage.getItem('cUser')))
+
     if (window.localStorage.getItem('cUser')) {
       const userID = JSON.parse(window.localStorage.getItem('cUser')).id
 
@@ -101,7 +101,12 @@ class App extends Component {
 
   findTeamByID = (team_id) => this.state.teams.find(t => t.id === team_id)
 
-  findPositionsOnTeam = (team_id) => this.state.positions.filter(p => p.team_id === team_id)
+  findPositionsOnTeam = (team_id) => { 
+    return this.state.positions.filter(p => p.team_id === team_id).sort(function(a, b) {
+      return (a.name > b.name) - (a.name < b.name)
+    })
+    // return this.state.positions.filter(p => p.team_id === team_id)
+  }
 
   findMembersOfTeam = (team_id) => this.findPositionsOnTeam(team_id).filter(p => this.findUserByID(p.id))
 
@@ -124,7 +129,7 @@ class App extends Component {
       .then(resp => resp.json())
       .then(newPosition => {
         // update position in state
-        console.log("find the position: ", this.state.positions.find(p => p.id === newPosition.id))
+        // console.log("find the position: ", this.state.positions.find(p => p.id === newPosition.id))
 
         let posStateArray = this.state.positions.slice()
         let posToReplace = posStateArray.find(p => p.id === newPosition.id)
@@ -135,8 +140,8 @@ class App extends Component {
         }
         posStateArray.push(newPosition)
 
-        console.log("idxToReplace", idxToReplace)
-        console.log("fetch's position: ", newPosition)
+        // console.log("idxToReplace", idxToReplace)
+        // console.log("fetch's position: ", newPosition)
 
         this.setState({
           positions: posStateArray
@@ -433,9 +438,9 @@ class App extends Component {
     if (this.state.users.length > 0) {
       // console.log(this.state.users)
       // console.log(this.findMembersOfTeam(2))
-      console.log('Has roles: taryn@gmail.com (6)')
-      console.log('Has teams: jefferson@gmail.com (7)')
-      console.log(this.state.positions)
+      console.log('Has roles: clinton@gmail.com')
+      console.log('Has teams: chet@gmail.com')
+      // console.log(this.state.positions)
     }
     return (
       <Router>

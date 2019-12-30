@@ -12,8 +12,8 @@ const PositionUserSearchSingle = ({ singleRole, singlePosition, findUserByID, up
   <tr>
     <td>{findUserByID(singleRole.user_id).name}</td>
     <td className='centered'>{singleRole.years_exp}</td>
-    <td className='centered'>            
-      <Tooltip title="Add user">
+    <td className='centered'>
+      <Tooltip title='Add user'>
         <i onClick={() => onClickHandler(singleRole, singlePosition, updatePositionsUser)} className='material-icons-outlined'>add</i>
       </Tooltip>
     </td>
