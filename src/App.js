@@ -122,8 +122,25 @@ class App extends Component {
       })
     })
       .then(resp => resp.json())
-      .then(position => {
-        console.log(position)
+      .then(newPosition => {
+        // update position in state
+        console.log("find the position: ", this.state.positions.find(p => p.id === newPosition.id))
+
+        let posStateArray = this.state.positions.slice()
+        let posToReplace = posStateArray.find(p => p.id === newPosition.id)
+        let idxToReplace = posStateArray.indexOf(posToReplace)
+        
+        if (idxToReplace !== -1) {
+          posStateArray.splice(idxToReplace, 1);
+        }
+        posStateArray.push(newPosition)
+
+        console.log("idxToReplace", idxToReplace)
+        console.log("fetch's position: ", newPosition)
+
+        this.setState({
+          positions: posStateArray
+        })
       })
   }
 
@@ -418,6 +435,7 @@ class App extends Component {
       // console.log(this.findMembersOfTeam(2))
       console.log('Has roles: taryn@gmail.com (6)')
       console.log('Has teams: jefferson@gmail.com (7)')
+      console.log(this.state.positions)
     }
     return (
       <Router>
