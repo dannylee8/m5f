@@ -375,8 +375,9 @@ class App extends Component {
     if (index2 !== -1) {
       current_user_teams_array.splice(index2, 1)
       this.setState({ current_user_teams: current_user_teams_array });
+      localStorage.setItem('cUserTeams', JSON.stringify(current_user_teams_array))
     }
-    window.localStorage.setItem('cUserTeams', JSON.stringify(this.state.current_user_teams))
+    console.log(localStorage.getItem('cUserTeams'))
     return current_user_teams_array
   }
 
@@ -386,13 +387,14 @@ class App extends Component {
       method: 'DELETE'})
       .then(res => {
         if (res.ok) {
+          console.log(res)
           return res.json();
         } else {
           return Promise.reject({ status: res.status, statusText: res.statusText });
         }
       })
       .then(res => console.log(res))
-      .catch(err => console.log('Error, with message:', err.statusText))
+      .catch(err => console.log('Error, with message:', err))
   }
   // END - TEAMS.JS FUNCTIONS
 
