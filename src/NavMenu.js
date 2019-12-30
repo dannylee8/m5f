@@ -12,14 +12,14 @@ const NavMenu = props => {
                 <Link to='/profile'>Profile</Link>
               </li>
               <li>
-                <Link onClick={()=> {props.goBackHandler()}} to='/teams'>Teams</Link>
+                <Link onClick={() => { props.goBackHandler() }} to='/teams'>Teams</Link>
               </li>
               <li>
                 <Link to='/search'>Search</Link>
               </li>
             </ul>
           </nav>
-          <Route exact path="/profile" render={() => (
+          <Route exact path='/profile' render={() => (
             <button id='delete' onClick={props.onHandleDelete} className='btn btn-warning btn-sm'>
             delete user
             </button>

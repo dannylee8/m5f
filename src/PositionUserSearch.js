@@ -10,7 +10,6 @@ const PositionUserSearch = props => {
   } else {
     return (
       <>
-        {console.log(location.singlePosition)}
         <h6 className='fade-in'>
           Team: {props.getTeamById(location.singlePosition.team_id).name}
         </h6>

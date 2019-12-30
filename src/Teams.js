@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import TeamList from './TeamList'
 import PositionRow from './PositionRow'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 
 const uuidv4 = require('uuid/v4')
 
 class Teams extends Component {
 
   alphabetizedList () {
-    let teamPos = this.props.findPositionsOnTeam(this.props.state.teamObject.id).sort((x, y) => {
+    const teamPos = this.props.findPositionsOnTeam(this.props.state.teamObject.id).sort((x, y) => {
       const a = this.props.findUserByID(x.user_id)
       const b = this.props.findUserByID(y.user_id)
       if (a === b) {
@@ -33,7 +33,15 @@ class Teams extends Component {
           <div className='team-content fade-in'>
             {this.props.state.teamSelected
               ? <>
-                <h3 className='fade-in'><i onClick={e => this.props.goBackHandler(e)} className='material-icons'>arrow_back</i>{this.props.state.teamSelected}</h3>
+                <h3
+                  className='fade-in'
+                >
+                  <i
+                    onClick={e => {
+                      this.props.goBackHandler()
+                      this.props.history.push('/teams') 
+                    }}
+                    className='material-icons'>arrow_back</i>{this.props.state.teamSelected}</h3>
                 <h6><span className='owner'>Team Owner:</span> {this.props.findTeamLeader(this.props.state.teamObject.id).name}</h6>
               </>
               : <h3>Teams:</h3>}
@@ -96,4 +104,4 @@ class Teams extends Component {
   }
 }
 
-export default Teams
+export default withRouter(Teams)

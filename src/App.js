@@ -354,6 +354,7 @@ class App extends Component {
       teamSelected: '',
       showTeam: false
     })
+    
   }
 
   setNewTeam = (team) => {
