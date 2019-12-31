@@ -41,9 +41,12 @@ class Teams extends Component {
                       this.props.goBackHandler()
                       this.props.history.push('/teams') 
                     }}
-                    className='material-icons'>arrow_back</i>{this.props.state.teamSelected}</h3>
+                    className='material-icons'
+                  >arrow_back
+                  </i>{this.props.state.teamSelected}
+                </h3>
                 <h6><span className='owner'>Team Owner:</span> {this.props.findTeamLeader(this.props.state.teamObject.id).name}</h6>
-              </>
+                </>
               : <h3>Teams:</h3>}
             {!this.props.state.teamSelected
               ? <table className='team-list-table'>

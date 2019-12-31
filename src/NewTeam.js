@@ -180,7 +180,7 @@ class NewUser extends Component {
                 onChange={this.handleInputChange}
                 id='website'
                 placeholder='Please enter your website address.'
-                  />
+              />
             </div>
             <FromValidationError field={this.state.errors.name} />
             <FromValidationError field={this.state.errors.website} />

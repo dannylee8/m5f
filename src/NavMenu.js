@@ -19,11 +19,13 @@ const NavMenu = props => {
               </li>
             </ul>
           </nav>
-          <Route exact path='/profile' render={() => (
-            <button id='delete' onClick={props.onHandleDelete} className='btn btn-warning btn-sm'>
-            delete user
-            </button>
-          )} />
+          <Route
+            exact path='/profile' render={() => (
+              <button id='delete' onClick={props.onHandleDelete} className='btn btn-warning btn-sm'>
+              delete user
+              </button>
+            )} 
+          />
           <button id='logout' onClick={props.onHandleLogout} className='btn btn-primary btn-sm'>
           logout
           </button>
