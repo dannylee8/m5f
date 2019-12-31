@@ -3,7 +3,8 @@ import {
   Switch,
   Redirect,
   Route,
-  withRouter
+  withRouter,
+  BrowserRouter as Router
 } from 'react-router-dom'
 
 import './App.css'
@@ -442,6 +443,7 @@ class App extends Component {
       // console.log(this.state.positions)
     }
     return (
+      <Router>
       <ErrorBoundary>
         <div className='App'>
           <div className='App-header'>
@@ -486,7 +488,7 @@ class App extends Component {
                     />
                   )
                 }
-                />
+                ></Route>
                 <Route path='/search'>
                   <Search state={this.state} />
                 </Route>
@@ -518,6 +520,7 @@ class App extends Component {
           </div>
         </div>
       </ErrorBoundary>
+      </Router>
     )
   }
 }

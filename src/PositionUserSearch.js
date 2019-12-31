@@ -4,6 +4,7 @@ import PositionUserSearchSingle from './PositionUserSearchSingle'
 const uuidv4 = require('uuid/v4')
 
 const PositionUserSearch = props => {
+  {console.log(props)}
   const location = useLocation()
   if (!location.singlePosition) {
     return <Redirect to='/teams' />

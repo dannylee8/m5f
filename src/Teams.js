@@ -76,7 +76,7 @@ class Teams extends Component {
                 <table className='positions-table fade-in'>
                   <tbody>
 
-                    {console.log(this.alphabetizedList())}
+                    {/* {console.log(this.alphabetizedList())} */}
 
                     {this.props.findPositionsOnTeam(this.props.state.teamObject.id).map(
                       (p, idx) =>
@@ -94,10 +94,6 @@ class Teams extends Component {
                   <h5>Team Description</h5>
                   {this.props.state.teamObject.description}
                 </div>
-                {/*
-                <div className='team-right-side'>
-                  <h5>Team Address</h5>
-                </div> */}
               </>
               : null}
           </div>
