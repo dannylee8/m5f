@@ -1,23 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Tooltip from '@material-ui/core/Tooltip'
+import { withRouter } from 'react-router-dom'
 
-const onClickHandler = (singleRole, singlePosition, updatePositionsUser) => {
-  console.log("singleRole", singleRole)
-  console.log("singlePosition", singlePosition)
-  console.log(updatePositionsUser)
-  updatePositionsUser(singlePosition.id, singleRole.user_id)
+class PositionUserSearchSingle extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      myState: true
+    }
+  }
+
+  onClickHandler = (singleRole, singlePosition, updatePositionsUser) => {
+    updatePositionsUser(singlePosition.id, singleRole.user_id)
+    this.props.history.push('/teams') 
+  }
+
+  render () {
+    const { singleRole, singlePosition, findUserByID, updatePositionsUser } = this.props;
+    return (
+      <tr>
+        <td>{findUserByID(singleRole.user_id).name}</td>
+        <td className='centered'>{singleRole.years_exp}</td>
+        <td className='centered'>
+          <Tooltip title='Add user'>
+            <i onClick={() => this.onClickHandler(singleRole, singlePosition, updatePositionsUser)} className='material-icons-outlined'>add</i>
+          </Tooltip>
+        </td>
+      </tr>
+    )
+  }
 }
 
-const PositionUserSearchSingle = ({ singleRole, singlePosition, findUserByID, updatePositionsUser }) => (
-  <tr>
-    <td>{findUserByID(singleRole.user_id).name}</td>
-    <td className='centered'>{singleRole.years_exp}</td>
-    <td className='centered'>
-      <Tooltip title='Add user'>
-        <i onClick={() => onClickHandler(singleRole, singlePosition, updatePositionsUser)} className='material-icons-outlined'>add</i>
-      </Tooltip>
-    </td>
-  </tr>
-)
+export default withRouter(PositionUserSearchSingle)
 
-export default PositionUserSearchSingle
