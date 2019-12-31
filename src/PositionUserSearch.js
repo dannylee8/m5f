@@ -10,12 +10,12 @@ const PositionUserSearch = props => {
   } else {
     return (
       <>
-        <h6 className='fade-in'>
-          Team: {props.getTeamById(location.singlePosition.team_id).name}
-        </h6>
-        <h6>
-          Searching for: {location.singlePosition.name}
-        </h6>
+        <h2 className='fade-in'>
+          Team: <span className='bold yellow'>{props.getTeamById(location.singlePosition.team_id).name}</span>
+        </h2>
+        <h2>
+          Searching for: <span className='bold green'>{location.singlePosition.name}</span>
+        </h2>
         <h6>
           <Link to='/teams'>[back]</Link>
         </h6>

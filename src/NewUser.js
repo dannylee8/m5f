@@ -2,19 +2,9 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
 import CheckboxGroup from "./CheckboxGroup";
 import { Button, Container, Form, Fade, Label, Input } from 'reactstrap';
+import { OPTIONS } from './_options'
 
-import _ from 'lodash';
-
-const OPTIONS = [
-  "developer",
-  "product owner",
-  "project manager",
-  "scrum master",
-  "architect",
-  "ux/ui",
-  "devops",
-  "qa"
-];
+import _ from 'lodash'
 
 const validationMethods =  {
   required : (field, value) => {

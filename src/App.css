@@ -305,7 +305,7 @@ border:1px solid lightpink !important;
 }
 
 .add-roles-table {
-  width: 20vw;
+  width: 30vw;
   text-align: left;
 }
 
@@ -315,7 +315,7 @@ border:1px solid lightpink !important;
   border: 1px solid black;
 }
 .right-content {
-  padding-left: 100px;
+  padding-left: 50px;
   padding-top: 80px;
 }
 
@@ -406,7 +406,14 @@ border:1px solid lightpink !important;
   background-color: greenyellow;
 }
 
-h6 {
+h1 {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 2em;
+}
+
+h2 {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 1.5em;
   color: antiquewhite;
   background-color:  palevioletred;
   line-height: 2em;
@@ -416,11 +423,9 @@ h6 {
   margin-left: 2vw;
 }
 
-
-h5 {
-  color: antiquewhite;
-  font-size: 1em;
-  line-height: 2em;
+h3 {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 1.5em;
 }
 
 h4 {
@@ -428,6 +433,22 @@ h4 {
   background-color: #843d60;
   font-size: 1em;
   line-height: 2em;
+}
+
+h5 {
+  color: antiquewhite;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+h6 {
+  color: antiquewhite;
+  background-color:  palevioletred;
+  line-height: 2em;
+  padding-left: 45px;
+  width: 72.5vw;
+  text-align: left;
+  margin-left: 2vw;
 }
 
 .owner {
@@ -490,7 +511,6 @@ h4 {
   width: 20vw;
   margin-left: auto;
   margin-right: 8vw;
-  text-align: justify;
 }
 
 .vpn-key {
@@ -581,6 +601,7 @@ a {
 .logo-img {
   padding: 25px 0;
   width: 70%;
+  text-align: center;
 }
 
 .team-right-side a {
@@ -592,17 +613,23 @@ a {
   color: yellow;
 }
 
-h3 {
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-size: 1.5em;
-}
-
-h1 {
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-size: 2em;
-}
-
 .description-text {
   padding: 10px;
-  
+}
+
+.bold {
+  font-weight: bold;
+  color: black;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.green {
+  background: green;
+}
+
+.justified {
+  text-align: justify;
 }

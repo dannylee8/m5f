@@ -4,17 +4,7 @@ import ProfileIcon from './icons/001-bear.png'
 import CheckboxGroupProfile from './CheckboxGroupProfile'
 import { Button } from 'reactstrap'
 import { Redirect } from 'react-router-dom'
-
-const OPTIONS = [
-  'developer',
-  'product owner',
-  'project manager',
-  'scrum master',
-  'architect',
-  'ux/ui',
-  'devops',
-  'qa'
-]
+import { OPTIONS } from './_options'
 
 class Profile extends Component {
   state = {
@@ -273,6 +263,7 @@ handleClickAddRoles = () => {
                           onInputChange={this.handleInputChange}
                           onYrsExpChange={this.handleYrsExpChange}
                           state={this.props.state}
+                          filterRoleOptions={this.filterRoleOptions}
                         />
                       </tbody>
                     </table>

@@ -36,10 +36,10 @@ const CheckboxGroupProfile = (props) => {
   return (
     <>
       <tr>
-        <th>Role</th>
-        <th>Yrs. Exp</th>
+        <th width='75%'>Role</th>
+        <th width='25%'>Yrs. Exp</th>
       </tr>
-      {props.roleOptions.map((roleOption) => createCheckbox(props, roleOption))}
+      {props.filterRoleOptions().map((roleOption) => createCheckbox(props, roleOption))}
     </>
   )
 }
