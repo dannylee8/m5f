@@ -12,7 +12,7 @@ class PositionUserSearchSingle extends Component {
 
   onClickHandler = (singleRole, singlePosition, updatePositionsUser) => {
     updatePositionsUser(singlePosition.id, singleRole.user_id)
-    this.props.history.push('/teams') 
+    this.props.history.push('/teams')
   }
 
   render () {

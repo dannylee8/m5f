@@ -633,3 +633,5 @@ a {
 .justified {
   text-align: justify;
 }
+
+tr:hover td {background:yellow}
