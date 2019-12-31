@@ -10,7 +10,6 @@ class Profile extends Component {
   state = {
     icon: ProfileIcon,
     showAddRoles: false,
-    role_options: [],
     checkboxes: OPTIONS.reduce(
       (options, option) => ({
         ...options,
@@ -110,7 +109,6 @@ class Profile extends Component {
   handleClickShowAddRoleTable = () => {
     this.setState({
       showAddRoles: !this.state.showAddRoles,
-      role_options: this.filterRoleOptions()
     })
   }
 
@@ -258,7 +256,6 @@ handleClickAddRoles = () => {
                       <tbody>
                         <CheckboxGroupProfile
                           isSelected={this.isOptionSelected}
-                          roleOptions={this.state.role_options}
                           onCheckboxChange={this.handleCheckboxChange}
                           onInputChange={this.handleInputChange}
                           onYrsExpChange={this.handleYrsExpChange}
