@@ -283,11 +283,14 @@ handleClickAddRoles = () => {
                     >save
                     </Button>
                     </>
-                  : <div className='text-center'>
-                    <Button onClick={this.handleClickShowAddRoleTable} type='button' className='btn-add-roles'>
-                      <i className='material-icons-outlined'>add_box</i>add roles
-                    </Button>
-                  </div>}
+                  : 
+                  (this.filterRoleOptions().length > 0) ?
+                    <div className='text-center'>
+                      <Button onClick={this.handleClickShowAddRoleTable} type='button' className='btn-add-roles'>
+                        <i className='material-icons-outlined'>add_box</i>add roles
+                      </Button>
+                    </div>
+                    : null}
               </div>
             </div>
           </div>

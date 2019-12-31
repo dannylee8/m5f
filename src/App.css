@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .App-body {
@@ -411,13 +411,21 @@ h6 {
   background-color:  palevioletred;
   line-height: 2em;
   padding-left: 45px;
-  width: 64.5vw;
-  text-align: left
+  width: 72.5vw;
+  text-align: left;
+  margin-left: 2vw;
 }
 
 
 h5 {
   color: antiquewhite;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+h4 {
+  color: antiquewhite;
+  background-color: #843d60;
   font-size: 1em;
   line-height: 2em;
 }
@@ -481,7 +489,8 @@ h5 {
   background-color: palevioletred;
   width: 20vw;
   margin-left: auto;
-
+  margin-right: 8vw;
+  text-align: justify;
 }
 
 .vpn-key {
@@ -567,4 +576,33 @@ a {
 /* Handle on hover */
 .test-box::-webkit-scrollbar-thumb:hover {
   background: #555; 
+}
+
+.logo-img {
+  padding: 25px 0;
+  width: 70%;
+}
+
+.team-right-side a {
+  font-size: 0.9em;
+  color: white;
+}
+
+.team-right-side a:hover {
+  color: yellow;
+}
+
+h3 {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 1.5em;
+}
+
+h1 {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 2em;
+}
+
+.description-text {
+  padding: 10px;
+  
 }

@@ -438,8 +438,8 @@ class App extends Component {
     if (this.state.users.length > 0) {
       // console.log(this.state.users)
       // console.log(this.findMembersOfTeam(2))
-      console.log('Has roles: nicolle@gmail.com')
-      console.log('Has teams: randolph@gmail.com')
+      console.log('Has roles: hugo@gmail.com')
+      console.log('Has teams: ignacio@gmail.com')
       // console.log(this.state.positions)
     }
     return (

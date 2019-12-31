@@ -14,9 +14,9 @@ const NavMenu = props => {
               <li>
                 <Link onClick={() => { props.goBackHandler() }} to='/teams'>Teams</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to='/search'>Search</Link>
-              </li>
+              </li> */}
             </ul>
           </nav>
           <Route

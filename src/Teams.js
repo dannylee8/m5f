@@ -91,8 +91,24 @@ class Teams extends Component {
                   </tbody>
                 </table>
                 <div className='team-right-side'>
-                  <h5>Team Description</h5>
-                  {this.props.state.teamObject.description}
+                  <img className='logo-img' alt='logo' src="https://media.licdn.com/dms/image/C560BAQHRRh_N0-5QiA/company-logo_200_200/0?e=2159024400&v=beta&t=MZdeSXIXHWKgr2-onv5O1XPR2lQXAH0zzRik1_UXE4U"/>
+                  <h4>Description</h4>
+                  <div className='description-text'>
+                    {this.props.state.teamObject.description}
+                  </div>
+                </div>
+                <div className='team-right-side'>
+                  <h4>Contact</h4>
+                  <div className='description-text centered'>
+                    <p>{this.props.state.teamObject.address}</p>
+                    <p className='centered'>
+                      Tel: {this.props.state.teamObject.phone}
+                    </p>
+                  </div>
+                  <p className='centered'>
+                    <a href={this.props.state.teamObject.website}>{this.props.state.teamObject.website}</a>
+                  </p>
+                  <br />
                 </div>
               </>
               : null}
