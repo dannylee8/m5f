@@ -630,8 +630,29 @@ a {
   background: yellowgreen;
 }
 
+.black {
+  background: black;
+}
+
 .justified {
   text-align: justify;
 }
 
-tr:hover td {background:yellow}
+tr:hover td {
+  background:white;
+  opacity:70%;
+}
+
+button {
+  font-size: .9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem 1rem;
+  margin-left: .5rem;
+}
+
+.button-default {
+  background: #247BA0;
+  color: #fff;
+}
