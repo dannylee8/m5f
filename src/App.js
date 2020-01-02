@@ -30,6 +30,7 @@ class App extends Component {
       roles: [],
       positions: [],
       user_roles: [],
+      team_roles: [],
       rerender: false,
       loggedIn: false,
       teamObject: null,
@@ -189,6 +190,12 @@ class App extends Component {
     return arr
   }
 
+  findTeamRoles = (team_id) => {
+    const arr = this.state.team_roles.filter(ur => ur.team_id === team_id)
+    arr.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    return arr
+  }
+
   logThemIn = (email) => {
     const cUser = this.state.users.find(user => {
       return user.email_address === email
@@ -256,6 +263,11 @@ class App extends Component {
     window.localStorage.setItem('cUserRoles', JSON.stringify(this.state.current_user_roles))
   }
 
+  addPositionToState = (position) => {
+    this.setState({
+      positions: [...this.state.positions, position]
+    })
+  }
 
   addTeamToState = (Team) => {
     this.setState({ 
@@ -511,7 +523,13 @@ class App extends Component {
                     />
                   </Route>
                   <Route path='/new_team'>
-                    <NewTeam state={this.state} setNewTeam={this.setNewTeam} addTeamToState={this.addTeamToState} />
+                    <NewTeam 
+                      state={this.state}
+                      setNewTeam={this.setNewTeam}
+                      addTeamToState={this.addTeamToState}
+                      findTeamRoles={this.findTeamRoles}
+                      addPositionToState={this.addPositionToState}
+                    />
                   </Route>
                   <Route exact path='/'>
                     <Home />

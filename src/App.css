@@ -514,7 +514,7 @@ h6 {
 }
 
 .vpn-key {
-  color: white;
+  color: darkorchid;
 }
 
 .search-content {
@@ -640,6 +640,7 @@ a {
 
 tr:hover td {
   background-color:white;
+  color: #333;
   opacity:70%;
 }
 

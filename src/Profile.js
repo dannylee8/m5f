@@ -106,12 +106,6 @@ class Profile extends Component {
     return (this.filterRoleOptions().length > 0)
   }
 
-  handleClickShowAddRoleTable = () => {
-    this.setState({
-      showAddRoles: !this.state.showAddRoles,
-    })
-  }
-
   didUserEnterRoles = () => {
     const entries = Object.entries(this.state.yrsExp).filter(e => {
       if (e[1] > 0) {

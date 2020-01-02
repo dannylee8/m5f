@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Container, Form, Fade, Label, Input } from 'reactstrap'
 import { withRouter, Redirect } from 'react-router-dom'
 import validator from 'validator'
+import CheckboxGroupProfile from './CheckboxGroupProfile'
+import { OPTIONS } from './_options'
 
 import _ from 'lodash'
 
@@ -66,7 +68,23 @@ class NewUser extends Component {
     website: '',
     admin: '',
     errors: [],
-    redirect: false
+    redirect: false,
+    showAddRoles: false,
+    checkboxes: OPTIONS.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    ),
+    yrsExp: OPTIONS.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: null
+      }),
+      {}
+    ),
+    new_team_roles: []
   };
 
   // handleInputChange = (e) => {
@@ -105,6 +123,28 @@ class NewUser extends Component {
     })
   }
 
+  didUserEnterRoles = () => {
+    const entries = Object.entries(this.state.yrsExp).filter(e => {
+      if (e[1] > 0) {
+        return e
+      }
+      return null
+    })
+    return entries.length > 0
+  }
+
+  handleYrsExpChange = (changeEvent) => {
+    changeEvent.persist()
+    const { name, value } = changeEvent.target
+    // console.log(name, value)
+    this.setState(prevState => ({
+      yrsExp: {
+        ...prevState.yrsExp,
+        [name]: value
+      }
+    }))
+  }
+
   handleFormSubmit = (event) => {
     event.preventDefault()
 
@@ -140,6 +180,38 @@ class NewUser extends Component {
           if (team.name) {
             this.props.addTeamToState(team)
             this.props.setNewTeam(team)
+            const entries = Object.entries(this.state.yrsExp)
+            const entriesMap = entries.filter(e => {
+              if (e[1] > 0) {
+                return e
+              }
+              return null
+            })
+            // console.log('Entries Map: ', entriesMap)
+            entriesMap.forEach(e => {
+              window.fetch('http://localhost:3000/api/v1/positions', {
+                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                method: 'POST',
+                body: JSON.stringify({
+                  team_id: team.id,
+                  role_id: OPTIONS.indexOf(e[0]) + 1,
+                  name: e[0],
+                  years_exp: e[1]
+                })
+              })
+                .then(resp => resp.json())
+                .then(position => {
+                  console.log(position)
+                  this.props.addPositionToState(position)
+                  // console.log('entriesMap: ', role)
+                  // console.log('this.props: ', this.props)
+                })
+            })
+            this.setState({
+              showAddRoles: !this.state.showAddRoles,
+              yrsExp: [],
+              checkboxes: []
+            })
             // this.props.history.push('/teams')
             this.setRedirect(team.name)
           }
@@ -148,6 +220,53 @@ class NewUser extends Component {
       console.log(name, website, errors)
     }
   }
+
+  removeFromArray (original, remove) {
+    return original.filter(value => !remove.includes(value))
+  }
+
+  filterRoleOptions = () => {
+    var allRoles = OPTIONS
+    console.log(this.props.state)
+    var userRolesObjects = this.state.new_team_roles
+    var userRoles = []
+    var arr = []
+
+    for (let i = 0; i < userRolesObjects.length; i++) {
+      for (const [key, value] of Object.entries(userRolesObjects[i])) {
+        // console.log('hello', key, value)
+        if (key === 'name') {
+          userRoles.push(value)
+        }
+      }
+    }
+    arr = this.removeFromArray(allRoles, userRoles)
+    // console.log(userRoles)
+    // console.log(this.removeFromArray(allRoles, userRoles))
+    return arr
+  }
+
+  handleClickShowAddRoleTable = () => {
+    this.setState({
+      showAddRoles: !this.state.showAddRoles,
+    })
+  }
+
+  isOptionSelected = option => {
+    return this.state.checkboxes[option]
+  }
+
+  handleCheckboxChange = changeEvent => {
+    const { name } = changeEvent.target
+    // console.log(changeEvent.target.value)
+    this.setState(prevState => ({
+      checkboxes: {
+        ...prevState.checkboxes,
+        [name]: !prevState.checkboxes[name]
+      }
+    }))
+    this.didUserEnterRoles()
+  };
 
   render () {
     return (
@@ -184,7 +303,30 @@ class NewUser extends Component {
             </div>
             <FromValidationError field={this.state.errors.name} />
             <FromValidationError field={this.state.errors.website} />
-            
+            {(this.state.showAddRoles)
+                  ? <>
+                    <table className='add-roles-table'>
+                      <tbody>
+                        <CheckboxGroupProfile
+                          isSelected={this.isOptionSelected}
+                          onCheckboxChange={this.handleCheckboxChange}
+                          onInputChange={this.handleInputChange}
+                          onYrsExpChange={this.handleYrsExpChange}
+                          state={this.props.state}
+                          filterRoleOptions={this.filterRoleOptions}
+                        />
+                      </tbody>
+                    </table>
+                    <p />
+                    </>
+                  : 
+                  (this.filterRoleOptions().length > 0) ?
+                    <div className='text-center'>
+                      <Button onClick={this.handleClickShowAddRoleTable} type='button' className='btn-add-roles'>
+                        <i className='material-icons-outlined'>add_box</i>add roles
+                      </Button>
+                    </div>
+                    : null}
             <div className='form-group mt-2'>
               <Button type='submit' className='btn btn-primary'>
                     Save
