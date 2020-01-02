@@ -60,6 +60,7 @@ class Teams extends Component {
                     onHandleDeleteTeam={this.props.handleDeleteTeam}
                     isUserTeamAdmin={this.props.isUserTeamAdmin}
                     sortUserTeams={this.props.sortUserTeams}
+                    handleChangeOwner={this.props.changeOwnerTeam}
                   />
                 </tbody>
               </table>

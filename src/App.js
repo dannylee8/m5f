@@ -18,6 +18,7 @@ import NewUser from './NewUser'
 import NewTeam from './NewTeam'
 import PositionUserSearch from './PositionUserSearch'
 import ErrorBoundary from './ErrorBoundary'
+import SelectNewOwner from './SelectNewOwner'
 
 class App extends Component {
   constructor (props) {
@@ -312,7 +313,7 @@ class App extends Component {
   destroyUser = (id) => {
     return window.fetch(`http://localhost:3000/api/v1/users/${id}`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      method: 'DELETE'})
+      method: 'DESTROY'})
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -348,7 +349,7 @@ class App extends Component {
   destroyUserRole = (ur) => {
     return window.fetch(`http://localhost:3000/api/v1/user_roles/${ur.id}`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      method: 'DELETE'})
+      method: 'DESTROY'})
       .then(res => {
         if (res.ok) {
           return res.json()
@@ -407,6 +408,31 @@ class App extends Component {
     }
   }
 
+  changeOwnerTeam = (team, user) => {
+    console.log(this.state.users)
+    return "Window"
+  }
+
+  setChangeOwnerTeam = (team, user) => {
+    console.log(this.state.users)
+    return window.fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify({
+        admin: user.id
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          console.log(res)
+          return res.json();
+        } else {
+          return Promise.reject({ status: res.status, statusText: res.statusText });
+        }
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log('Error, with message:', err))
+  }
+
   removeTeamFromState = (team) => {
     const teams_array = [...this.state.teams]
     const current_user_teams_array = [...this.state.current_user_teams]
@@ -432,7 +458,7 @@ class App extends Component {
   destroyTeam = (team) => {
     return window.fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      method: 'DELETE'})
+      method: 'DESTROY'})
       .then(res => {
         if (res.ok) {
           console.log(res)
@@ -497,6 +523,7 @@ class App extends Component {
                         handleDeleteTeam={this.handleDeleteTeam}
                         sortUserTeams={this.sortUserTeams}
                         listMatchingUserRoles ={this.listMatchingUserRoles}
+                        changeOwnerTeam={this.changeOwnerTeam}
                       />
                     )
                   }
