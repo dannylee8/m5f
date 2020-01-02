@@ -639,8 +639,12 @@ a {
 }
 
 tr:hover td {
-  background:white;
+  background-color:white;
   opacity:70%;
+}
+
+.no-hover {
+  background-color: none;
 }
 
 button {

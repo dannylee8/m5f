@@ -89,7 +89,7 @@ class Teams extends Component {
                         />)
                         
                     }
-                    <tr className='centered'>
+                    <tr className='centered no-hover'>
                       <td>+</td>
                       <td>
                         <button>Add Position</button>

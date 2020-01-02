@@ -184,6 +184,7 @@ class NewUser extends Component {
             </div>
             <FromValidationError field={this.state.errors.name} />
             <FromValidationError field={this.state.errors.website} />
+            
             <div className='form-group mt-2'>
               <Button type='submit' className='btn btn-primary'>
                     Save
