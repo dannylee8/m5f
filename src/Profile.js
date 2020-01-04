@@ -64,6 +64,12 @@ class Profile extends Component {
     })
   }
 
+  handleClickShowAddRoleTable = () => {
+    this.setState({
+      showAddRoles: !this.state.showAddRoles,
+    })
+  }
+
   handleYrsExpChange = (changeEvent) => {
     changeEvent.persist()
     const { name, value } = changeEvent.target
@@ -246,6 +252,7 @@ handleClickAddRoles = () => {
               <div className='right-content'>
                 {(this.state.showAddRoles)
                   ? <>
+                  <div className='test-box'>
                     <table className='add-roles-table'>
                       <tbody>
                         <CheckboxGroupProfile
@@ -258,6 +265,7 @@ handleClickAddRoles = () => {
                         />
                       </tbody>
                     </table>
+                  </div>
                     <p />
                     <Button
                       onClick={this.handleClickAddRoles}
