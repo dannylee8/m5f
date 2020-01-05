@@ -481,7 +481,6 @@ class App extends Component {
       // console.log(this.state.positions)
     }
     return (
-      <Router>
         <ErrorBoundary>
           <div className='App'>
             <div className='App-header'>
@@ -566,7 +565,6 @@ class App extends Component {
             </div>
           </div>
         </ErrorBoundary>
-      </Router>
     )
   }
 }
