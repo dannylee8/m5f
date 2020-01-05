@@ -15,60 +15,55 @@ class Teams extends Component {
         <div className='team-container fade-in flex'>
           <div className='team-content fade-in'>
             {this.props.state.teamSelected
-              ? <TeamListHeader 
-                goBackHandler={this.props.goBackHandler} 
-                state={this.props.state} 
+              ? <TeamListHeader
+                goBackHandler={this.props.goBackHandler}
+                state={this.props.state}
                 findTeamLeader={this.props.findTeamLeader} />
             : <h3>Teams:</h3>
             }
-
+\
             {!this.props.state.teamSelected
-              ? <table className='team-list-table'>
-                <tbody>
-                  <TeamList
-                    key={uuidv4()}
-                    state={this.props.state}
-                    selectTeam={this.props.selectTeam}
-                    goBackHandler={this.props.goBackHandler}
-                    findTeamLeader={this.props.findTeamLeader}
-                    onHandleDeleteTeam={this.props.handleDeleteTeam}
-                    isUserTeamAdmin={this.props.isUserTeamAdmin}
-                    sortUserTeams={this.props.sortUserTeams}
-                    handleChangeOwner={this.props.changeOwnerTeam}
-                  />
-                </tbody>
-              </table>
-              : null}
-            {!this.props.state.teamSelected
-              ? <Link to='/new_team'>
-                <button id='new_team' className='btn btn-warning btn-sm'>
-                  create new team
-                </button>
-              </Link>
-              : null}
-            {this.props.state.teamSelected
-              ? <>
+              ? 
+              <>
+                <table className='team-list-table'>
+                  <tbody>
+                    <TeamList
+                      key={uuidv4()}
+                      state={this.props.state}
+                      selectTeam={this.props.selectTeam}
+                      goBackHandler={this.props.goBackHandler}
+                      findTeamLeader={this.props.findTeamLeader}
+                      onHandleDeleteTeam={this.props.handleDeleteTeam}
+                      isUserTeamAdmin={this.props.isUserTeamAdmin}
+                      sortUserTeams={this.props.sortUserTeams}
+                      handleChangeOwner={this.props.changeOwnerTeam}
+                    />
+                  </tbody>
+                </table>
+                <Link to='/new_team'>
+                  <button id='new_team' className='btn btn-warning btn-sm'>
+                    create new team
+                  </button>
+                </Link>
+              </>
+              : 
+              <>
                 <table className='positions-table fade-in'>
                   <tbody>
-
-                    {/* {console.log(this.alphabetizedList())} */}
-
                     {this.props.findPositionsOnTeam(this.props.state.teamObject.id).map(
-                      (p, idx) =>
-                        <PositionRow
+                      (p, idx) => {
+                        return <PositionRow
                           key={uuidv4()}
                           idx={idx}
                           state={this.props.state}
                           singlePosition={p}
                           findUserByID={this.props.findUserByID}
-                        />)
-                        
+                        />
+                      })
                     }
                     <tr className='centered no-hover'>
                       <td>+</td>
-                      <td>
-                        <button>Add Position</button>
-                      </td>
+                      <td><button>Add Position</button></td>
                       <td>+</td>
                     </tr>
                   </tbody>
@@ -96,7 +91,7 @@ class Teams extends Component {
                   <br />
                 </div>
               </>
-              : null}
+            }
           </div>
         </div>
       )

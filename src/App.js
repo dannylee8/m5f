@@ -101,7 +101,7 @@ class App extends Component {
   findTeamByID = (teamID) => this.state.teams.find(t => t.id === teamID)
 
   findPositionsOnTeam = (teamID) => {
-    return this.state.positions.filter(p => p.teamID === teamID).sort((a, b) => (a.name > b.name) - (a.name < b.name))
+    return this.state.positions.filter(p => p.team_id === teamID).sort((a, b) => (a.name > b.name) - (a.name < b.name))
   }
 
   findMembersOfTeam = (teamID) => this.findPositionsOnTeam(teamID).filter(p => this.findUserByID(p.id))
