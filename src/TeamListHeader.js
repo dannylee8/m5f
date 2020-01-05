@@ -1,10 +1,20 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 const TeamListHeader = props => (
   <>
-    <h3 className='fade-in'><i onClick={e => this.props.goBackHandler(e)} className='material-icons'>arrow_back</i>{this.props.state.teamSelected}</h3>
-    <h6><span className='owner'>Team Owner:</span> {this.props.findTeamLeader(this.props.state.teamObject.id).name}</h6>
+    <h3 className='fade-in'>
+      <i
+        className='material-icons'
+        onClick={e => {
+          props.goBackHandler()
+          props.history.push('/teams') 
+        }}
+      >arrow_back</i>
+      {props.state.teamSelected}
+    </h3>
+    <h6><span className='owner'>Team Owner:</span> {props.findTeamLeader(props.state.teamObject.id).name}</h6>
   </>
 )
 
-export default TeamListHeader
+export default withRouter(TeamListHeader)

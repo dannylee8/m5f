@@ -3,8 +3,7 @@ import {
   Switch,
   Redirect,
   Route,
-  withRouter,
-  BrowserRouter as Router
+  withRouter
 } from 'react-router-dom'
 
 import './App.css'
@@ -92,25 +91,22 @@ class App extends Component {
             }))
           } else {
             this.handleLogout()
-          // console.log('fake logout')
           }
         })
     }
-    // console.log(JSON.parse(localStorage.getItem('cUser')))
   }
 
-  findUserByID = (user_id) => this.state.users.find(u => u.id === user_id)
+  findUserByID = (userID) => this.state.users.find(u => u.id === userID)
 
-  findTeamByID = (team_id) => this.state.teams.find(t => t.id === team_id)
+  findTeamByID = (teamID) => this.state.teams.find(t => t.id === teamID)
 
-  findPositionsOnTeam = (team_id) => { 
-    return this.state.positions.filter(p => p.team_id === team_id).sort((a, b) => (a.name > b.name) - (a.name < b.name))
-    // return this.state.positions.filter(p => p.team_id === team_id)
+  findPositionsOnTeam = (teamID) => {
+    return this.state.positions.filter(p => p.teamID === teamID).sort((a, b) => (a.name > b.name) - (a.name < b.name))
   }
 
-  findMembersOfTeam = (team_id) => this.findPositionsOnTeam(team_id).filter(p => this.findUserByID(p.id))
+  findMembersOfTeam = (teamID) => this.findPositionsOnTeam(teamID).filter(p => this.findUserByID(p.id))
 
-  findUserPositions = (user_id) => this.state.positions.filter(pos => pos.user_id === user_id).sort((a, b) => (a.name > b.name) ? 1 : -1)
+  findUserPositions = (userID) => this.state.positions.filter(pos => pos.user_id === userID).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
   isUserTeamAdmin = (user, team) => ((team.admin === user.id) ? true : false )
 
@@ -409,8 +405,7 @@ class App extends Component {
   }
 
   changeOwnerTeam = (team, user) => {
-    console.log(this.state.users)
-    return "Window"
+    console.log("click")
   }
 
   setChangeOwnerTeam = (team, user) => {
@@ -481,90 +476,90 @@ class App extends Component {
       // console.log(this.state.positions)
     }
     return (
-        <ErrorBoundary>
-          <div className='App'>
-            <div className='App-header'>
-              <TopBar />
-            </div>
-            <div className='App-body'>
-              <Sidebar cUser={this.state.current_user} goBackHandler={this.goBackHandler} handleLogout={this.handleLogout} handleDelete={this.handleDelete} />
-              {/* {(this.state.current_user) ? 'logged in' : 'logged out'} */}
-              {(this.state.current_user) ? <Redirect to='/profile' /> : <Redirect to='/login' />}
-              <div className='page-container'>
-                <Switch>
-                  <Route path='/login'>
-                    <Login logthemin={this.logThemIn} />
-                  </Route>
-                  <Route path='/profile'>
-                    {(this.state.current_user)
-                      ? <Profile
-                        state={this.state}
-                        onHandleDeleteUserRole={this.onHandleDeleteUserRole}
-                        findUserRoles={this.findUserRoles}
-                        addUserRoleToState={this.addUserRoleToState}
-                        changeUserName={this.changeUserName} 
-                        changeEmailAddress={this.changeEmailAddress} 
-                      />
-                      : <Redirect to='/login' />}
-                  </Route>
-                  <Route path='/teams' component={
-                    (props) => (
-                      <Teams
-                        state={this.state}
-                        findUserTeams={this.findUserTeams}
-                        findTeamByID={this.findTeamByID}
-                        findPositionsOnTeam={this.findPositionsOnTeam}
-                        findUserByID={this.findUserByID}
-                        findTeamLeader={this.findTeamLeader}
-                        goBackHandler={this.goBackHandler}
-                        selectTeam={this.selectTeam}
-                        isUserTeamAdmin={this.isUserTeamAdmin}
-                        handleDeleteTeam={this.handleDeleteTeam}
-                        sortUserTeams={this.sortUserTeams}
-                        listMatchingUserRoles ={this.listMatchingUserRoles}
-                        changeOwnerTeam={this.changeOwnerTeam}
-                      />
-                    )
-                  }
-                  >
-                  </Route>
-                  <Route path='/search'>
-                    <Search state={this.state} />
-                  </Route>
-                  <Route path='/position-user-search'>
-                    <PositionUserSearch
+      <ErrorBoundary>
+        <div className='App'>
+          <div className='App-header'>
+            <TopBar />
+          </div>
+          <div className='App-body'>
+            <Sidebar cUser={this.state.current_user} goBackHandler={this.goBackHandler} handleLogout={this.handleLogout} handleDelete={this.handleDelete} />
+            {/* {(this.state.current_user) ? 'logged in' : 'logged out'} */}
+            {(this.state.current_user) ? <Redirect to='/profile' /> : <Redirect to='/login' />}
+            <div className='page-container'>
+              <Switch>
+                <Route path='/login'>
+                  <Login logthemin={this.logThemIn} />
+                </Route>
+                <Route path='/profile'>
+                  {(this.state.current_user)
+                    ? <Profile
                       state={this.state}
-                      location={this.props.location}
-                      listMatchingUserRoles={this.listMatchingUserRoles}
+                      onHandleDeleteUserRole={this.onHandleDeleteUserRole}
+                      findUserRoles={this.findUserRoles}
+                      addUserRoleToState={this.addUserRoleToState}
+                      changeUserName={this.changeUserName} 
+                      changeEmailAddress={this.changeEmailAddress} 
+                    />
+                    : <Redirect to='/login' />}
+                </Route>
+                <Route path='/teams' component={
+                  (props) => (
+                    <Teams
+                      state={this.state}
+                      findUserTeams={this.findUserTeams}
+                      findTeamByID={this.findTeamByID}
+                      findPositionsOnTeam={this.findPositionsOnTeam}
                       findUserByID={this.findUserByID}
-                      getTeamById={this.getTeamById}
-                      updatePositionsUser={this.updatePositionsUser}
+                      findTeamLeader={this.findTeamLeader}
+                      goBackHandler={this.goBackHandler}
+                      selectTeam={this.selectTeam}
+                      isUserTeamAdmin={this.isUserTeamAdmin}
+                      handleDeleteTeam={this.handleDeleteTeam}
+                      sortUserTeams={this.sortUserTeams}
+                      listMatchingUserRoles ={this.listMatchingUserRoles}
+                      changeOwnerTeam={this.changeOwnerTeam}
                     />
-                  </Route>
-                  <Route path='/new_user'>
-                    <NewUser
-                      logThemIn={this.logThemIn}
-                      addUserToState={this.addUserToState} 
-                      addUserRoleToState={this.addUserRoleToState} 
-                    />
-                  </Route>
-                  <Route path='/new_team'>
-                    <NewTeam 
-                      state={this.state}
-                      setNewTeam={this.setNewTeam}
-                      addTeamToState={this.addTeamToState}
-                      findTeamRoles={this.findTeamRoles}
-                      addPositionToState={this.addPositionToState}
-                    />
-                  </Route>
-                  <Route exact path='/'>
-                    <Home />
-                  </Route>
-                </Switch>
-              </div>
+                  )
+                }
+                >
+                </Route>
+                <Route path='/search'>
+                  <Search state={this.state} />
+                </Route>
+                <Route path='/position-user-search'>
+                  <PositionUserSearch
+                    state={this.state}
+                    location={this.props.location}
+                    listMatchingUserRoles={this.listMatchingUserRoles}
+                    findUserByID={this.findUserByID}
+                    getTeamById={this.getTeamById}
+                    updatePositionsUser={this.updatePositionsUser}
+                  />
+                </Route>
+                <Route path='/new_user'>
+                  <NewUser
+                    logThemIn={this.logThemIn}
+                    addUserToState={this.addUserToState} 
+                    addUserRoleToState={this.addUserRoleToState} 
+                  />
+                </Route>
+                <Route path='/new_team'>
+                  <NewTeam
+                    state={this.state}
+                    setNewTeam={this.setNewTeam}
+                    addTeamToState={this.addTeamToState}
+                    findTeamRoles={this.findTeamRoles}
+                    addPositionToState={this.addPositionToState}
+                  />
+                </Route>
+                <Route exact path='/'>
+                  <Home />
+                </Route>
+              </Switch>
             </div>
           </div>
-        </ErrorBoundary>
+        </div>
+      </ErrorBoundary>
     )
   }
 }
