@@ -97,7 +97,7 @@ class UserRole extends Component {
       <>
         <tr>
           <td>{this.props.singleRole.name}</td>
-          <td>{this.state.editYrs ? this.inputYrs() : this.state.singleRole.years_exp}</td>
+          <td className='centered'>{this.state.editYrs ? this.inputYrs() : this.state.singleRole.years_exp}</td>
           <td>
             <Tooltip title="Edit">
               <i onClick={this.onClickHandler} className='edit outline icon'></i>

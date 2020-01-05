@@ -197,7 +197,7 @@
   margin-top: 50px;
   border-spacing: .2em;
   margin: 1rem auto;
-  border-collapse: separate;
+  /* border-collapse: separate; */
   width: 30vw;
 }
 
@@ -214,7 +214,7 @@ table {
 .roles-table {
   margin-left: 250px;
   margin-top: 50px;
-  width: 39.5vw;
+  width: 30vw;
   border-spacing: .2em;
   margin: 1rem auto;
 }
@@ -306,7 +306,7 @@ border:1px solid lightpink !important;
 
 .profile-content {
   padding-top: 5vh;
-  padding-left: 5vh;
+  padding-left: 5vw;
 }
 
 .add-roles-table {
@@ -331,7 +331,7 @@ border:1px solid lightpink !important;
 
 .right-content {
   padding-left: 50px;
-  padding-top: 80px;
+  padding-top: 2vh;
 }
 
 .team-table {
@@ -590,12 +590,12 @@ a {
 .test-box {
   height: 400px;
   overflow: auto;
-  width: 62vw;
+  /* width: 36vw; */
 }
 
 /* width */
 .test-box::-webkit-scrollbar {
-  width: 10px;
+  width: 3px;
 }
 
 /* Track */

@@ -8,8 +8,8 @@ const hasRoles = (props) => {
         <tbody>
           <tr>
             <th width='55%'>Current Roles</th>
-            <th width='25%'>Yrs. exp.</th>
-            <th width='20%' />
+            <th width='23%'>Yrs. exp.</th>
+            <th width='22%' />
           </tr>
           {props.currentUserRoles.map(role => {
             return <UserRole key={role.id} onHandleDeleteUserRole={props.onHandleDeleteUserRole} singleRole={role} />
