@@ -17,7 +17,7 @@ const TeamList = props => (
                 {(props.isUserTeamAdmin(props.state.current_user, team)) ?
                   <>
                     <Tooltip title='Admin'>
-                      <i className='material-icons vpn-key'>vpn_key</i>
+                      <i aria-hidden="true" class="users disabled icon"></i>
                     </Tooltip>
                     <Tooltip title='Delete'>
                       <i onClick={() => props.onHandleDeleteTeam(team)} className='material-icons-outlined'>delete</i>

@@ -676,3 +676,13 @@ button {
   background: #247BA0;
   color: #fff;
 }
+
+
+.ui.icon.button, .ui.icon.buttons .button {
+  padding: 0.25em;
+}
+
+.ui.button {
+  cursor: pointer;
+  background: #d8d8d8;
+}

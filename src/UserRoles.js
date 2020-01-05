@@ -7,9 +7,9 @@ const hasRoles = (props) => {
       <table className='roles-table'>
         <tbody>
           <tr>
-            <th width='55%'>Current Roles</th>
-            <th width='23%'>Yrs. exp.</th>
-            <th width='22%' />
+            <th width='50%'>Current Roles</th>
+            <th width='25%'>Yrs. exp.</th>
+            <th width='25%' />
           </tr>
           {props.currentUserRoles.map(role => {
             return <UserRole key={role.id} onHandleDeleteUserRole={props.onHandleDeleteUserRole} singleRole={role} />
