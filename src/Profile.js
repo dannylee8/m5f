@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import UserRoles from './UserRoles'
 import ProfileIcon from './icons/001-bear.png'
 import CheckboxGroupProfile from './CheckboxGroupProfile'
-import { Button } from 'reactstrap'
+import { Button } from 'semantic-ui-react'
 import { Redirect } from 'react-router-dom'
 import { OPTIONS } from './_options'
 
@@ -64,7 +64,7 @@ class Profile extends Component {
     })
   }
 
-  handleClickShowAddRoleTable = () => {
+ toggleRoleTable = () => {
     this.setState({
       showAddRoles: !this.state.showAddRoles,
     })
@@ -267,17 +267,17 @@ handleClickAddRoles = () => {
                     </table>
                   </div>
                     <p />
-                    <Button
-                      onClick={this.handleClickAddRoles}
-                      className='btn btn-primary'
-                    >save
-                    </Button>
+                    <Button.Group>
+                      <Button onClick={this.toggleRoleTable}>Cancel</Button>
+                      <Button.Or />
+                      <Button onClick={this.handleClickAddRoles}>save</Button>
+                    </Button.Group>
                     </>
                   : 
                   (this.filterRoleOptions().length > 0) ?
                     <div className='text-center'>
-                      <Button onClick={this.handleClickShowAddRoleTable} type='button' className='btn-add-roles'>
-                        <i className='material-icons-outlined'>add_box</i>add roles
+                      <Button onClick={this.toggleRoleTable} className='ui button btn-add-roles'>
+                        add roles
                       </Button>
                     </div>
                     : null}
