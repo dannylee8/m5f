@@ -12,7 +12,7 @@
 .page-container {
   width: calc(100% - 200px);
   background-color: gray;
-  background-image: url(./prism.png);
+  background-image: url(./_bg/subtle_white_feathers.png);
   background-repeat: repeat-x-y;
 }
 
@@ -116,6 +116,8 @@
   background-color: #D8D8D8; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 5vh;
+  background-image: url(./_bg/mooning.png);
+  background-repeat: repeat-x-y;
 }
 
 /* The navigation menu links */
