@@ -118,6 +118,7 @@
   padding-top: 5vh;
   background-image: url(./_bg/mooning.png);
   background-repeat: repeat-x-y;
+  text-align: center;
 }
 
 /* The navigation menu links */
