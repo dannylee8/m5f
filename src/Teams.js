@@ -7,6 +7,11 @@ import { Link, Redirect, withRouter } from 'react-router-dom'
 const uuidv4 = require('uuid/v4')
 
 class Teams extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { showPositions: true }
+  }
+
   render () {
     if (!this.props.state.loggedIn) {
       return <Redirect to='/profile' />
@@ -18,10 +23,12 @@ class Teams extends Component {
               ? <TeamListHeader
                 goBackHandler={this.props.goBackHandler}
                 state={this.props.state}
-                findTeamLeader={this.props.findTeamLeader} />
+                findTeamLeader={this.props.findTeamLeader}
+                isUserTeamAdmin={this.props.isUserTeamAdmin}
+                />
             : <h3>Teams:</h3>
             }
-\
+
             {!this.props.state.teamSelected
               ? 
               <>
@@ -47,6 +54,7 @@ class Teams extends Component {
                 </Link>
               </>
               : 
+              this.state.showPositions ? 
               <>
                 <table className='positions-table fade-in'>
                   <tbody>
@@ -91,6 +99,8 @@ class Teams extends Component {
                   <br />
                 </div>
               </>
+              :
+              "hi"
             }
           </div>
         </div>

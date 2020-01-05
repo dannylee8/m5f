@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import Tooltip from '@material-ui/core/Tooltip'
 
 const TeamListHeader = props => (
   <>
@@ -13,7 +14,18 @@ const TeamListHeader = props => (
       >arrow_back</i>
       {props.state.teamSelected}
     </h3>
-    <h6><span className='owner'>Team Owner:</span> {props.findTeamLeader(props.state.teamObject.id).name}</h6>
+    <h6>
+      <span className='owner'>
+        Team Owner:
+      </span> 
+      &nbsp; {props.findTeamLeader(props.state.teamObject.id).name} &nbsp;
+      {props.isUserTeamAdmin(props.state.current_user, props.state.teamObject) 
+      ?
+      <Tooltip title='Change team ownership'>
+        <i className='exchange-icon'>exchange</i>
+      </Tooltip>
+      : null}
+    </h6>
   </>
 )
 

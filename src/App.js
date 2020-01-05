@@ -108,7 +108,7 @@ class App extends Component {
 
   findUserPositions = (userID) => this.state.positions.filter(pos => pos.user_id === userID).sort((a, b) => (a.name > b.name) ? 1 : -1)
 
-  isUserTeamAdmin = (user, team) => ((team.admin === user.id) ? true : false )
+  isUserTeamAdmin = (user, team) => user.id === team.admin
 
   listMatchingUserRoles = (role_id) => {
     return this.state.user_roles.filter(ur => ur.role_id === role_id)
