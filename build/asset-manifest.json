@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d5e9c777.chunk.css",
+    "main.js": "/static/js/main.b144e16b.chunk.js",
+    "main.js.map": "/static/js/main.b144e16b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.cc4b70fc.js",
+    "runtime-main.js.map": "/static/js/runtime-main.cc4b70fc.js.map",
+    "static/js/2.7151f8ec.chunk.js": "/static/js/2.7151f8ec.chunk.js",
+    "static/js/2.7151f8ec.chunk.js.map": "/static/js/2.7151f8ec.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.845ddbbcd64b085e949580c685939160.js": "/precache-manifest.845ddbbcd64b085e949580c685939160.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.d5e9c777.chunk.css.map": "/static/css/main.d5e9c777.chunk.css.map",
+    "static/js/2.7151f8ec.chunk.js.LICENSE": "/static/js/2.7151f8ec.chunk.js.LICENSE",
+    "static/media/App.css": "/static/media/subtle_white_feathers.41afc6c2.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cc4b70fc.js",
+    "static/js/2.7151f8ec.chunk.js",
+    "static/css/main.d5e9c777.chunk.css",
+    "static/js/main.b144e16b.chunk.js"
+  ]
+}
