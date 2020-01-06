@@ -1,5 +1,4 @@
 import React from 'react'
-import Tooltip from '@material-ui/core/Tooltip'
 
 const uuidv4 = require('uuid/v4')
 
@@ -10,9 +9,6 @@ const TeamList = props => (
         return (
           <React.Fragment key={uuidv4()}>
             <tr className={props.isUserTeamAdmin(props.state.current_user, team) ? 'team-list-admin-row' : 'team-list-row'}>
-              <td key={team.id} className={props.isUserTeamAdmin(props.state.current_user, team) ? 'team-list-admin' : 'team-list'} onClick={() => props.selectTeam(team)}>
-                {team.name}
-              </td>
               <td>
                 {(props.isUserTeamAdmin(props.state.current_user, team)) ?
                   <>
@@ -24,6 +20,9 @@ const TeamList = props => (
                     </div>
                   </>
                   : null}
+              </td>
+              <td key={team.id} className={props.isUserTeamAdmin(props.state.current_user, team) ? 'team-list-admin' : 'team-list'} onClick={() => props.selectTeam(team)}>
+                {team.name}
               </td>
             </tr>
           </React.Fragment>

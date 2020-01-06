@@ -1,5 +1,4 @@
 .App {
-  /* text-align: center; */
   font-family: 'IBM Plex Mono', monospace;
 }
 
@@ -146,9 +145,9 @@
   padding-left: 30px;
 }
 
-.sidenav li:hover {
+/* .sidenav li:hover {
   background-color: #a64d79;
-}
+} */
 
 /* Style page content */
 .main {
@@ -210,7 +209,7 @@
 .roles-table {
   margin-left: 250px;
   margin-top: 50px;
-  width: 30vw;
+  width: 40vw;
   border-spacing: .2em;
   margin: 1rem auto;
 }
@@ -669,3 +668,11 @@ button {
   cursor: pointer;
   background: #d8d8d8;
 }
+
+.sample-info {
+  font-family: 'Source Code Pro', monospace;
+  font-size: .8em;
+  text-align: left;
+  padding-left: 1em;
+}
+

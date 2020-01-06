@@ -165,7 +165,7 @@ export default class Login extends Component {
 }
  
 const FromValidationError = props => (
-  <Fade in={Boolean(props.field)} tag='p' className='error'>
+  <Fade in={Boolean(props.field)} tag='p' className='error centered'>
     {props.field ? Object.values(props.field).shift() : '' } 
   </Fade>
 )

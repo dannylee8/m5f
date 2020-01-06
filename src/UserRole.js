@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Tooltip from '@material-ui/core/Tooltip'
 
 class UserRole extends Component {
   constructor (props) {
