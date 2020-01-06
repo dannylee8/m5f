@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const PositionRowName = props => {
   return (
     <td className='position-user-search'>
-      <Tooltip title='Find a user with this skill' arrow>
+      {/* <Tooltip title='Find a user with this skill' arrow> */}
         <Link to={{
           pathname: 'position-user-search/' + props.singlePosition.id,
           singlePosition: props.singlePosition
