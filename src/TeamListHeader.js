@@ -20,9 +20,9 @@ const TeamListHeader = props => (
       &nbsp; {props.findTeamLeader(props.state.teamObject.id).name} &nbsp;
       {props.isUserTeamAdmin(props.state.current_user, props.state.teamObject) 
       ?
-      {/* <Tooltip title='Change team ownership'> */}
+
         <i className='exchange-icon'>exchange</i>
-      {/* </Tooltip> */}
+
       : null}
     </h6>
   </>
