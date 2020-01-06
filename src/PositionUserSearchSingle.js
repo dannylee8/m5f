@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Tooltip from '@material-ui/core/Tooltip'
 import { withRouter } from 'react-router-dom'
 
 class PositionUserSearchSingle extends Component {
