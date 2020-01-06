@@ -12,7 +12,7 @@ const PositionRowName = props => {
         >
           Position not filled
         </Link>
-      </Tooltip>
+      {/* </Tooltip> */}
     </td>
   )
 }
