@@ -132,7 +132,7 @@ handleClickAddRoles = () => {
   })
   // console.log('Entries Map: ', entriesMap)
   entriesMap.forEach(e => {
-    window.fetch('http://localhost:3000/api/v1/user_roles', {
+    window.fetch('https://devteamer-backend.herokuapp.com/api/v1/user_roles', {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'POST',
       body: JSON.stringify({
@@ -163,7 +163,7 @@ handleClickAddRoles = () => {
     } else if (newName.toLowerCase() === this.props.state.current_user.name.toLowerCase()) {
     } else if (newName.length < 2) {
     } else {
-      window.fetch(`http://localhost:3000/api/v1/users/${this.props.state.current_user.id}`, {
+      window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/users/${this.props.state.current_user.id}`, {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         method: 'PATCH',
         body: JSON.stringify({
@@ -196,7 +196,7 @@ handleClickAddRoles = () => {
     } else {
       const isCorrect = window.confirm(`Do you want to change your email to ${newEmail}?`)
       if (isCorrect) {
-        window.fetch(`http://localhost:3000/api/v1/users/${this.props.state.current_user.id}`, {
+        window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/users/${this.props.state.current_user.id}`, {
           headers: { 'Content-Type': 'application/json; charset=utf-8' },
           method: 'PATCH',
           body: JSON.stringify({

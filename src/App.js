@@ -40,35 +40,35 @@ class App extends Component {
   }
 
   componentDidMount () {
-    window.fetch('http://localhost:3000/api/v1/roles')
+    window.fetch('https://devteamer-backend.herokuapp.com/api/v1/roles')
       .then(resp => resp.json())
       .then(json => {
         this.setState({
           roles: json
         })
       })
-    window.fetch('http://localhost:3000/api/v1/user_roles')
+    window.fetch('https://devteamer-backend.herokuapp.com/api/v1/user_roles')
       .then(resp => resp.json())
       .then(json => {
         this.setState({
           user_roles: json
         })
       })
-    window.fetch('http://localhost:3000/api/v1/users')
+    window.fetch('https://devteamer-backend.herokuapp.com/api/v1/users')
       .then(resp => resp.json())
       .then(json => {
         this.setState({
           users: json
         })
       })
-    window.fetch('http://localhost:3000/api/v1/teams')
+    window.fetch('https://devteamer-backend.herokuapp.com/api/v1/teams')
       .then(resp => resp.json())
       .then(json => {
         this.setState({
           teams: json
         })
       })
-    window.fetch('http://localhost:3000/api/v1/positions')
+    window.fetch('https://devteamer-backend.herokuapp.com/api/v1/positions')
       .then(resp => resp.json())
       .then(json => {
         this.setState({
@@ -79,7 +79,7 @@ class App extends Component {
     if (window.localStorage.getItem('cUser')) {
       const userID = JSON.parse(window.localStorage.getItem('cUser')).id
 
-      window.fetch(`http://localhost:3000/api/v1/users/${userID}`)
+      window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/users/${userID}`)
         .then(resp => resp.json())
         .then(json => {
           if (json.id === userID) {
@@ -115,7 +115,7 @@ class App extends Component {
   }
 
   updatePositionsUser = (positionID, userID) => {
-    window.fetch(`http://localhost:3000/api/v1/positions/${positionID}`, {
+    window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/positions/${positionID}`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'PATCH',
       body: JSON.stringify({
@@ -307,7 +307,7 @@ class App extends Component {
   }
 
   destroyUser = (id) => {
-    return window.fetch(`http://localhost:3000/api/v1/users/${id}`, {
+    return window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/users/${id}`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'DESTROY'})
       .then(res => {
@@ -343,7 +343,7 @@ class App extends Component {
   }
 
   destroyUserRole = (ur) => {
-    return window.fetch(`http://localhost:3000/api/v1/user_roles/${ur.id}`, {
+    return window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/user_roles/${ur.id}`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'DESTROY'})
       .then(res => {
@@ -410,7 +410,7 @@ class App extends Component {
 
   setChangeOwnerTeam = (team, user) => {
     console.log(this.state.users)
-    return window.fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
+    return window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/teams/${team.id}`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify({
         admin: user.id
@@ -451,7 +451,7 @@ class App extends Component {
   }
 
   destroyTeam = (team) => {
-    return window.fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
+    return window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/teams/${team.id}`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'DESTROY'})
       .then(res => {
@@ -471,9 +471,6 @@ class App extends Component {
     if (this.state.users.length > 0) {
       // console.log(this.state.users)
       // console.log(this.findMembersOfTeam(2))
-      console.log('Has roles: kimberlee@gmail.com')
-      console.log('Has teams: myung@gmail.com')
-      // console.log(this.state.positions)
     }
     return (
       <ErrorBoundary>

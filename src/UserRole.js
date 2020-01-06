@@ -28,7 +28,7 @@ class UserRole extends Component {
             years_exp: parseInt(event.target.value, 10)
         }
       }))
-      fetch(`http://localhost:3000/api/v1/user_roles/${this.state.singleRole.id}`, {
+      fetch(`https://devteamer-backend.herokuapp.com/api/v1/user_roles/${this.state.singleRole.id}`, {
         headers: { "Content-Type": "application/json; charset=utf-8" },
         method: "PATCH",
         body: JSON.stringify({
@@ -73,7 +73,7 @@ class UserRole extends Component {
               years_exp: parseInt(this.state.value, 10)
           }
         }))
-        fetch(`http://localhost:3000/api/v1/user_roles/${this.state.singleRole.id}`, {
+        fetch(`https://devteamer-backend.herokuapp.com/api/v1/user_roles/${this.state.singleRole.id}`, {
           headers: { "Content-Type": "application/json; charset=utf-8" },
           method: "PATCH",
           body: JSON.stringify({

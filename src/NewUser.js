@@ -183,7 +183,7 @@ class NewUser extends Component {
     if (!this.state.errors.email && !this.state.errors.password) {
         // console.log(name,email);
         // Create a new user
-        fetch('http://localhost:3000/api/v1/users', {
+        fetch('https://devteamer-backend.herokuapp.com/api/v1/users', {
           headers: { "Content-Type": "application/json; charset=utf-8" },
           method: 'POST',
           body: JSON.stringify({
@@ -209,7 +209,7 @@ class NewUser extends Component {
             })
             console.log(entriesMap)
             entriesMap.forEach(e => {
-              fetch('http://localhost:3000/api/v1/user_roles', {
+              fetch('https://devteamer-backend.herokuapp.com/api/v1/user_roles', {
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 method: 'POST',
                 body: JSON.stringify({

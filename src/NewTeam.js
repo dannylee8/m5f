@@ -165,7 +165,7 @@ class NewUser extends Component {
     if (!this.state.errors.name && !this.state.errors.website && this.props.state.current_user) {
       // console.log(name,email);
       // Create a new user
-      fetch('http://localhost:3000/api/v1/teams', {
+      fetch('https://devteamer-backend.herokuapp.com/api/v1/teams', {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         method: 'POST',
         body: JSON.stringify({
@@ -189,7 +189,7 @@ class NewUser extends Component {
             })
             // console.log('Entries Map: ', entriesMap)
             entriesMap.forEach(e => {
-              window.fetch('http://localhost:3000/api/v1/positions', {
+              window.fetch('https://devteamer-backend.herokuapp.com/api/v1/positions', {
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 method: 'POST',
                 body: JSON.stringify({
