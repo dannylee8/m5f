@@ -16,12 +16,12 @@ const TeamList = props => (
               <td>
                 {(props.isUserTeamAdmin(props.state.current_user, team)) ?
                   <>
-                    <Tooltip title='Admin'>
-                      <i aria-hidden="true" class="users disabled icon"></i>
-                    </Tooltip>
-                    <Tooltip title='Delete'>
-                      <i onClick={() => props.onHandleDeleteTeam(team)} className='material-icons-outlined'>delete</i>
-                    </Tooltip>
+                    <div className="ui icon button" data-tooltip="admin">
+                      <i aria-hidden="true" className="key icon"></i>
+                    </div>
+                    <div className="ui icon button" data-tooltip="delete team">
+                      <i onClick={() => props.onHandleDeleteTeam(team)} aria-hidden="true" className="delete icon"></i>
+                    </div>
                   </>
                   : null}
               </td>

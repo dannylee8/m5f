@@ -1,6 +1,6 @@
 .App {
   /* text-align: center; */
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 .App-body {
@@ -199,10 +199,6 @@
   margin: 1rem auto;
   /* border-collapse: separate; */
   width: 30vw;
-}
-
-table {
-  background-color: #D8D8D8;
 }
 
 .user-table td {
@@ -422,12 +418,12 @@ border:1px solid lightpink !important;
 }
 
 h1 {
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Roboto Slab', serif;
   font-size: 2em;
 }
 
 h2 {
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Roboto Slab', serif;
   font-size: 1.25em;
   color: antiquewhite;
   background-color:  palevioletred;
@@ -439,7 +435,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Roboto Slab', serif;
   font-size: 1.5em;
 }
 
@@ -471,48 +467,43 @@ h6 {
 }
 
 .team-list {
-  font-size: 1.25em;
   color: #fff;
   background-color: #a64d79;
   width: 40vw;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 10px;
 }
 
 .team-list-admin {
-  font-size: 1.25em;
   color: #fff;
   background-color: #92426a;
   width: 40vw;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 10px;
 }
 
 .team-list:hover{
   background-color: #92426a;
   color: antiquewhite;
   width: 40vw;
-  padding: 20px;
 }
 
 .team-list-admin:hover{
   background-color: thistle;
   color: #000;
   width: 40vw;
-  padding: 20px;
 }
 
 .team-list-admin-row {
-  background-color: gray;
+  background-color: #D8D8D8;
+}
+
+.team-list-row {
+  background-color:#bfbfbf;
 }
 
 .team-list-table {
   background-color: gray;
 }
 
-.team-list-row {
-  background-color: gray;
-}
 
 .flex{
   display: flex;
@@ -526,10 +517,6 @@ h6 {
   width: 20vw;
   margin-left: auto;
   margin-right: 8vw;
-}
-
-.vpn-key {
-  color: darkorchid;
 }
 
 .search-content {
@@ -654,9 +641,7 @@ a {
 }
 
 tr:hover td {
-  background-color:white;
-  color: #333;
-  opacity:70%;
+  /* color: #333; */
 }
 
 .no-hover {
@@ -677,10 +662,8 @@ button {
   color: #fff;
 }
 
-
-.ui.icon.button, .ui.icon.buttons .button {
-  padding: 0.25em;
-}
+/* .ui.icon.button, .ui.icon.buttons .button {
+} */
 
 .ui.button {
   cursor: pointer;

@@ -99,10 +99,10 @@ class UserRole extends Component {
           <td>{this.props.singleRole.name}</td>
           <td className='centered'>{this.state.editYrs ? this.inputYrs() : this.state.singleRole.years_exp}</td>
           <td className='centered'>
-            <div class="ui icon button" data-tooltip="Edit">
+            <div className="ui icon button" data-tooltip="Edit">
               <i onClick={this.onClickHandler} className='small fitted edit outline icon'></i> 
             </div>
-            <div class="ui icon button" data-tooltip="Delete">
+            <div className="ui icon button" data-tooltip="Delete">
               <i aria-hidden="true" onClick={()=>this.props.onHandleDeleteUserRole(this.props.singleRole)} className='small fitted trash icon'></i>
             </div>
           </td>
