@@ -1,0 +1,678 @@
+.App {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.App-body {
+ display: flex;
+ flex-direction: row;
+ background-color: #d8d8d8;
+}
+
+.page-container {
+  width: calc(100% - 200px);
+  background-color: gray;
+  background-image: url(./_bg/subtle_white_feathers.png);
+  background-repeat: repeat-x-y;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #a64d79;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-main {
+    background-color: #fff;
+    min-height: 90vh;
+    color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.divider{
+  width:10px;
+  height:auto;
+  display:inline-block;
+}
+
+.login-form {
+  display: grid;
+  place-items: center;
+  height: 28vh;
+}
+
+.login-container {
+  background-color: #a64d79;
+  text-align: left;
+  padding: 1em;
+  margin: 1em;
+  border: 2px solid #d3d3d3;
+  border-radius: .5em;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  margin-top: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+.input {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.btn-secondary {
+  color: #a64d79;
+  background-color: #d8d8d8;
+  border-color: #a64d79;
+}
+
+.btn-secondary:hover{
+  color:#843d60;
+  background-color:#d3d3d3;
+  border-color:#333;
+}
+
+/* The sidebar menu */
+.sidenav {
+  height: 100vh; /* Full-height: remove this if you want "auto" height */
+  width: 200px; /* Set the width of the sidebar */
+  z-index: 1; /* Stay on top */
+  top: 10vh; /* Stay at the top */
+  left: 0;
+  background-color: #D8D8D8; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 5vh;
+  background-image: url(./_bg/mooning.png);
+  background-repeat: repeat-x-y;
+  text-align: center;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 0px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: inline-block;
+  width: 100%;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav nav ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
+  text-align: left;
+}
+
+.sidenav li {
+  padding-left: 30px;
+}
+
+/* .sidenav li:hover {
+  background-color: #a64d79;
+} */
+
+/* Style page content */
+.main {
+  margin-left: 60px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+#delete {
+  height: 20px;
+  width: 110px;
+  margin-left: -55px;
+  padding: 0;
+  position: absolute;
+  bottom: 20px;
+  background-color: #fa3e3e;
+}
+
+#logout {
+  height: 20px;
+  width: 110px;
+  margin-left: -55px;
+  padding: 0;
+  position: absolute;
+  bottom: 50px;
+}
+
+.cUser {
+  color: #a64d79;
+  padding-bottom: 5vh;
+}
+
+.profile-img {
+  padding-top: 25px;
+  width: 75px;
+}
+
+.user-table {
+  margin-left: 250px;
+  margin-top: 50px;
+  border-spacing: .2em;
+  margin: 1rem auto;
+  /* border-collapse: separate; */
+  width: 30vw;
+}
+
+.user-table td {
+  padding: 0rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.roles-table {
+  margin-left: 250px;
+  margin-top: 50px;
+  width: 40vw;
+  border-spacing: .2em;
+  margin: 1rem auto;
+}
+
+.roles-table td {
+  padding: 0rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.roles-table th {
+  padding: 1rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+  background-color: #D8D8D8;
+}
+
+.new-user-input {
+  margin: auto;
+  width:37vw;
+}
+
+.new-user-table {
+  margin-left: 250px;
+  margin-top: 50px;
+  width: 25vw;
+  border-spacing: .2em;
+  margin: 1rem auto;
+}
+
+.new-user-table td {
+  padding: 0rem .5rem;
+  border-radius: 3px;
+  text-align: left;
+  vertical-align: middle; 
+  line-height: 2em;
+  padding-top: 4px;
+}
+
+.new-user-table th {
+  width:80px;
+}
+
+.years-exp {
+  height: 1.5em;
+  padding: 3px;
+}
+
+.create-container {
+  text-align: left;
+  padding: 1em;
+  margin: 1em;
+  border: 2px solid #d3d3d3;
+  border-radius: .5em;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
+  text-align: center;
+}
+
+.create-user-input {
+  padding: .5rem;
+}
+
+.material-icons {
+  cursor: context-menu;
+  font-size: 16px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.material-icons-outlined {
+  cursor: context-menu;
+  font-size: 16px;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: text-top;
+}
+
+/* * {
+border:1px solid lightpink !important;
+} */
+
+.years-input {
+  margin: auto;
+  width:5vw;
+}
+
+.profile-content {
+  padding-top: 5vh;
+  padding-left: 5vw;
+}
+
+.add-roles-table {
+  width: 30vw;
+  text-align: left;
+  border-radius: 0px;
+  border: 1px solid black;
+}
+
+.add-roles-table td {
+  padding: 0rem;
+  border-radius: 0px;
+  border: 1px solid black;
+}
+
+.add-roles-table th {
+  padding: 1rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+  background-color: #D8D8D8;
+}
+
+.right-content {
+  padding-left: 50px;
+  padding-top: 2vh;
+}
+
+.team-table {
+  margin-left: 250px;
+  margin-top: 50px;
+  border-spacing: .2em;
+  margin: 1rem auto;
+  line-height: 2em;
+  width: 40vw;
+  text-align: left;
+}
+
+.team-table td {
+  padding: 0rem 1.2rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.team-content {
+  padding-top: 25px;
+  padding-left: 25px;
+  text-align: left;
+  width: 100%;
+}
+
+.team-content a {
+  padding: 6px 8px 6px 0px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: inline-block;
+  width: 100%;
+}
+
+/* When you mouse over the navigation links, change their color */
+.team-content a:hover {
+  color: #f1f1f1;
+}
+
+.team-content ul {
+  list-style-type: none;
+  padding-inline-start: 10px;
+  text-align: left;
+}
+
+.team-content li:hover {
+  background-color: #fad83e;
+}
+
+.positions-table {
+  float: left;
+  border-spacing: .2em;
+  margin: 1rem auto;
+  line-height: 1.5em;
+  width: 50vw;
+  text-align: left;
+  margin-left: 25px;
+}
+
+.positions-table td {
+  padding: 0rem .2rem;
+  border: 4px solid #d3d3d3;
+}
+
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.5s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.position-not-filled {
+  background-color: yellow;
+}
+
+.self-position {
+  background-color: greenyellow;
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2em;
+}
+
+h2 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.25em;
+  color: antiquewhite;
+  background-color:  palevioletred;
+  line-height: 2em;
+  padding-left: 45px;
+  width: 72.5vw;
+  text-align: left;
+  margin-left: 2vw;
+}
+
+h3 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.5em;
+}
+
+h4 {
+  color: antiquewhite;
+  background-color: #843d60;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+h5 {
+  color: antiquewhite;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+h6 {
+  color: antiquewhite;
+  background-color:  palevioletred;
+  line-height: 2em;
+  padding-left: 45px;
+  width: 72.5vw;
+  text-align: left;
+  margin-left: 2vw;
+}
+
+.owner {
+  color: black
+}
+
+.team-list {
+  color: #fff;
+  background-color: #a64d79;
+  width: 40vw;
+  padding: 10px;
+}
+
+.team-list-admin {
+  color: #fff;
+  background-color: #92426a;
+  width: 40vw;
+  padding: 10px;
+}
+
+.team-list:hover{
+  background-color: #92426a;
+  color: antiquewhite;
+  width: 40vw;
+}
+
+.team-list-admin:hover{
+  background-color: thistle;
+  color: #000;
+  width: 40vw;
+}
+
+.team-list-admin-row {
+  background-color: #D8D8D8;
+}
+
+.team-list-row {
+  background-color:#bfbfbf;
+}
+
+.team-list-table {
+  background-color: gray;
+}
+
+
+.flex{
+  display: flex;
+  flex-direction: row;
+}
+
+.team-right-side {
+  margin-top: 25px;
+  text-align: center;
+  background-color: palevioletred;
+  width: 20vw;
+  margin-left: auto;
+  margin-right: 8vw;
+}
+
+.search-content {
+  padding-top: 25px;
+  padding-left: 25px;
+  text-align: left;
+  width: 100%;
+}
+
+.search-content a {
+  padding: 6px 8px 6px 0px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: inline-block;
+  width: 100%;
+}
+
+.position-user-search a {
+  font-size: 1em;
+}
+
+.position-user-search a:hover {
+  color: indianred;
+}
+
+.position-user-search-table {
+  float: left;
+  border-spacing: .2em;
+  margin: 1rem auto;
+  line-height: 1.5em;
+  width: 58vw;
+  text-align: left;
+  margin-left: 25px;
+}
+
+.position-user-search-table td {
+  padding: 0rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.position-user-search-table th { 
+  padding: 0rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid black;
+  background-color: #D8D8D8;
+}
+
+.centered {
+  text-align: center;
+}
+
+a {
+  color: yellow;
+}
+
+.test-box {
+  height: 400px;
+  overflow: auto;
+  /* width: 36vw; */
+}
+
+/* width */
+.test-box::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.test-box::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+.test-box::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.test-box::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.logo-img {
+  padding: 25px 0;
+  width: 70%;
+  text-align: center;
+}
+
+.team-right-side a {
+  font-size: 0.9em;
+  color: white;
+}
+
+.team-right-side a:hover {
+  color: yellow;
+}
+
+.description-text {
+  padding: 10px;
+}
+
+.bold {
+  font-weight: bold;
+  color: black;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.green {
+  background: yellowgreen;
+}
+
+.black {
+  background: black;
+}
+
+.justified {
+  text-align: justify;
+}
+
+tr:hover td {
+  /* color: #333; */
+}
+
+.no-hover {
+  background-color: none;
+}
+
+button {
+  font-size: .9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem 1rem;
+  margin-left: .5rem;
+}
+
+.button-default {
+  background: #247BA0;
+  color: #fff;
+}
+
+/* .ui.icon.button, .ui.icon.buttons .button {
+} */
+
+.ui.button {
+  cursor: pointer;
+  background: #d8d8d8;
+}
+
+.sample-info {
+  font-family: 'Source Code Pro', monospace;
+  font-size: .8em;
+  text-align: left;
+  padding-left: 1em;
+}
+
