@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.d7d441b8.chunk.css",
+    "main.css": "/static/css/main.734c13f8.chunk.css",
     "main.js": "/static/js/main.0d744188.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.cc4b70fc.js",
     "static/js/2.7151f8ec.chunk.js": "/static/js/2.7151f8ec.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.ce4f22f54fccccf801ebdd820f22eaee.js": "/precache-manifest.ce4f22f54fccccf801ebdd820f22eaee.js",
+    "precache-manifest.52ebe2f21a39ff3c617da460b89167ad.js": "/precache-manifest.52ebe2f21a39ff3c617da460b89167ad.js",
     "service-worker.js": "/service-worker.js",
     "static/js/2.7151f8ec.chunk.js.LICENSE": "/static/js/2.7151f8ec.chunk.js.LICENSE",
     "static/media/App.css": "/static/media/subtle_white_feathers.41afc6c2.png"
@@ -13,7 +13,7 @@
   "entrypoints": [
     "static/js/runtime-main.cc4b70fc.js",
     "static/js/2.7151f8ec.chunk.js",
-    "static/css/main.d7d441b8.chunk.css",
+    "static/css/main.734c13f8.chunk.css",
     "static/js/main.0d744188.chunk.js"
   ]
 }
