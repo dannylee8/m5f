@@ -23,6 +23,9 @@
     "uuid": "^3.3.3",
     "validator": "^12.1.0"
   },
+  "comments": {
+    "start": "PORT=8888 react-scripts start"
+  },
   "scripts": {
     "start": "node server.js",
     "build": "react-scripts build",

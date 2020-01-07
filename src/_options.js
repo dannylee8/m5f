@@ -1,3 +1,5 @@
+export const SERVER = 'https://devteamer-backend.herokuapp.com'
+
 export const OPTIONS = [
   'architect',
   'back-end developer lead',

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
 import CheckboxGroup from "./CheckboxGroup";
 import { Button, Container, Form, Fade, Label, Input } from 'reactstrap';
-import { OPTIONS } from './_options'
+import { OPTIONS, SERVER } from './_options'
 
 import _ from 'lodash'
 
@@ -183,7 +183,7 @@ class NewUser extends Component {
     if (!this.state.errors.email && !this.state.errors.password) {
         // console.log(name,email);
         // Create a new user
-        fetch('https://devteamer-backend.herokuapp.com/api/v1/users', {
+        fetch(`${SERVER}/api/v1/users`, {
           headers: { "Content-Type": "application/json; charset=utf-8" },
           method: 'POST',
           body: JSON.stringify({
@@ -209,7 +209,7 @@ class NewUser extends Component {
             })
             console.log(entriesMap)
             entriesMap.forEach(e => {
-              fetch('https://devteamer-backend.herokuapp.com/api/v1/user_roles', {
+              fetch(`${SERVER}/api/v1/user_roles`, {
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 method: 'POST',
                 body: JSON.stringify({

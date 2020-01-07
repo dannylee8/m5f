@@ -4,7 +4,7 @@ import ProfileIcon from './icons/001-bear.png'
 import CheckboxGroupProfile from './CheckboxGroupProfile'
 import { Button } from 'semantic-ui-react'
 import { Redirect } from 'react-router-dom'
-import { OPTIONS } from './_options'
+import { OPTIONS, SERVER } from './_options'
 
 class Profile extends Component {
   state = {
@@ -132,7 +132,7 @@ handleClickAddRoles = () => {
   })
   // console.log('Entries Map: ', entriesMap)
   entriesMap.forEach(e => {
-    window.fetch('https://devteamer-backend.herokuapp.com/api/v1/user_roles', {
+    window.fetch(`${SERVER}/api/v1/user_roles`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'POST',
       body: JSON.stringify({
@@ -163,7 +163,7 @@ handleClickAddRoles = () => {
     } else if (newName.toLowerCase() === this.props.state.current_user.name.toLowerCase()) {
     } else if (newName.length < 2) {
     } else {
-      window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/users/${this.props.state.current_user.id}`, {
+      window.fetch(`${SERVER}/api/v1/users/${this.props.state.current_user.id}`, {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         method: 'PATCH',
         body: JSON.stringify({
@@ -196,7 +196,7 @@ handleClickAddRoles = () => {
     } else {
       const isCorrect = window.confirm(`Do you want to change your email to ${newEmail}?`)
       if (isCorrect) {
-        window.fetch(`https://devteamer-backend.herokuapp.com/api/v1/users/${this.props.state.current_user.id}`, {
+        window.fetch(`${SERVER}/api/v1/users/${this.props.state.current_user.id}`, {
           headers: { 'Content-Type': 'application/json; charset=utf-8' },
           method: 'PATCH',
           body: JSON.stringify({
