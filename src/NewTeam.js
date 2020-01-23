@@ -285,7 +285,7 @@ class NewUser extends Component {
                 value={this.state.name}
                 onChange={this.handleInputChange}
                 id='name'
-                placeholder="Please enter your new team's name."
+                placeholder=""
               />
             </div>
             <div>
@@ -298,7 +298,7 @@ class NewUser extends Component {
                 value={this.state.website}
                 onChange={this.handleInputChange}
                 id='website'
-                placeholder='Please enter your website address.'
+                placeholder=''
               />
             </div>
             <FromValidationError field={this.state.errors.name} />

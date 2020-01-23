@@ -134,7 +134,7 @@ export default class Login extends Component {
                   value={this.state.email}
                   onChange={this.handleChange}
                   id='email'
-                  placeholder='Please enter your email address.'
+                  placeholder=''
                 />
               </div>
               <div className='login-row'>
@@ -147,7 +147,7 @@ export default class Login extends Component {
                   value={this.state.password}
                   onChange={this.handleChange}
                   id='password'
-                  placeholder='Please enter your password.'
+                  placeholder=''
                 />
               </div>
             </FormGroup>
