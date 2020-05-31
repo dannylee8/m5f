@@ -14,12 +14,16 @@
 - uuid
 
 ### Demo
-- The API has been launched to heroku.
+- The app has been launched on heroku:
 - URL: https://devteamer.herokuapp.com
 ------------
-### Front end repository
+
+### Back end repository
 - URL: https://github.com/dannylee8/m5b
 ------------
-###### Model diagram in UML
 
+### Walkthrough (click below to view video on YouTube)
+[![Watch the video](https://img.youtube.com/vi/_rki3cc7K0g/maxresdefault.jpg)](https://www.youtube.com/watch?v=_rki3cc7K0g)
+
+### Model diagram in UML
 ![](./mod5.png)
