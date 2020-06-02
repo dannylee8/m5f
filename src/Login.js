@@ -157,28 +157,6 @@ export default class Login extends Component {
                   placeholder=""
                 />
               </div>
-              <div>
-                <li>
-                  <a href="https://github.com/dannylee8/m5f">
-                    GitHub Frontend repo
-                  </a>
-                </li>
-                <li>
-                  <a href="https://github.com/dannylee8/m5b">
-                    GitHub Backend repo
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.youtube.com/watch?v=_rki3cc7K0g">
-                    Video walkthru at YouTube
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.panix.com/~dreamer/">
-                    Visit my homepage
-                  </a>
-                </li>
-              </div>
             </FormGroup>
             <Button onClick={this.login} color="secondary">
               Login
@@ -191,6 +169,22 @@ export default class Login extends Component {
         </Container>
         <FromValidationError field={this.state.errors.email} />
         <FromValidationError field={this.state.errors.password} />
+        <div>
+          <li>
+            <a href="https://github.com/dannylee8/m5f">GitHub Frontend repo</a>
+          </li>
+          <li>
+            <a href="https://github.com/dannylee8/m5b">GitHub Backend repo</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=_rki3cc7K0g">
+              Video walkthru at YouTube
+            </a>
+          </li>
+          <li>
+            <a href="https://www.panix.com/~dreamer/">Visit my homepage</a>
+          </li>
+        </div>
       </>
     );
   }
