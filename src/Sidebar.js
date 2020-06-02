@@ -13,8 +13,8 @@ export default function Sidebar(props) {
         onHandleDelete={props.handleDelete}
       />
       {props.cUser ? null : (
-        <>
-          <ul className="sample-info">
+        <div className="sample-info">
+          <ul>
             <li>
               <b>Sample Users:</b>
             </li>
@@ -36,7 +36,7 @@ export default function Sidebar(props) {
             <br />
             <a href="https://www.panix.com/~dreamer/">Visit my homepage</a>
           </p>
-        </>
+        </div>
       )}
     </div>
   );
