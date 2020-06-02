@@ -170,6 +170,7 @@ export default class Login extends Component {
         <FromValidationError field={this.state.errors.email} />
         <FromValidationError field={this.state.errors.password} />
         <br />
+        <h3>This is a demo site</h3>
         <div className="links">
           <li>
             <a href="https://github.com/dannylee8/m5f">GitHub Frontend repo</a>
