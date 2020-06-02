@@ -693,3 +693,9 @@ button {
   padding-left: 1em;
   list-style-type: none;
 }
+
+.links {
+  color: #000;
+  text-align: center;
+  list-style-type: none;
+}
