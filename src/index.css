@@ -846,7 +846,8 @@ button {
 }
 
 .sidenav li {
-  padding-left: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 /* .sidenav li:hover {
