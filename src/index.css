@@ -1,25 +1,25 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .App {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 .App-body {
- display: flex;
- flex-direction: row;
- background-color: #d8d8d8;
+  display: flex;
+  flex-direction: row;
+  background-color: #d8d8d8;
 }
 
 .page-container {
@@ -52,9 +52,9 @@ code {
 }
 
 .App-main {
-    background-color: #fff;
-    min-height: 90vh;
-    color: white;
+  background-color: #fff;
+  min-height: 90vh;
+  color: white;
 }
 
 .App-link {
@@ -70,10 +70,10 @@ code {
   }
 }
 
-.divider{
-  width:10px;
-  height:auto;
-  display:inline-block;
+.divider {
+  width: 10px;
+  height: auto;
+  display: inline-block;
 }
 
 .login-form {
@@ -88,7 +88,7 @@ code {
   padding: 1em;
   margin: 1em;
   border: 2px solid #d3d3d3;
-  border-radius: .5em;
+  border-radius: 0.5em;
   vertical-align: middle;
   margin-left: auto;
   margin-right: auto;
@@ -113,10 +113,10 @@ code {
   border-color: #a64d79;
 }
 
-.btn-secondary:hover{
-  color:#843d60;
-  background-color:#d3d3d3;
-  border-color:#333;
+.btn-secondary:hover {
+  color: #843d60;
+  background-color: #d3d3d3;
+  border-color: #333;
 }
 
 /* The sidebar menu */
@@ -126,7 +126,7 @@ code {
   z-index: 1; /* Stay on top */
   top: 10vh; /* Stay at the top */
   left: 0;
-  background-color: #D8D8D8; /* Black */
+  background-color: #d8d8d8; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 5vh;
   background-image: url(./_bg/mooning.png);
@@ -171,10 +171,13 @@ code {
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
-
 
 #delete {
   height: 20px;
@@ -208,7 +211,7 @@ code {
 .user-table {
   margin-left: 250px;
   margin-top: 50px;
-  border-spacing: .2em;
+  border-spacing: 0.2em;
   margin: 1rem auto;
   /* border-collapse: separate; */
   width: 30vw;
@@ -224,7 +227,7 @@ code {
   margin-left: 250px;
   margin-top: 50px;
   width: 40vw;
-  border-spacing: .2em;
+  border-spacing: 0.2em;
   margin: 1rem auto;
 }
 
@@ -238,33 +241,33 @@ code {
   padding: 1rem 1.2rem;
   border-radius: 3px;
   border: 1px solid black;
-  background-color: #D8D8D8;
+  background-color: #d8d8d8;
 }
 
 .new-user-input {
   margin: auto;
-  width:37vw;
+  width: 37vw;
 }
 
 .new-user-table {
   margin-left: 250px;
   margin-top: 50px;
   width: 25vw;
-  border-spacing: .2em;
+  border-spacing: 0.2em;
   margin: 1rem auto;
 }
 
 .new-user-table td {
-  padding: 0rem .5rem;
+  padding: 0rem 0.5rem;
   border-radius: 3px;
   text-align: left;
-  vertical-align: middle; 
+  vertical-align: middle;
   line-height: 2em;
   padding-top: 4px;
 }
 
 .new-user-table th {
-  width:80px;
+  width: 80px;
 }
 
 .years-exp {
@@ -277,7 +280,7 @@ code {
   padding: 1em;
   margin: 1em;
   border: 2px solid #d3d3d3;
-  border-radius: .5em;
+  border-radius: 0.5em;
   vertical-align: middle;
   margin-left: auto;
   margin-right: auto;
@@ -286,7 +289,7 @@ code {
 }
 
 .create-user-input {
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .material-icons {
@@ -310,7 +313,7 @@ border:1px solid lightpink !important;
 
 .years-input {
   margin: auto;
-  width:5vw;
+  width: 5vw;
 }
 
 .profile-content {
@@ -335,7 +338,7 @@ border:1px solid lightpink !important;
   padding: 1rem 1.2rem;
   border-radius: 3px;
   border: 1px solid black;
-  background-color: #D8D8D8;
+  background-color: #d8d8d8;
 }
 
 .right-content {
@@ -346,7 +349,7 @@ border:1px solid lightpink !important;
 .team-table {
   margin-left: 250px;
   margin-top: 50px;
-  border-spacing: .2em;
+  border-spacing: 0.2em;
   margin: 1rem auto;
   line-height: 2em;
   width: 40vw;
@@ -392,7 +395,7 @@ border:1px solid lightpink !important;
 
 .positions-table {
   float: left;
-  border-spacing: .2em;
+  border-spacing: 0.2em;
   margin: 1rem auto;
   line-height: 1.5em;
   width: 50vw;
@@ -401,25 +404,25 @@ border:1px solid lightpink !important;
 }
 
 .positions-table td {
-  padding: 0rem .2rem;
+  padding: 0rem 0.2rem;
   border: 4px solid #d3d3d3;
 }
 
 .fade-in {
-	opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 0.5s;
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
 }
 
 @keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .position-not-filled {
@@ -431,16 +434,16 @@ border:1px solid lightpink !important;
 }
 
 h1 {
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-size: 2em;
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 
 h2 {
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-size: 1.25em;
   color: antiquewhite;
-  background-color:  palevioletred;
+  background-color: palevioletred;
   line-height: 2em;
   padding-left: 45px;
   width: 72.5vw;
@@ -449,7 +452,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-size: 1.5em;
 }
 
@@ -468,7 +471,7 @@ h5 {
 
 h6 {
   color: antiquewhite;
-  background-color:  palevioletred;
+  background-color: palevioletred;
   line-height: 2em;
   padding-left: 45px;
   width: 72.5vw;
@@ -477,7 +480,7 @@ h6 {
 }
 
 .owner {
-  color: black
+  color: black;
 }
 
 .team-list {
@@ -494,32 +497,31 @@ h6 {
   padding: 10px;
 }
 
-.team-list:hover{
+.team-list:hover {
   background-color: #92426a;
   color: antiquewhite;
   width: 40vw;
 }
 
-.team-list-admin:hover{
+.team-list-admin:hover {
   background-color: thistle;
   color: #000;
   width: 40vw;
 }
 
 .team-list-admin-row {
-  background-color: #D8D8D8;
+  background-color: #d8d8d8;
 }
 
 .team-list-row {
-  background-color:#bfbfbf;
+  background-color: #bfbfbf;
 }
 
 .team-list-table {
   background-color: gray;
 }
 
-
-.flex{
+.flex {
   display: flex;
   flex-direction: row;
 }
@@ -559,7 +561,7 @@ h6 {
 
 .position-user-search-table {
   float: left;
-  border-spacing: .2em;
+  border-spacing: 0.2em;
   margin: 1rem auto;
   line-height: 1.5em;
   width: 58vw;
@@ -573,11 +575,11 @@ h6 {
   border: 1px solid black;
 }
 
-.position-user-search-table th { 
+.position-user-search-table th {
   padding: 0rem 0.5rem;
   border-radius: 3px;
   border: 1px solid black;
-  background-color: #D8D8D8;
+  background-color: #d8d8d8;
 }
 
 .centered {
@@ -601,17 +603,17 @@ a {
 
 /* Track */
 .test-box::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
 
 /* Handle */
 .test-box::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 .test-box::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 .logo-img {
@@ -663,31 +665,30 @@ tr:hover td {
 }
 
 button {
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 700;
   border: none;
   border-radius: 3px;
-  padding: .3rem 1rem;
-  margin-left: .5rem;
+  padding: 0.3rem 1rem;
+  margin-left: 0.5rem;
 }
 
 .button-default {
-  background: #247BA0;
+  background: #247ba0;
   color: #fff;
 }
 
 /* .ui.icon.button, .ui.icon.buttons .button {
 } */
 
-.ui.button {
+.ui .button {
   cursor: pointer;
   background: #d8d8d8;
 }
 
 .sample-info {
-  font-family: 'Source Code Pro', monospace;
-  font-size: .8em;
+  font-family: "Source Code Pro", monospace;
+  font-size: 0.8em;
   text-align: left;
   padding-left: 1em;
 }
-

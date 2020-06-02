@@ -23,19 +23,25 @@ export default function Sidebar(props) {
             <li>marcus@gmail.com</li>
             <li>yang@gmail.com</li>
             <li>dorian@gmail.com</li>
+            <br />
+            <li>Password: password</li>
+            <li>
+              <a href="https://github.com/dannylee8/m5f">
+                GitHub Frontend repo
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/dannylee8/m5b">GitHub Backend repo</a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=_rki3cc7K0g">
+                Video walkthru at YouTube
+              </a>
+            </li>
+            <li>
+              <a href="https://www.panix.com/~dreamer/">Visit my homepage</a>
+            </li>
           </ul>
-          <p>Password: password</p>
-          <p>
-            <a href="https://github.com/dannylee8/m5f">GitHub Frontend repo</a>
-            <br />
-            <a href="https://github.com/dannylee8/m5b">GitHub Backend repo</a>
-            <br />
-            <a href="https://www.youtube.com/watch?v=_rki3cc7K0g">
-              Video walkthru at YouTube
-            </a>
-            <br />
-            <a href="https://www.panix.com/~dreamer/">Visit my homepage</a>
-          </p>
         </div>
       )}
     </div>
