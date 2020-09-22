@@ -18,10 +18,10 @@
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.3",
-    "reactstrap": "^8.5.1",
+    "reactstrap": "^8.6.0",
     "redux": "^4.0.4",
     "semantic-ui-react": "^0.88.2",
-    "snyk": "^1.393.0",
+    "snyk": "^1.399.1",
     "uuid": "^3.3.3",
     "validator": "^12.1.0"
   },
